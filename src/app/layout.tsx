@@ -8,27 +8,27 @@ import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 export const metadata: Metadata = {
-  title: 'eTraduções - Traduções Juramentadas e Certificadas',
+  title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
   description:
     'Empresa especializada em traduções oficiais de documentos. Oferecemos traduções juramentadas e certificadas válidas no Brasil e no mundo.',
   keywords:
     'tradução juramentada, tradução certificada, tradução técnica, apostilamento de haia, tradução oficial',
   openGraph: {
-    title: 'eTraduções - Traduções Juramentadas e Certificadas',
+    title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
     description:
       'Empresa especializada em traduções oficiais de documentos. Oferecemos traduções juramentadas e certificadas válidas no Brasil e no mundo.',
-    url: 'https://www.etraducoes.com.br',
-    siteName: 'eTraduções',
+    url: 'https://traduztudo.vercel.app',
+    siteName: 'TraduzTudo',
     locale: 'pt_BR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@etraducoes',
+    site: '@traduztudo',
   },
   icons: {
-    icon: 'https://www.etraducoes.com.br/favicon-32x32.png',
-    apple: 'https://www.etraducoes.com.br/apple-touch-icon.png',
+    icon: '/img/traduztudo-emblem.svg',
+    apple: '/img/traduztudo-emblem.svg',
   },
 };
 

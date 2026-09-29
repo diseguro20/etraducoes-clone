@@ -4,7 +4,7 @@ import QuoteForm from '@/components/forms/QuoteForm';
 import { CheckCircle, ChevronRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Tradução Certificada | eTraduções',
+  title: 'Tradução Certificada | TraduzTudo',
   description: 'Tradução certificada para uso nos EUA, Canadá, Reino Unido e Austrália. Disponível no par português-inglês.',
 };
 

@@ -4,7 +4,7 @@ import QuoteForm from '@/components/forms/QuoteForm';
 import { CheckCircle, ChevronRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Tradução Juramentada | eTraduções',
+  title: 'Tradução Juramentada | TraduzTudo',
   description:
     'Tradução juramentada realizada por tradutores públicos certificados. Válida para certidões, diplomas, contratos e qualquer documento oficial.',
 };

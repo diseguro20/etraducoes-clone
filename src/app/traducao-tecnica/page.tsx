@@ -4,7 +4,7 @@ import QuoteForm from '@/components/forms/QuoteForm';
 import { CheckCircle, ChevronRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Tradução Técnica | eTraduções',
+  title: 'Tradução Técnica | TraduzTudo',
   description: 'Tradução técnica especializada nas áreas jurídica, médica, financeira e científica.',
 };
 

@@ -62,7 +62,7 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <div>
             <p className="text-xs text-gray-400">Painel Administrativo</p>
-            <h1 className="font-extrabold text-xl">eTraduções Admin</h1>
+            <h1 className="font-extrabold text-xl">TraduzTudo Admin</h1>
           </div>
           <div className="flex items-center gap-2">
             {newQuotes.length > 0 && (

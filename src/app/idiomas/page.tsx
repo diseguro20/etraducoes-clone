@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { LANGUAGES } from '@/types';
 
 export const metadata: Metadata = {
-  title: 'Idiomas | eTraduções',
+  title: 'Idiomas | TraduzTudo',
   description: 'Tradução juramentada e certificada em +14 idiomas: inglês, espanhol, italiano, francês, alemão, russo, mandarim e muito mais.',
 };
 

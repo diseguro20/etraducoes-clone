@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Política de Privacidade | eTraduções',
+  title: 'Política de Privacidade | TraduzTudo',
 };
 
 export default function PrivacidadePage() {
@@ -15,7 +15,7 @@ export default function PrivacidadePage() {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-3">1. Informações que coletamos</h2>
             <p>
-              A eTraduções (AITRADBRASIL LTDA, CNPJ 14.617.747/0001-06) coleta informações fornecidas
+              A TraduzTudo (AITRADBRASIL LTDA, CNPJ 14.617.747/0001-06) coleta informações fornecidas
               diretamente por você, como nome completo, e-mail, telefone e documentos enviados para
               orçamento e tradução.
             </p>
@@ -45,14 +45,14 @@ export default function PrivacidadePage() {
             <p>
               De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem direito a: acessar,
               corrigir, excluir e portar seus dados pessoais. Para exercer esses direitos, entre em
-              contato: contato@etraducoes.com.br
+              contato: contato@traduztudo.com.br
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-3">5. Contato</h2>
             <p>
-              Para dúvidas sobre privacidade: <a href="mailto:contato@etraducoes.com.br" className="text-[#2e7ec6] hover:underline">contato@etraducoes.com.br</a>
+              Para dúvidas sobre privacidade: <a href="mailto:contato@traduztudo.com.br" className="text-[#2e7ec6] hover:underline">contato@traduztudo.com.br</a>
             </p>
           </section>
         </div>

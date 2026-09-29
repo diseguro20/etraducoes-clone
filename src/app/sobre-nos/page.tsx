@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import { CheckCircle, Award, Users, Globe, Heart } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Sobre Nós | eTraduções',
-  description: 'Conheça a eTraduções, empresa brasileira de tradução juramentada e certificada fundada em 2016. Parte do Grupo Ferrara.',
+  title: 'Sobre Nós | TraduzTudo',
+  description: 'Conheça a TraduzTudo, empresa brasileira de tradução juramentada e certificada fundada em 2016. Parte do Grupo Ferrara.',
 };
 
 const timeline = [
-  { year: '2016', event: 'Fundação da eTraduções em Curitiba, PR.' },
+  { year: '2016', event: 'Fundação da TraduzTudo em Curitiba, PR.' },
   { year: '2018', event: 'Abertura do escritório em São Paulo, SP.' },
   { year: '2020', event: 'Lançamento da plataforma digital de orçamentos instantâneos.' },
   { year: '2022', event: 'Ingresso na American Translators Association (ATA).' },
@@ -40,7 +40,7 @@ export default function SobreNosPage() {
               <span className="text-[#2e7ec6]">tradução juramentada</span>
             </h1>
             <p className="text-lg text-gray-600 mb-4">
-              A eTraduções é uma empresa brasileira de tradução juramentada, certificada e técnica,
+              A TraduzTudo é uma empresa brasileira de tradução juramentada, certificada e técnica,
               fundada em 2016 em Curitiba, PR. Fazemos parte do <strong>Grupo Ferrara</strong> e
               somos membros da <strong>American Translators Association (ATA)</strong>.
             </p>

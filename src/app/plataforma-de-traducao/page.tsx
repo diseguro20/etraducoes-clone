@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Plataforma AIUTA | eTraduções',
+  title: 'Plataforma AIUTA | TraduzTudo',
   description: 'AIUTA — A plataforma de tradução para empresas e clientes corporativos. Gestão de pedidos, faturamento e condições especiais.',
 };
 

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import QuoteForm from '@/components/forms/QuoteForm';
 
 export const metadata: Metadata = {
-  title: 'Solicitar Orçamento | eTraduções',
+  title: 'Solicitar Orçamento | TraduzTudo',
   description: 'Solicite um orçamento instantâneo para tradução juramentada, certificada ou técnica. Preço e prazo em minutos.',
 };
 

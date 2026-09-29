@@ -4,7 +4,7 @@ import QuoteForm from '@/components/forms/QuoteForm';
 import { CheckCircle, ChevronRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Apostilamento de Haia | eTraduções',
+  title: 'Apostilamento de Haia | TraduzTudo',
   description:
     'Preparação e encaminhamento de documentos para apostilamento de Haia. Facilitamos a validação internacional dos seus documentos brasileiros.',
 };
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: 'Quem pode apostilar documentos no Brasil?',
-    a: 'No Brasil, o apostilamento é feito por cartórios credenciados pelo CNJ (Conselho Nacional de Justiça). A eTraduções auxilia na preparação e encaminhamento dos documentos a esses cartórios.',
+    a: 'No Brasil, o apostilamento é feito por cartórios credenciados pelo CNJ (Conselho Nacional de Justiça). A TraduzTudo auxilia na preparação e encaminhamento dos documentos a esses cartórios.',
   },
   {
     q: 'Preciso de tradução juramentada junto com o apostilamento?',
@@ -83,7 +83,7 @@ export default function ApostilamentoPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-10">
             <p className="text-amber-800 text-sm font-semibold">
-              ⚠️ <strong>Atenção:</strong> A eTraduções não emite apostilas nem atua como cartório.
+              ⚠️ <strong>Atenção:</strong> A TraduzTudo não emite apostilas nem atua como cartório.
               Realizamos o processo de preparação e intermediação com cartórios credenciados pelo CNJ.
             </p>
           </div>

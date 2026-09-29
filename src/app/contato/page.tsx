@@ -3,8 +3,8 @@ import QuoteForm from '@/components/forms/QuoteForm';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contato | eTraduções',
-  description: 'Entre em contato com a eTraduções. Atendemos por WhatsApp, e-mail, telefone e presencialmente em Curitiba, São Paulo e Joinville.',
+  title: 'Contato | TraduzTudo',
+  description: 'Entre em contato com a TraduzTudo. Atendemos por WhatsApp, e-mail, telefone e presencialmente em Curitiba, São Paulo e Joinville.',
 };
 
 const offices = [
@@ -66,12 +66,12 @@ export default function ContatoPage() {
               <p className="text-blue-600 text-xs">Gratuito — Seg a Sex, 9h às 18h</p>
             </div>
             <a
-              href="mailto:contato@etraducoes.com.br"
+              href="mailto:contato@traduztudo.com.br"
               className="flex flex-col items-center gap-3 bg-purple-50 border border-purple-200 hover:bg-purple-100 rounded-2xl p-8 transition-colors text-center"
             >
               <Mail size={32} className="text-purple-600" />
               <h3 className="font-bold text-purple-800 text-lg">E-mail</h3>
-              <p className="text-purple-700 text-sm">contato@etraducoes.com.br</p>
+              <p className="text-purple-700 text-sm">contato@traduztudo.com.br</p>
               <p className="text-purple-600 text-xs">Resposta em até 2 horas úteis</p>
             </a>
           </div>

@@ -45,6 +45,20 @@ body.theme-dark footer {
   color: #e0e0e0;
 }
 
+/* Logo dark / light mode */
+.traduztudo-logo-dark {
+  display: none !important;
+}
+.traduztudo-logo-light {
+  display: inline-block !important;
+}
+body.theme-dark .traduztudo-logo-light {
+  display: none !important;
+}
+body.theme-dark .traduztudo-logo-dark {
+  display: inline-block !important;
+}
+
 /* Modal and popup defaults */
 #wpp-popup {
   display: none;

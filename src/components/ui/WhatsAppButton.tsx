@@ -44,7 +44,7 @@ export default function WhatsAppButton() {
       try {
         await createQuote({
           fullName,
-          email: 'lead-whatsapp@etraducoes.com.br',
+          email: 'lead-whatsapp@traduztudo.com.br',
           whatsapp: phone,
           serviceType: 'whatsapp-lead: ' + uf,
           fileNames: [],
