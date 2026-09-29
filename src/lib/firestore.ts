@@ -26,6 +26,7 @@ export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
   });
   return docRef.id;
 }
+export const createQuote = createQuoteRequest;
 
 export async function getQuotes() {
   const q = query(collection(db, 'quotes'), orderBy('createdAt', 'desc'));

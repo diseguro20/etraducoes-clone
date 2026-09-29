@@ -17,7 +17,7 @@ export interface QuoteRequest {
   fullName: string;
   email: string;
   whatsapp: string;
-  serviceType: 'trad' | 'apostille';
+  serviceType: string;
   files?: string[];
   fileNames?: string[];
   status: 'novo' | 'visto' | 'cotado';

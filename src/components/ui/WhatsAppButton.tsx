@@ -1,33 +1,74 @@
 'use client';
 
-import { MessageCircle } from 'lucide-react';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { createQuote } from '@/lib/firestore';
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5511920037059';
-const WHATSAPP_MESSAGE = encodeURIComponent(
-  'Olá! Vim pelo site e gostaria de solicitar um orçamento de tradução.'
-);
+const wppHtml = "    <div id=\"wpp-btn\" class=\"wpp-btn-trigger\" title=\"Falar com especialista\">\n        <i class=\"fab fa-whatsapp\"></i>\n    </div>\n\n    <div id=\"wpp-popup-overlay\"></div>\n    <div id=\"wpp-popup\">\n        <div class=\"wpp-popup-header\">\n            <div class=\"wpp-popup-header-icon\">\n                <i class=\"fab fa-whatsapp\"></i>\n            </div>\n            <div class=\"wpp-popup-header-content\">\n                <span class=\"wpp-popup-header-content-title\">Fale com um especialista</span>\n                <p>Preencha seus dados para iniciar a conversa</p>\n            </div>\n            <button type=\"button\" id=\"wpp-popup-close\">&times;</button>\n        </div>\n        <form id=\"wpp-popup-form\" action=\"/whatsapp-lead\" method=\"post\">\n            <input type=\"hidden\" name=\"action\" value=\"whatsapp_lead\" />\n            <div class=\"wpp-form-group\">\n                <label for=\"wpp_full_name\">Nome completo</label>\n                <input type=\"text\" id=\"wpp_full_name\" name=\"full_name\" placeholder=\"Digite seu nome completo\"\n                    required />\n            </div>\n            <div class=\"wpp-form-group\">\n                <label for=\"wpp_phone\">WhatsApp</label>\n                <input type=\"tel\" id=\"whatsapp2\" name=\"phone_display\" placeholder=\"Número de WhatsApp\" required />\n                <div class=\"invalid-feedback\" id=\"phone-error-2\" style=\"display: none;\">\n                    Números brasileiros devem conter o dígito 9 após o DDD\n                </div>\n            </div>\n            <div class=\"wpp-form-group\">\n                <label for=\"wpp_addr_uf\">Estado de residência</label>\n                <select id=\"wpp_addr_uf\" name=\"addr_uf\" required>\n                    <option value=\"\" disabled selected>Selecione um estado *</option>\n                                            <option value=\"EX\">Reside no Exterior</option>\n                                            <option value=\"AC\">Acre</option>\n                                            <option value=\"AL\">Alagoas</option>\n                                            <option value=\"AP\">Amapá</option>";
 
 export default function WhatsAppButton() {
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
+  useEffect(() => {
+    const triggers = document.querySelectorAll('.wpp-btn-trigger');
+    const popup = document.getElementById('wpp-popup');
+    const overlay = document.getElementById('wpp-popup-overlay');
+    const closeBtn = document.getElementById('wpp-popup-close');
+    const form = document.getElementById('wpp-popup-form') as HTMLFormElement | null;
 
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Falar no WhatsApp"
-      className="fixed bottom-6 right-6 z-50 group"
-    >
-      <div className="relative">
-        {/* Pulse rings */}
-        <span className="absolute inset-0 rounded-full bg-green-500 opacity-30 animate-ping" />
-        <span className="absolute inset-0 rounded-full bg-green-400 opacity-20 animate-ping [animation-delay:0.5s]" />
-        {/* Button */}
-        <div className="relative flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-3 rounded-full shadow-2xl shadow-green-500/40 transition-all hover:scale-105">
-          <MessageCircle size={22} />
-          <span className="hidden sm:inline text-sm">Fale conosco</span>
-        </div>
-      </div>
-    </a>
-  );
+    const openPopup = (e: Event) => {
+      e.preventDefault();
+      if (popup && overlay) {
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+      }
+    };
+
+    const closePopup = () => {
+      if (popup && overlay) {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+      }
+    };
+
+    triggers.forEach((btn) => btn.addEventListener('click', openPopup));
+    closeBtn?.addEventListener('click', closePopup);
+    overlay?.addEventListener('click', closePopup);
+
+    const handleSubmit = async (e: Event) => {
+      e.preventDefault();
+      if (!form) return;
+      const formData = new FormData(form);
+      const fullName = formData.get('full_name') as string;
+      const phone = formData.get('phone_display') as string;
+      const uf = formData.get('addr_uf') as string;
+
+      try {
+        await createQuote({
+          fullName,
+          email: 'lead-whatsapp@etraducoes.com.br',
+          whatsapp: phone,
+          serviceType: 'whatsapp-lead: ' + uf,
+          fileNames: [],
+        });
+      } catch (err) {
+        console.error('Error saving lead:', err);
+      }
+
+      toast.success('Iniciando conversa no WhatsApp...');
+      closePopup();
+      const cleanPhone = phone.replace(/\D/g, '');
+      const text = encodeURIComponent(`Olá! Meu nome é ${fullName} (Estado: ${uf}). Gostaria de informações sobre orçamento de tradução.`);
+      window.open(`https://wa.me/5511920037059?text=${text}`, '_blank');
+    };
+
+    form?.addEventListener('submit', handleSubmit);
+
+    return () => {
+      triggers.forEach((btn) => btn.removeEventListener('click', openPopup));
+      closeBtn?.removeEventListener('click', closePopup);
+      overlay?.removeEventListener('click', closePopup);
+      form?.removeEventListener('submit', handleSubmit);
+    };
+  }, []);
+
+  return <div dangerouslySetInnerHTML={{ __html: wppHtml }} />;
 }

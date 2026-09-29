@@ -1,17 +1,11 @@
 import type { Metadata } from 'next';
-import { Catamaran } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
-
-const catamaran = Catamaran({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-catamaran',
-});
 
 export const metadata: Metadata = {
   title: 'eTraduções - Traduções Juramentadas e Certificadas',
@@ -32,9 +26,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@etraducoes',
   },
-  robots: {
-    index: true,
-    follow: true,
+  icons: {
+    icon: 'https://www.etraducoes.com.br/favicon-32x32.png',
+    apple: 'https://www.etraducoes.com.br/apple-touch-icon.png',
   },
 };
 
@@ -44,8 +38,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={catamaran.variable}>
-      <body className={`${catamaran.className} antialiased bg-white text-gray-900`}>
+    <html lang="pt-BR">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/etraducoes.css" />
+      </head>
+      <body>
         <AuthProvider>
           <Header />
           <main>{children}</main>
@@ -55,10 +58,11 @@ export default function RootLayout({
             position="top-right"
             toastOptions={{
               duration: 4000,
-              style: { fontFamily: 'var(--font-catamaran)' },
+              style: { fontFamily: "'Catamaran', sans-serif" },
             }}
           />
         </AuthProvider>
+        <Script src="/js/etraducoes.js" strategy="lazyOnload" />
       </body>
     </html>
   );

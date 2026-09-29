@@ -1,231 +1,46 @@
 'use client';
 
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
-import { cn } from '@/lib/utils';
+import { useEffect } from 'react';
 
-const services = [
-  { label: 'Tradução Juramentada', href: '/traducao-juramentada' },
-  { label: 'Tradução Certificada', href: '/traducao-certificada' },
-  { label: 'Tradução Técnica', href: '/traducao-tecnica' },
-  { label: 'Apostilamento de Haia', href: '/apostilamento-de-haia' },
-  { label: 'Plataforma AIUTA', href: '/plataforma-de-traducao' },
-];
-
-const languages = [
-  { label: 'Português', href: '/traducao-de-portugues', flag: '🇧🇷' },
-  { label: 'Inglês', href: '/traducao-de-ingles', flag: '🇺🇸' },
-  { label: 'Espanhol', href: '/traducao-de-espanhol', flag: '🇪🇸' },
-  { label: 'Italiano', href: '/traducao-de-italiano', flag: '🇮🇹' },
-  { label: 'Francês', href: '/traducao-frances', flag: '🇫🇷' },
-  { label: 'Alemão', href: '/traducao-de-alemao', flag: '🇩🇪' },
-  { label: 'Russo', href: '/traducao-russo', flag: '🇷🇺' },
-  { label: 'Mandarim', href: '/traducao-mandarim', flag: '🇨🇳' },
-  { label: 'Holandês', href: '/traducao-de-holandes', flag: '🇳🇱' },
-  { label: 'Ver todos', href: '/idiomas', flag: '🌍' },
-];
-
-const areas = [
-  { label: 'Acadêmico', href: '/traducao-academica' },
-  { label: 'Casamento', href: '/traducao-juramentada-para-casamento' },
-  { label: 'Certidões', href: '/traducao-juramentada-de-certidoes' },
-  { label: 'Cidadania Italiana', href: '/traducao-juramentada-para-cidadania-italiana' },
-  { label: 'Docs Pessoais', href: '/traducao-de-documentos' },
-  { label: 'Intercâmbio', href: '/traducao-para-intercambio' },
-  { label: 'Jurídico', href: '/traducao-tecnica' },
-  { label: 'Empresarial', href: '/traducao-tecnica' },
-];
+const headerHtml = "            <header class=\"container-s\"><div class=\"top\"><div class=\"topbar\"><span class=\"menu-btn\"></span><nav class=\"menu\"><div class=\"ds-flex align-center logo-header\"><a href=\"/\" aria-label=\"Logo eTraduções\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"216.644\" height=\"57\" viewBox=\"0 0 216.644 57\"><g id=\"Group_1\" data-name=\"Group 1\" transform=\"translate(-309 129.601)\"><g id=\"Group_64\" data-name=\"Group 64\" transform=\"translate(316.45 -121.595)\"><path id=\"Path_59\" data-name=\"Path 59\" d=\"M17.819,14.224H7.812a1.112,1.112,0,0,1,0-2.224H17.819a1.114,1.114,0,0,1,1.112,1.112C19.042,13.779,18.486,14.224,17.819,14.224Z\" transform=\"translate(-6.7 -6.663)\" fill=\"var(--color-secundary)\"/><path id=\"Path_60\" data-name=\"Path 60\" d=\"M17.819,9.424H7.812a1.112,1.112,0,0,1,0-2.224H17.819a1.114,1.114,0,0,1,1.112,1.112A1.047,1.047,0,0,1,17.819,9.424Z\" transform=\"translate(-6.7 -7.2)\" fill=\"var(--color-secundary)\"/></g><g id=\"Group_65\" data-name=\"Group 65\" transform=\"translate(338.911 -114.047)\"><path id=\"Path_61\" data-name=\"Path 61\" d=\"M48.36,21.024H28.012A1.114,1.114,0,0,1,26.9,19.912,1.2,1.2,0,0,1,28.012,18.8H48.36a1.112,1.112,0,1,1,0,2.224Z\" transform=\"translate(-26.9 -13.463)\" fill=\"var(--color-primary)\"/><path id=\"Path_62\" data-name=\"Path 62\" d=\"M48.36,16.224H28.012a1.112,1.112,0,0,1,0-2.224H48.36a1.114,1.114,0,0,1,1.112,1.112A1.047,1.047,0,0,1,48.36,16.224Z\" transform=\"translate(-26.9 -14)\" fill=\"var(--color-primary)\"/></g><path id=\"Path_63\" data-name=\"Path 63\" d=\"M50.945,56.183H25.927A6.214,6.214,0,0,1,19.7,49.961h3.336a2.942,2.942,0,0,0,2.891,2.889H50.945a2.942,2.942,0,0,0,2.891-2.889V13.521a2.942,2.942,0,0,0-2.891-2.889H25.927a2.942,2.942,0,0,0-2.891,2.889v11H19.7v-11A6.214,6.214,0,0,1,25.927,7.3H50.945a6.214,6.214,0,0,1,6.227,6.221V50.073A6.191,6.191,0,0,1,50.945,56.183Z\" transform=\"translate(311.205 -128.783)\" fill=\"var(--color-primary)\"/><path id=\"Path_64\" data-name=\"Path 64\" d=\"M27.375,22.4l-5.782,8.451L15.7,22.4Z\" transform=\"translate(310.757 -127.115)\" fill=\"var(--color-primary)\"/><path id=\"Path_65\" data-name=\"Path 65\" d=\"M31.245,48.369H6.227A6.217,6.217,0,0,1,0,42.142V6.227A6.217,6.217,0,0,1,6.227,0H31.245a6.217,6.217,0,0,1,6.227,6.227H34.136a2.944,2.944,0,0,0-2.891-2.891H6.227A2.944,2.944,0,0,0,3.336,6.227V42.142a2.944,2.944,0,0,0,2.891,2.891H31.245a2.944,2.944,0,0,0,2.891-2.891V33.58h3.336v8.562A6.289,6.289,0,0,1,31.245,48.369Z\" transform=\"translate(309 -129.601)\" fill=\"var(--color-secundary)\"/><path id=\"Path_66\" data-name=\"Path 66\" d=\"M27.2,31.251,32.982,22.8l5.893,8.451Z\" transform=\"translate(312.044 -127.07)\" fill=\"var(--color-secundary)\"/><g id=\"Group_67\" data-name=\"Group 67\" transform=\"translate(399.997 -110.325)\"><path id=\"Path_1848\" data-name=\"Path 1848\" d=\"M6.956,1.466H9.564V-14.7h3.7a.51.51,0,0,1,.574.574v1.173H16.16v-2.425c0-1.173-.391-1.564-1.564-1.564H1.924c-1.173,0-1.564.391-1.564,1.564v2.425H2.681v-1.173a.51.51,0,0,1,.574-.574h3.7Zm10.638,0h2.529v-5.4A8.017,8.017,0,0,1,20.436-6.3a4,4,0,0,1,3.7-3.1,3.746,3.746,0,0,1,.756.078v-2.5a5.11,5.11,0,0,0-.678-.052,4.535,4.535,0,0,0-4.172,3.442h-.052a7.661,7.661,0,0,0,.052-.913v-.834c0-1.069-.548-1.538-1.695-1.538h-2.4v2.164h1.069a.51.51,0,0,1,.574.574Zm8.031-3.7c0,2.633,2.216,4.015,4.485,4.015a4.507,4.507,0,0,0,4.2-2.607h.052a5.712,5.712,0,0,0-.052.782c0,.939.469,1.512,1.643,1.512h2.373V-.7H37.253a.51.51,0,0,1-.574-.574V-6.878c0-2.92-1.147-5.162-5.423-5.162-1.278,0-4.563.313-4.563,2.477v1.3h2.373v-.756c0-.86,1.538-1.017,2.164-1.017,2.06,0,2.92.834,2.92,3.155v.13h-.574C31.361-6.747,25.625-6.487,25.625-2.237Zm2.555-.13c0-2.425,3.442-2.529,5.345-2.529h.652v.443c0,1.955-1.382,4.2-3.52,4.2A2.2,2.2,0,0,1,28.18-2.367ZM39.809-5.131c0,4.093,2.242,6.909,5.814,6.909a4.667,4.667,0,0,0,4.328-2.4H50s-.026.287-.026.678c0,.886.469,1.408,1.617,1.408h2.425V-.7H52.949a.51.51,0,0,1-.574-.574v-14c0-1.173-.5-1.669-1.669-1.669H48.2v2.164h1.069a.51.51,0,0,1,.574.574v3.311a7.468,7.468,0,0,0,.052.886h-.052a4.406,4.406,0,0,0-4.067-2.034C42.286-12.04,39.809-9.329,39.809-5.131Zm6.31,4.719c-2.19,0-3.728-1.851-3.728-4.719,0-3,1.721-4.719,3.781-4.719,2.529,0,3.755,2.347,3.755,4.693C49.925-1.793,48.074-.412,46.118-.412ZM56.782-3.28c0,3.494,1.512,5.058,4.485,5.058a5.289,5.289,0,0,0,4.85-3.024h.052s-.026.339-.026.756v.5c0,.939.548,1.46,1.669,1.46h2.425V-.7H69.167a.51.51,0,0,1-.574-.574V-11.727H66.064v6.179c0,2.607-1.59,4.98-4.3,4.98-2.086,0-2.451-1.46-2.451-3.285v-6.258c0-1.121-.5-1.617-1.695-1.617H55.14v2.164h1.069a.51.51,0,0,1,.574.574ZM71.748-5.131a6.633,6.633,0,0,0,5.658,6.779L76.885,3.76s.235-.026.469-.026c.808,0,1.356.261,1.356.808,0,.6-.574.808-1.225.808a3.806,3.806,0,0,1-1.121-.183V6.68a5.76,5.76,0,0,0,1.46.183c1.33,0,2.659-.574,2.659-2.19a1.908,1.908,0,0,0-1.877-1.9l.209-.991A7.278,7.278,0,0,0,84.159-.49l-1.1-1.8A5.937,5.937,0,0,1,78.97-.464a4.487,4.487,0,0,1-4.641-4.693A4.454,4.454,0,0,1,78.84-9.876c.965,0,2.451.417,2.451,1.356v.73h2.294V-9.146c0-2.242-3.155-2.894-4.745-2.894A6.76,6.76,0,0,0,71.748-5.131Zm13.9-.026a6.887,6.887,0,0,0,7.092,6.935,6.909,6.909,0,0,0,7.118-6.935,6.882,6.882,0,0,0-7.118-6.883A6.86,6.86,0,0,0,85.645-5.157Zm2.581,0A4.523,4.523,0,0,1,92.737-9.85a4.528,4.528,0,0,1,4.537,4.693A4.558,4.558,0,0,1,92.737-.412,4.553,4.553,0,0,1,88.226-5.157Zm.1-8.5h1.721c0-.782.261-1.695,1.043-1.695,1.147,0,1.564,1.773,3.337,1.773s2.686-1.147,2.686-3.311H95.4c0,.756-.261,1.695-1.043,1.695-1.147,0-1.538-1.773-3.337-1.773C89.243-16.968,88.331-15.847,88.331-13.657Zm13.4,8.526a6.725,6.725,0,0,0,7.014,6.909A7.721,7.721,0,0,0,113.83-.151l-1.1-1.8a6.066,6.066,0,0,1-3.859,1.538,4.419,4.419,0,0,1-4.537-4.406h9.621s.078-.7.078-1.043c0-3.416-1.982-6.179-5.684-6.179C104.6-12.04,101.732-9.329,101.732-5.131Zm2.712-1.538a3.8,3.8,0,0,1,3.885-3.363c1.643,0,3.024,1.173,3.1,3.363ZM115.89-.542a6.784,6.784,0,0,0,5.267,2.321c2.764,0,4.85-1.512,4.85-3.859,0-4.406-7.2-3.859-7.2-6.362,0-1.043.965-1.564,2.451-1.564.808,0,1.982.339,1.982,1.121v.652h2.268V-9.485c0-2.008-2.738-2.555-4.328-2.555-2.686,0-4.9,1.173-4.9,3.7,0,4.25,7.2,3.989,7.2,6.362,0,1.147-1.069,1.695-2.294,1.695a5.592,5.592,0,0,1-3.989-1.955Z\" transform=\"translate(-0.36 17.292)\" fill=\"var(--color-secundary)\"/></g><path id=\"Path_1847\" data-name=\"Path 1847\" d=\"M.864-5.523A6.725,6.725,0,0,0,7.878,1.387,7.721,7.721,0,0,0,12.962-.543l-1.1-1.8A6.066,6.066,0,0,1,8.008-.8,4.419,4.419,0,0,1,3.471-5.21h9.621s.078-.7.078-1.043c0-3.416-1.982-6.179-5.684-6.179C3.732-12.432.864-9.72.864-5.523ZM3.576-7.061A3.8,3.8,0,0,1,7.46-10.424c1.643,0,3.024,1.173,3.1,3.363Z\" transform=\"translate(386.399 -92.641)\" fill=\"var(--color-primary)\"/></g></svg></a><span>BY</span><a href=\"/plataforma-de-traducao\" aria-label=\"Logo AIUTA\"><svg width=\"106\" height=\"35\" viewBox=\"0 0 106 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M31.2289 14.278H18.0493C17.0495 14.2791 16.091 14.6767 15.3841 15.3836C14.6771 16.0906 14.2795 17.0491 14.2784 18.0488V25.2099L10.8638 27.6486C10.731 27.7435 10.6227 27.8687 10.5481 28.0138C10.4734 28.159 10.4344 28.3198 10.4344 28.483C10.4344 28.6463 10.4734 28.8071 10.5481 28.9522C10.6227 29.0974 10.731 29.2226 10.8638 29.3174L14.3197 31.7856C14.4548 32.6786 14.9052 33.4937 15.5894 34.0833C16.2735 34.673 17.1461 34.9982 18.0493 35H31.2289C32.2286 34.9989 33.1871 34.6013 33.8941 33.8943C34.601 33.1874 34.9987 32.2289 34.9998 31.2292V18.0488C34.9987 17.0491 34.601 16.0906 33.8941 15.3836C33.1871 14.6767 32.2286 14.2791 31.2289 14.278ZM25.5351 27.006V29.1872H23.7459V20.7221H25.5386L25.5351 27.006Z\" fill=\"#adbbc9\"></path><path d=\"M24.136 5.68261L20.6801 3.21441C20.545 2.32142 20.0945 1.50633 19.4104 0.916699C18.7263 0.327072 17.8537 0.00187475 16.9505 0H3.77089C2.77107 0.0012969 1.81257 0.39911 1.10565 1.10616C0.398729 1.81321 0.00111132 2.77177 0 3.7716V16.9512C0.00111167 17.951 0.398751 18.9095 1.10569 19.6164C1.81263 20.3233 2.77113 20.721 3.77089 20.7221H12.257V17.6974C12.2587 16.2391 12.8387 14.8409 13.8699 13.8097C14.9011 12.7785 16.2993 12.1985 17.7576 12.1968H20.7221V9.7909L24.1367 7.35141C24.2695 7.25653 24.3777 7.13132 24.4524 6.9862C24.5271 6.84107 24.566 6.68021 24.566 6.517C24.566 6.35379 24.5271 6.19294 24.4524 6.04782C24.3777 5.90269 24.2695 5.77749 24.1367 5.68261H24.136ZM12.2899 12.2374L10.3299 8.0297L8.34959 12.2766L7.2772 14.5761H4.97629L9.5494 4.77191H11.1118L13.9734 10.9067C13.3265 11.2292 12.7535 11.6823 12.2906 12.2374H12.2899Z\" fill=\"#788b9d\"></path><path d=\"M60.7408 8.9173H58.6289V20.2027H60.7408V8.9173Z\" fill=\"#788b9d\"></path><path d=\"M73.7283 15.3987C73.7283 17.3335 72.7287 18.5102 70.9717 18.5102C69.2147 18.5102 68.0534 17.4301 68.0534 15.3987V8.93347H65.9415V15.3987C65.9415 18.8 68.2466 20.445 70.9556 20.445C73.7927 20.445 75.8402 18.7363 75.8402 15.3987V8.93347H73.7283V15.3987Z\" fill=\"#788b9d\"></path><path d=\"M80.179 10.8521H83.758V20.2027H85.8861V10.8521H89.4651V8.9173H80.179V10.8521Z\" fill=\"#788b9d\"></path><path d=\"M47.6737 8.9173L42.6113 20.2027H44.9143L45.8817 18.0747L46.7434 16.0916H46.7357L48.8315 11.2875L50.9273 16.0916H50.9196L51.7813 18.0747L52.7326 20.2027H55.0538L49.9914 8.9173H47.6737Z\" fill=\"#788b9d\"></path><path d=\"M98.1824 8.91803L93.12 20.2034H95.4258L96.3932 18.0754L97.2549 16.0923H97.2472L99.343 11.2882L101.439 16.0923H101.431L102.293 18.0754L103.244 20.2034H105.565L100.503 8.91803H98.1824Z\" fill=\"#788b9d\"></path></svg></a></div> <div class=\"theme-switch-wrapper\"> <label class=\"theme-switch\" for=\"checkbox\"> <input type=\"checkbox\" id=\"checkbox\" />\n    <div class=\"slider round\"></div>\n  </label></div>\n<div class=\"mobile-menu\">\n  <div class=\"sub-menu\">\n    <div class=\"arrow-b\">\n      <p >Serviços e Idiomas</p>\n    </div>\n    <div class=\"sub-dropdown sub-all sub-language-service\">\n      <div class=\"row\">\n        <div class=\"col-xl-3 service sub-border\"><span class=\"title-submenu\">Serviços</span>\n          <ul>\n            <li><a href=\"/traducao-juramentada\" title=\"Tradução Juramentada\">Tradução Juramentada</a>\n            </li>\n            <li><a href=\"/traducao-certificada\" title=\"Tradução Certificada\">Tradução Certificada</a>\n            </li>\n            <li><a href=\"/traducao-tecnica\" title=\"Tradução Técnica\">Tradução Técnica</a> </li>\n            <li><a href=\"/apostilamento-de-haia\"\n                title=\"Entenda tudo sobre Apostilamento de Haia\">Apostilamento de Haia</a></li>\n            <li><a href=\"/plataforma-de-traducao\" title=\"AIUTA - Plataforma de Tradução\">Plataforma de\n                Tradução</a></li>\n          </ul>\n        </div>\n        <div class=\"col-xl-5 sub-border\"><span class=\"title-submenu\">Idiomas</span>\n          <ul class=\"list-language\">\n            <li><a title=\"Tradução Português\" href=\"/traducao-de-portugues\"> <img\n                  src=\"/themes/web/assets/img/icon-brazil.svg\" width=\"24\" height=\"24\" alt=\"Bandeira do Brasil\">\n                Português </a></li>\n            <li><a title=\"Tradução Italiano\" href=\"/traducao-de-italiano\"> <img\n                  src=\"/themes/web/assets/img/icon-italy.svg\" width=\"24\" height=\"24\" alt=\"Bandeira da Itália\">\n                Italiano </a></li>\n            <li><a title=\"Tradução Inglês\" href=\"/traducao-de-ingles\"> <img\n                  src=\"/themes/web/assets/img/icon-united-states-of-america.svg\" width=\"24\" height=\"24\"\n                  alt=\"Bandeira dos Estados Unidos\"> Inglês </a></li>\n            <li><a title=\"Tradução Espanhol\" href=\"/traducao-de-espanhol\"> <img\n                  src=\"/themes/web/assets/img/icon-spain.svg\" width=\"24\" height=\"24\" alt=\"Bandeira da Espanha\">\n                Espanhol </a></li>\n            <li><a title=\"Tradução Francês\" href=\"/traducao-frances\"> <img\n                  src=\"/themes/web/assets/img/icon-france.svg\" width=\"24\" height=\"24\" alt=\"Bandeira da França\">\n                Francês </a></li>\n            <li><a title=\"Tradução Russo\" href=\"/traducao-russo\"> <img\n                  src=\"/themes/web/assets/img/icon-russia.svg\" width=\"24\" height=\"24\" alt=\"Bandeira da Russia\">\n                Russo </a></li>\n            <li><a title=\"Tradução Chinês\" href=\"/traducao-mandarim\"> <img\n                  src=\"/themes/web/assets/img/icon-china.svg\" width=\"24\" height=\"24\" alt=\"Bandeira da China\">\n                Mandarim </a></li>\n            <li><a title=\"Tradução Alemão\" href=\"/traducao-de-alemao\"> <img\n                  src=\"/themes/web/assets/img/icon-germany.svg\" width=\"24\" height=\"24\" alt=\"Bandeira da Alemanha\">\n                Alemão </a></li>\n            <li><a title=\"Tradução Holandês\" href=\"/traducao-de-holandes\"> <img\n                  src=\"/themes/web/assets/img/icon-holanda.svg\" width=\"24\" height=\"24\" alt=\"Bandeira da Holanda\">\n                Holandês </a></li>\n            <li><a title=\"Todos os idiomas\" href=\"/idiomas\"> <img\n                  src=\"/themes/web/assets/img/icon-mundo.svg\" width=\"24\" height=\"24\" alt=\"Bandeira do Mundo\">\n                Ver todos </a></li>\n            <!-- <li><a title=\"Tradução Norueguês\" href=\"/traducao-de-noruegues\"> <img\n                  src=\"/themes/web/assets/img/icon-noruega.svg\" width=\"24\" height=\"24\" alt=\"Bandeira da Noruega\">\n                Norueguês </a></li>\n            <li>\n              <a title=\"Tradução Hebraico\" href=\"/traducao-de-hebraico\"> <img\n                  src=\"/themes/web/assets/img/icon-israel.svg\" width=\"24\" height=\"24\" alt=\"Bandeira de Israel\">\n                Hebraico </a>\n            </li>\n            <li>\n              <a title=\"Tradução Árabe\" href=\"/traducao-de-arabe\"> <img\n                  src=\"/themes/web/assets/img/icon-arabia.svg\" width=\"24\" height=\"24\" alt=\"Bandeira de Arábia\">\n                Árabe </a>\n            </li> -->\n          </ul>\n        </div>\n        <div class=\"col-xl-4\"><span class=\"title-submenu\">Áreas de atuação</span>\n          <ul class=\"list-language list-custom\" style=\"width: 100%\">\n            <li><a title=\"Acadêmico\" href=\"/traducao-academica\"> Acadêmico </a></li>\n            <li><a title=\"Casamento\" href=\"/traducao-juramentada-para-casamento\"> Casamento </a></li>\n            <li><a title=\"Certidões\" href=\"/traducao-juramentada-de-certidoes\"> Certidões </a></li>\n            <li><a title=\"Cidadania Italiana\" href=\"/traducao-juramentada-para-cidadania-italiana\">\n                Cidadania Italiana </a></li>\n            <li><a title=\"Documentos Pessoais\" href=\"/traducao-de-documentos\"> Docs Pessoais </a></li>\n            <li><a title=\"Documentos Técnicos\" href=\"/traducao-tecnica\"> Docs Técnicos </a> </li>\n            <li><a title=\"Empresarial\" href=\"/traducao-tecnica\"> Empresarial </a></li>\n            <li><a title=\"Financeiro\" href=\"/traducao-tecnica\"> Financeiro </a></li>\n            <li><a title=\"Intercâmbio\" href=\"/traducao-para-intercambio\"> Intercâmbio </a></li>\n            <li><a title=\"Jurídico\" href=\"/traducao-tecnica\"> Jurídico </a></li>\n          </ul>\n        </div>\n      </div>\n    </div>\n  </div> <a href=\"/me/login\" title=\"Acessar conta\" class=\"menu-link\"> <i class=\"far fa-sign-in\"></i> Entrar </a>\n  <div class=\"sub-menu b-act\"><a class=\"btn btn-blue\" href=\"/orcamento-traducoes\"\n      title=\"Solicite um orçamento agora\">Orçamento Instantâneo</a></div>\n</div> </nav></div></div></header><section class=\"padd-top-sm padd-bottom-lg\">";
 
 export default function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { user, profile, logout } = useAuth();
-
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handler);
-    return () => window.removeEventListener('scroll', handler);
+    const menuBtn = document.querySelector('.menu-btn');
+    const topbar = document.querySelector('.topbar');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const arrowB = document.querySelector('.arrow-b');
+    const subDropdown = document.querySelector('.sub-language-service');
+    const themeCheckbox = document.getElementById('checkbox');
+
+    const handleMenuClick = () => {
+      topbar?.classList.toggle('open');
+      mobileMenu?.classList.toggle('open');
+    };
+
+    const handleArrowClick = (e: Event) => {
+      e.stopPropagation();
+      subDropdown?.classList.toggle('active');
+    };
+
+    const handleThemeChange = (e: any) => {
+      if (e.target?.checked) {
+        document.body.classList.add('theme-dark');
+      } else {
+        document.body.classList.remove('theme-dark');
+      }
+    };
+
+    menuBtn?.addEventListener('click', handleMenuClick);
+    arrowB?.addEventListener('click', handleArrowClick);
+    themeCheckbox?.addEventListener('change', handleThemeChange);
+
+    return () => {
+      menuBtn?.removeEventListener('click', handleMenuClick);
+      arrowB?.removeEventListener('click', handleArrowClick);
+      themeCheckbox?.removeEventListener('change', handleThemeChange);
+    };
   }, []);
 
-  return (
-    <header
-      className={cn(
-        'sticky top-0 z-50 w-full bg-white transition-shadow duration-300',
-        scrolled ? 'shadow-md' : 'shadow-sm'
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex items-center">
-              <span className="text-2xl font-extrabold text-[#2e7ec6]">e</span>
-              <span className="text-2xl font-extrabold text-[#1a5fa8]">Traduções</span>
-            </div>
-          </Link>
-
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6">
-            {/* Services Dropdown */}
-            <div
-              className="relative group"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-            >
-              <button className="flex items-center gap-1 text-gray-700 hover:text-[#2e7ec6] font-medium transition-colors">
-                Serviços e Idiomas
-                <ChevronDown size={16} className={cn('transition-transform', servicesOpen && 'rotate-180')} />
-              </button>
-
-              {servicesOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[700px]">
-                  <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 grid grid-cols-3 gap-6">
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Serviços</p>
-                      <ul className="space-y-2">
-                        {services.map((s) => (
-                          <li key={s.href}>
-                            <Link
-                              href={s.href}
-                              className="text-sm text-gray-700 hover:text-[#2e7ec6] hover:translate-x-1 inline-block transition-all"
-                            >
-                              {s.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Idiomas</p>
-                      <ul className="space-y-2">
-                        {languages.map((l) => (
-                          <li key={l.href}>
-                            <Link
-                              href={l.href}
-                              className="text-sm text-gray-700 hover:text-[#2e7ec6] flex items-center gap-2 transition-colors"
-                            >
-                              <span>{l.flag}</span> {l.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Áreas</p>
-                      <ul className="space-y-2">
-                        {areas.map((a) => (
-                          <li key={a.label}>
-                            <Link
-                              href={a.href}
-                              className="text-sm text-gray-700 hover:text-[#2e7ec6] transition-colors"
-                            >
-                              {a.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <Link href="/sobre-nos" className="text-gray-700 hover:text-[#2e7ec6] font-medium transition-colors">
-              Sobre Nós
-            </Link>
-            <Link href="/blog" className="text-gray-700 hover:text-[#2e7ec6] font-medium transition-colors">
-              Blog
-            </Link>
-            <Link href="/contato" className="text-gray-700 hover:text-[#2e7ec6] font-medium transition-colors">
-              Contato
-            </Link>
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
-            {user ? (
-              <div className="flex items-center gap-3">
-                <Link
-                  href="/me/pedidos"
-                  className="flex items-center gap-2 text-gray-700 hover:text-[#2e7ec6] font-medium transition-colors"
-                >
-                  <User size={18} />
-                  {profile?.fullName?.split(' ')[0] || 'Minha conta'}
-                </Link>
-                <button
-                  onClick={logout}
-                  className="flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors"
-                >
-                  <LogOut size={16} />
-                </button>
-              </div>
-            ) : (
-              <Link
-                href="/me/login"
-                className="flex items-center gap-2 text-gray-700 hover:text-[#2e7ec6] font-medium transition-colors"
-              >
-                <User size={18} />
-                Entrar
-              </Link>
-            )}
-            <Link
-              href="/orcamento-traducoes"
-              className="bg-[#2e7ec6] hover:bg-[#1a5fa8] text-white font-bold px-6 py-2.5 rounded-full transition-colors shadow-lg hover:shadow-xl"
-            >
-              Orçamento Instantâneo
-            </Link>
-          </div>
-
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 text-gray-700"
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 px-4 py-6 space-y-4">
-          <div className="space-y-2">
-            <p className="text-xs font-bold uppercase tracking-wider text-gray-400">Serviços</p>
-            {services.map((s) => (
-              <Link
-                key={s.href}
-                href={s.href}
-                onClick={() => setMobileOpen(false)}
-                className="block py-2 text-gray-700 hover:text-[#2e7ec6] font-medium"
-              >
-                {s.label}
-              </Link>
-            ))}
-          </div>
-          <hr />
-          <Link href="/sobre-nos" onClick={() => setMobileOpen(false)} className="block py-2 text-gray-700 font-medium">Sobre Nós</Link>
-          <Link href="/contato" onClick={() => setMobileOpen(false)} className="block py-2 text-gray-700 font-medium">Contato</Link>
-          <hr />
-          {user ? (
-            <div className="space-y-2">
-              <Link href="/me/pedidos" onClick={() => setMobileOpen(false)} className="block py-2 text-[#2e7ec6] font-bold">Minha Conta</Link>
-              <button onClick={logout} className="block py-2 text-red-500">Sair</button>
-            </div>
-          ) : (
-            <Link href="/me/login" onClick={() => setMobileOpen(false)} className="block py-2 text-[#2e7ec6] font-bold">Entrar</Link>
-          )}
-          <Link
-            href="/orcamento-traducoes"
-            onClick={() => setMobileOpen(false)}
-            className="block w-full text-center bg-[#2e7ec6] text-white font-bold py-3 rounded-full"
-          >
-            Orçamento Instantâneo
-          </Link>
-        </div>
-      )}
-    </header>
-  );
+  return <div dangerouslySetInnerHTML={{ __html: headerHtml }} />;
 }
