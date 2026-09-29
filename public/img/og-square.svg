@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="bg-grad-sq" x1="0" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#060e1a"/>
+      <stop offset="50%" stop-color="#0b1e38"/>
+      <stop offset="100%" stop-color="#102d56"/>
+    </linearGradient>
+    <radialGradient id="glow-sq" cx="300" cy="220" r="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2e7ec6" stop-opacity="0.38"/>
+      <stop offset="70%" stop-color="#2e7ec6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="seal-grad-sq" x1="16" y1="22" x2="34" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#2e7ec6"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </linearGradient>
+    <linearGradient id="doc-grad-sq" x1="0" y1="2" x2="32" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f7ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bg-grad-sq)"/>
+  <rect width="600" height="600" fill="url(#glow-sq)"/>
+  <rect x="20" y="20" width="560" height="560" rx="28" fill="none" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="2"/>
+
+  <!-- Watermark Star Seal -->
+  <g transform="translate(150, 60)" opacity="0.08">
+    <circle cx="150" cy="150" r="140" stroke="#38bdf8" stroke-width="4" stroke-dasharray="8 6" fill="none"/>
+    <circle cx="150" cy="150" r="120" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <polygon points="150,60 170,115 228,118 182,154 196,210 150,180 104,210 118,154 72,118 130,115" fill="#38bdf8"/>
+  </g>
+
+  <!-- Large Centered Emblem -->
+  <g transform="translate(230, 75) scale(3.5)">
+    <rect x="0" y="2" width="32" height="40" rx="5" fill="url(#doc-grad-sq)" stroke="#2e7ec6" stroke-width="1.8"/>
+    <path d="M22 2 L32 12 L22 12 Z" fill="#2e7ec6" opacity="0.25"/>
+    <path d="M22 2 V10 C22 11.1 22.9 12 24 12 H32" stroke="#2e7ec6" stroke-width="1.6" fill="none"/>
+    <line x1="6" y1="9" x2="16" y2="9" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round"/>
+    <line x1="6" y1="15" x2="26" y2="15" stroke="#cbd5e1" stroke-width="1.6" stroke-linecap="round"/>
+    <line x1="6" y1="21" x2="18" y2="21" stroke="#cbd5e1" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M22 36 L19 43 L23 41.5 L24 37" fill="#1e40af"/>
+    <path d="M27 36 L30 43 L26 41.5 L25 37" fill="#2563eb"/>
+    <circle cx="24.5" cy="30.5" r="8.5" fill="url(#seal-grad-sq)" stroke="#ffffff" stroke-width="1.6"/>
+    <polygon points="24.5,25.5 25.8,28.5 29,28.8 26.5,30.8 27.3,34 24.5,32.2 21.7,34 22.5,30.8 20,28.8 23.2,28.5" fill="#ffffff"/>
+  </g>
+
+  <!-- Centered Brand Title -->
+  <text x="300" y="280" text-anchor="middle" font-family="Segoe UI, -apple-system, sans-serif" font-size="54" font-weight="900" fill="#ffffff" letter-spacing="-1">Traduz<tspan fill="#38bdf8">Tudo</tspan></text>
+  <text x="300" y="310" text-anchor="middle" font-family="Segoe UI, -apple-system, sans-serif" font-size="14.5" font-weight="700" letter-spacing="3.5" fill="#93c5fd">TRADUÇÕES JURAMENTADAS</text>
+  <text x="300" y="332" text-anchor="middle" font-family="Segoe UI, -apple-system, sans-serif" font-size="13" font-weight="600" letter-spacing="2" fill="#60a5fa">&amp; CERTIFICADAS OFICIAIS</text>
+
+  <!-- Badge Pill -->
+  <g transform="translate(130, 360)">
+    <rect x="0" y="0" width="340" height="42" rx="21" fill="#38bdf8" fill-opacity="0.12" stroke="#38bdf8" stroke-opacity="0.35" stroke-width="1.5"/>
+    <text x="170" y="26" text-anchor="middle" font-family="Segoe UI, -apple-system, sans-serif" font-size="13.5" font-weight="700" letter-spacing="1" fill="#e0f2fe">✓ VALIDADE EM MAIS DE 190 PAÍSES</text>
+  </g>
+
+  <!-- WhatsApp Button -->
+  <g transform="translate(130, 424)">
+    <rect x="0" y="0" width="340" height="56" rx="28" fill="#25d366" fill-opacity="0.2" stroke="#25d366" stroke-width="2"/>
+    <circle cx="36" cy="28" r="18" fill="#25d366"/>
+    <path d="M36 17 C29.92 17 25 21.92 25 28 C25 30.18 25.63 32.22 26.73 33.94 L25.5 38.5 L30.21 37.26 C31.87 38.27 33.86 38.85 36 38.85 C42.08 38.85 47 33.93 47 27.85 C47 21.77 42.08 17 36 17 Z" fill="#ffffff"/>
+    <path d="M36 19 C31.03 19 27 23.03 27 28 C27 29.79 27.52 31.46 28.42 32.87 L27.5 36.3 L31.04 35.37 C32.4 36.2 34.13 36.7 36 36.7 C40.97 36.7 45 32.67 45 27.7 C45 22.73 40.97 19 36 19 Z" fill="#25d366"/>
+    <text x="70" y="25" font-family="Segoe UI, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#4ade80">WHATSAPP OFICIAL</text>
+    <text x="70" y="44" font-family="Segoe UI, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff">(11) 98285-4183</text>
+  </g>
+
+  <!-- Domain -->
+  <text x="300" y="525" text-anchor="middle" font-family="Segoe UI, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#38bdf8" letter-spacing="0.5">traduztudo.vercel.app</text>
+</svg>

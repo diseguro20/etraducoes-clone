@@ -8,27 +8,63 @@ import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://traduztudo.vercel.app'),
   title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
   description:
-    'Empresa especializada em traduções oficiais de documentos. Oferecemos traduções juramentadas e certificadas válidas no Brasil e no mundo.',
+    'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98285-4183.',
   keywords:
-    'tradução juramentada, tradução certificada, tradução técnica, apostilamento de haia, tradução oficial',
+    'tradução juramentada, tradução certificada, tradução técnica, apostilamento de haia, tradução oficial, tradutudo',
+  authors: [{ name: 'TraduzTudo', url: 'https://traduztudo.vercel.app' }],
+  creator: 'TraduzTudo',
+  publisher: 'TraduzTudo',
+  formatDetection: {
+    telephone: true,
+    email: true,
+  },
   openGraph: {
     title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
     description:
-      'Empresa especializada em traduções oficiais de documentos. Oferecemos traduções juramentadas e certificadas válidas no Brasil e no mundo.',
+      'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98285-4183.',
     url: 'https://traduztudo.vercel.app',
     siteName: 'TraduzTudo',
     locale: 'pt_BR',
     type: 'website',
+    images: [
+      {
+        url: 'https://traduztudo.vercel.app/img/og-preview.png',
+        width: 1200,
+        height: 630,
+        alt: 'TraduzTudo - Traduções Juramentadas e Certificadas',
+        type: 'image/png',
+      },
+      {
+        url: 'https://traduztudo.vercel.app/img/og-square.png',
+        width: 600,
+        height: 600,
+        alt: 'TraduzTudo - Contato e Orçamento',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
+    description:
+      'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98285-4183.',
+    images: ['https://traduztudo.vercel.app/img/og-preview.png'],
     site: '@traduztudo',
+    creator: '@traduztudo',
   },
   icons: {
-    icon: '/img/traduztudo-emblem.svg',
-    apple: '/img/traduztudo-emblem.svg',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/img/traduztudo-emblem.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  other: {
+    'thumbnail': 'https://traduztudo.vercel.app/img/og-preview.png',
+    'whatsapp:image': 'https://traduztudo.vercel.app/img/og-preview.png',
   },
 };
 
@@ -52,6 +88,16 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="stylesheet" href="/css/etraducoes.css" />
+
+        {/* WhatsApp & Social Media Preview Meta Tags */}
+        <meta property="og:image" content="https://traduztudo.vercel.app/img/og-preview.png" />
+        <meta property="og:image:secure_url" content="https://traduztudo.vercel.app/img/og-preview.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="TraduzTudo - Traduções Juramentadas e Certificadas" />
+        <meta name="twitter:image" content="https://traduztudo.vercel.app/img/og-preview.png" />
+        <link rel="image_src" href="https://traduztudo.vercel.app/img/og-preview.png" />
       </head>
       <body>
         <AuthProvider>
