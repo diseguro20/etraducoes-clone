@@ -1,0 +1,152 @@
+<div class="deals">
+        <div class="deals_content">
+    <div class="deals_content_header">
+    <div class="deals_content_header_logo">
+    <a href="/" title="Voltar para página inicial" style="display:inline-flex;align-items:center;">
+        <img src="/img/traduztudo-logo.svg" alt="TraduzTudo" class="traduztudo-logo-light" width="220" height="46" style="height:44px;width:auto;" />
+        <img src="/img/traduztudo-logo-white.svg" alt="TraduzTudo" class="traduztudo-logo-dark" width="220" height="46" style="height:44px;width:auto;" />
+    </a>
+</div>
+    <div class="deals_content_header_nav">
+
+        <div class="deals_content_header_nav_avatar j_nav_button">
+            <img class="user_photo"
+                 src="https://www.etraducoes.com.br/themes/deals/assets/img/no_avatar.jpg">
+        </div>
+        <div class="deals_content_header_nav_open" style="display: none;">
+            <div class="deals_content_header_nav_header">
+                <div class="deals_content_header_nav_header_user">
+                    <div>
+                        <h2>Olá Visitante</h2>
+                        <p>Já possui uma conta?</p>
+                    </div>
+                                    </div>
+                                    <a href="/me/login" class="btn btn-outline btn-small">Entrar</a>
+                            </div>
+            <div class="deals_content_header_nav_content">
+                <ul>
+                                    </ul>
+            </div>
+        </div>
+    </div>
+</div>    <div class="deals_content_form">
+        <div class="deals_content_form_header" style="align-items:center;">
+            <div class="deals_content_form_header_title">
+                <h1>Orçamento de Tradução</h1>
+            </div>
+            <div class="deals_content_form_info" style="justify-content: flex-end;flex: initial">
+                <div class="secure" style="background: #d7f3e7;padding: 10px 20px;border-radius: 25px;display: flex">
+                    <div class="deals_content_form_info_icon">
+                        <i class="far fa-lock-alt" style="color:var(--color-green)"></i>
+                    </div>
+                    <div class="deals_content_form_info_text">
+                        <p style="color:var(--color-green);margin-bottom: 0">Sigilo total dos dados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                        <form action="/orcamento-traducoes"
+            method="post" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="create" />
+                        <div class="label_g2">
+                <label class="label">
+                    <span class="legend">Nome completo</span>
+                    <input type="text" name="full_name"                         placeholder="Digite seu nome completo"  />
+                </label>
+                <label class="label">
+                    <span class="legend">E-mail</span>
+                    <input type="email" name="email"                         placeholder="Digite seu melhor e-mail"  />
+                </label>
+            </div>
+            <div class="label_g2">
+                <label class="label">
+                    <div class="label" style='margin-bottom: 0;'>
+                        <span class="legend" style='display: inline-block'>WhatsApp</span>
+                        <span style='font-size: 0.9em;margin-left: 10px' class='simple-tooltip color-blue-light'
+                            data-tipped-options="'position': 'right'"
+                            title='Formato: Código do País + DDD + Número de WhatsApp.<br><strong>Utilize apenas números sem espaços</strong>.'><i
+                                class='far fa-question-circle'></i></span>
+                    </div>
+                    <div class="label" style="margin-bottom: 0;">
+                        <input type="tel" name="wpp" id="whatsapp"
+                            placeholder="Número de WhatsApp"                             autocomplete="none"  />
+                        <div class="invalid-feedback" id="phone-error" style="display: none;">
+                            Números brasileiros devem conter o dígito 9 após o DDD
+                        </div>
+                    </div>
+                </label>
+                                    <label class="label">
+                        <span class="legend">Estado de residência</span>
+                        <select name="addr_uf" class="addr_uf" required>
+                            <option value="" disabled selected>Selecione um estado *</option>
+                            <option value='EX'>Reside no Exterior</option><option value='AC'>Acre</option><option value='AL'>Alagoas</option><option value='AP'>Amapá</option><option value='AM'>Amazonas</option><option value='BA'>Bahia</option><option value='CE'>Ceará</option><option value='DF'>Distrito Federal</option><option value='ES'>Espírito Santo</option><option value='GO'>Goiás</option><option value='MA'>Maranhão</option><option value='MT'>Mato Grosso</option><option value='MS'>Mato Grosso do Sul</option><option value='MG'>Minas Gerais</option><option value='PA'>Pará</option><option value='PB'>Paraíba</option><option value='PR'>Paraná</option><option value='PE'>Pernambuco</option><option value='PI'>Piauí</option><option value='RJ'>Rio de Janeiro</option><option value='RN'>Rio Grande do Norte</option><option value='RS'>Rio Grande do Sul</option><option value='RO'>Rondônia</option><option value='RR'>Roraima</option><option value='SC'>Santa Catarina</option><option value='SP'>São Paulo</option><option value='SE'>Sergipe</option><option value='TO'>Tocantins</option>                        </select>
+                    </label>
+                            </div>
+            <label class="label">
+                <span class="legend">Tipo de serviço</span>
+                <select name="type_service" required>
+                    <option value="" selected disabled>Selecione *</option>
+                    <option value="trad">Tradução de Documentos</option>
+                    <option value="apostille">Só Apostilas</option>
+                </select>
+            </label>
+            <div class='label' style='margin-bottom: 0;'>
+                <span class='legend' style='margin-bottom: 0;display: inline-block'>Documentos</span>
+                <span style="margin: 0 10px;color: var(--color-secundary);vertical-align: middle;opacity: 0.7">|</span>
+                <span class="j_play" data-video-id="Z5JrG-TKRx4"
+                    style="color:var(--color-primary);cursor:pointer;font-size:12px;font-weight: 600;text-transform: uppercase;"><i
+                        class="far fa-play" style="margin-right: 5px"></i> Como enviar os
+                    documentos para tradução?</span>
+            </div>
+            <div class='label'>
+                <input type='file' name='files[]' class='file_uploader' style='height:52px;padding-top:14px' />
+                <span style="font-size: 0.875em;color: var(--color-secundary);display: block;margin-top:10px">Tamanho máximo de upload: <strong>1 GB</strong></span>
+            </div>
+            <p style="margin:12px 0 0;display: block;font-size: 0.875em;color: var(--color-secundary);">
+                Trataremos seus dados conforme nossa <a
+                    style="text-decoration: underline;font-weight: bold"
+                    href="/politicas-de-privacidade"
+                    target="_blank" title="Políticas de Privacidade">Política
+                    de
+                    Privacidade</a>.
+            </p>
+            <div class="action">
+                <button class="btn btn-blue">Continuar <i class="far fa-long-arrow-alt-right"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="deals_aside aside-info">
+    <div class="aside-info-item">
+        <div class="aside-info-content">
+            <span class="title-md">Atenção!</span>
+            <ul>
+                <li>
+                    Não envie documentos emitidos no Brasil com <strong>Apostila de Haia</strong>, pois isso aumenta o
+                    preço
+                    das suas traduções.
+                </li>
+
+                <li>
+                    Não envie documentos <strong>escritos à mão</strong>, precisamos verificar a viabilidade da
+                    tradução.
+                </li>
+
+                <li>Documentos plastificados ou muito antigos não podem ser apostilados.</li>
+
+                <li>Em ambos os casos, <a href="https://wa.me/5511982854183" target="_blank"
+                        rel="nofollow"><strong>chame um
+                            especialista no
+                            WhatsApp</strong></a>.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <img src="https://www.etraducoes.com.br/themes/deals/assets/img/babi-avaliacoes.jpg">
+</div>
+
+
+
+    </div>
+
+    

@@ -272,3 +272,85 @@ h1[class*="text-5xl"],
   color: #64748b !important;
 }
 
+/* Deals / Orçamento Checkout layout adjustments */
+.deals {
+  background-color: var(--bg-deals, #f5f6fc);
+  min-height: 100vh;
+  width: 100%;
+}
+.deals .deals_content {
+  background-color: #fff;
+}
+.deals input[type="file"].file_uploader {
+  border: 2px dashed #dae3ee;
+  border-radius: 8px;
+  background: #f8fafc;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Dark mode for .deals */
+html[data-theme="dark"] .deals,
+body.theme-dark .deals {
+  background-color: #0b1120 !important;
+}
+html[data-theme="dark"] .deals_content,
+body.theme-dark .deals_content {
+  background-color: #0f172a !important;
+  border-right-color: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] .deals_content_form_header_title h1,
+body.theme-dark .deals_content_form_header_title h1 {
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] .aside-info-item,
+body.theme-dark .aside-info-item {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+html[data-theme="dark"] .aside-info-item .title-md,
+body.theme-dark .aside-info-item .title-md {
+  color: #f8fafc !important;
+}
+html[data-theme="dark"] .aside-info ul li,
+body.theme-dark .aside-info ul li {
+  color: #94a3b8 !important;
+  border-bottom-color: #1e293b !important;
+}
+html[data-theme="dark"] .label_g2 .label span.legend,
+html[data-theme="dark"] .label span.legend,
+body.theme-dark .label_g2 .label span.legend,
+body.theme-dark .label span.legend {
+  color: #e2e8f0 !important;
+}
+html[data-theme="dark"] .label input,
+html[data-theme="dark"] .label select,
+body.theme-dark .label input,
+body.theme-dark .label select {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+html[data-theme="dark"] input[type="file"].file_uploader,
+body.theme-dark input[type="file"].file_uploader {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+}
+html[data-theme="dark"] .deals_content_header_nav_open,
+body.theme-dark .deals_content_header_nav_open {
+  background-color: #0f172a !important;
+  border-color: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] .deals_content_header_nav_header_user h2,
+body.theme-dark .deals_content_header_nav_header_user h2 {
+  color: #f8fafc !important;
+}
+html[data-theme="dark"] .secure,
+body.theme-dark .secure {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+}
+

@@ -1,72 +1,526 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import QuoteForm from '@/components/forms/QuoteForm';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Solicitar Orçamento | TraduzTudo',
-  description: 'Solicite um orçamento instantâneo para tradução juramentada, certificada ou técnica. Preço e prazo em minutos.',
-};
+import React, { useState } from 'react';
+import Link from 'next/link';
+import toast from 'react-hot-toast';
+import { createQuote } from '@/lib/firestore';
 
 export default function OrcamentoPage() {
-  return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0f172a] py-12 lg:py-16 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left info */}
-          <div className="pt-2">
-            <span className="inline-flex items-center gap-1.5 bg-[#2e7ec6]/10 text-[#2e7ec6] dark:bg-[#38bdf8]/15 dark:text-[#38bdf8] text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-4">
-              ⚡ Resposta em minutos
-            </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-5 !leading-tight">
-              Solicite um Orçamento de Tradução
-            </h1>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-              Preencha o formulário ao lado com seus dados e envie o documento.
-              Nossa equipe analisará e retornará com o preço e prazo rapidamente.
-            </p>
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [phoneError, setPhoneError] = useState(false);
+  const [addrUf, setAddrUf] = useState('');
+  const [typeService, setTypeService] = useState('trad');
+  const [files, setFiles] = useState<File[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
 
-            {/* Steps */}
-            <div className="space-y-3.5 mb-8">
-              {[
-                { step: '1', title: 'Envie o documento', desc: 'Faça upload do arquivo ou tire uma foto. Aceitamos PDF, fotos, Word.' },
-                { step: '2', title: 'Aguarde o orçamento', desc: 'Em minutos você recebe o preço e prazo por e-mail e WhatsApp.' },
-                { step: '3', title: 'Aprove e pague', desc: 'Pague via PIX, boleto ou cartão. Iniciamos imediatamente após confirmação.' },
-                { step: '4', title: 'Receba a tradução', desc: 'Digital por e-mail ou físico pelos Correios, conforme sua preferência.' },
-              ].map((s) => (
-                <div key={s.step} className="flex items-start gap-4 p-3.5 rounded-xl bg-white dark:bg-[#1a2233] border border-gray-100 dark:border-gray-800 shadow-sm transition-colors">
-                  <div className="w-8 h-8 rounded-full bg-[#2e7ec6] text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-sm">
-                    {s.step}
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900 dark:text-white text-base">{s.title}</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">{s.desc}</p>
-                  </div>
-                </div>
-              ))}
+  // Format and validate phone
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let val = e.target.value.replace(/\D/g, '');
+    if (val.length > 13) val = val.slice(0, 13);
+
+    // If starts with 55 (Brazil country code)
+    if (val.startsWith('55') && val.length > 2) {
+      const ddd = val.slice(2, 4);
+      const rest = val.slice(4);
+      if (rest.length > 5) {
+        val = `+55 (${ddd}) ${rest.slice(0, 5)}-${rest.slice(5, 9)}`;
+      } else if (rest.length > 0) {
+        val = `+55 (${ddd}) ${rest}`;
+      } else {
+        val = `+55 (${ddd}`;
+      }
+    } else if (val.length > 10) {
+      val = `(${val.slice(0, 2)}) ${val.slice(2, 7)}-${val.slice(7, 11)}`;
+    } else if (val.length > 6) {
+      val = `(${val.slice(0, 2)}) ${val.slice(2, 6)}-${val.slice(6)}`;
+    } else if (val.length > 2) {
+      val = `(${val.slice(0, 2)}) ${val.slice(2)}`;
+    }
+
+    setWhatsapp(val);
+
+    // Brazilian phone check
+    const digits = val.replace(/\D/g, '');
+    if (digits.length === 10 && !val.startsWith('+')) {
+      setPhoneError(true);
+    } else {
+      setPhoneError(false);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFiles(Array.from(e.target.files));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!fullName || !email || !whatsapp || !addrUf || !typeService) {
+      toast.error('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const fileNames = files.map((f) => f.name);
+      const serviceLabel =
+        typeService === 'apostille' ? 'Apenas Apostilamento de Haia' : 'Tradução de Documentos';
+
+      await createQuote({
+        fullName,
+        email,
+        whatsapp,
+        serviceType: serviceLabel,
+        fileNames,
+        notes: `Estado de residência: ${addrUf}. Total de arquivos: ${files.length}.`,
+      });
+
+      toast.success(
+        'Orçamento enviado com sucesso! Nossa equipe analisará e retornará em instantes.',
+        { duration: 6000 }
+      );
+
+      // Open WhatsApp pre-filled link after saving to Firestore
+      const cleanPhone = whatsapp.replace(/\D/g, '');
+      const text = encodeURIComponent(
+        `Olá! Meu nome é ${fullName} (${addrUf}). Acabei de enviar um pedido de orçamento de ${serviceLabel}. Gostaria de agilizar o atendimento.`
+      );
+      setTimeout(() => {
+        window.open(`https://wa.me/5511982854183?text=${text}`, '_blank');
+      }, 1000);
+
+      // Clear inputs
+      setFullName('');
+      setEmail('');
+      setWhatsapp('');
+      setFiles([]);
+    } catch (err) {
+      console.error('Error submitting quote:', err);
+      toast.error('Erro ao enviar orçamento. Entre em contato diretamente pelo WhatsApp: (11) 98285-4183');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <link rel="stylesheet" href="/css/deals.css" />
+
+      <div className="deals">
+        {/* Left Column: Form & Brand */}
+        <div className="deals_content">
+          {/* Header */}
+          <div className="deals_content_header">
+            <div className="deals_content_header_logo">
+              <Link href="/" title="Voltar para página inicial" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                <img
+                  src="/img/traduztudo-logo.svg"
+                  alt="TraduzTudo"
+                  className="traduztudo-logo-light"
+                  width="220"
+                  height="46"
+                  style={{ height: '44px', width: 'auto' }}
+                />
+                <img
+                  src="/img/traduztudo-logo-white.svg"
+                  alt="TraduzTudo"
+                  className="traduztudo-logo-dark"
+                  width="220"
+                  height="46"
+                  style={{ height: '44px', width: 'auto' }}
+                />
+              </Link>
             </div>
 
-            {/* Trust badges */}
-            <div className="grid grid-cols-2 gap-3.5">
-              {[
-                { icon: '✅', text: 'Tradutores certificados' },
-                { icon: '🔒', text: 'Documentos sigilosos' },
-                { icon: '⚡', text: 'Prazo garantido' },
-                { icon: '💳', text: 'PIX, Boleto e Cartão' },
-              ].map((badge) => (
-                <div key={badge.text} className="bg-white dark:bg-[#1a2233] rounded-xl p-3.5 border border-gray-200/80 dark:border-gray-800 text-sm text-gray-800 dark:text-gray-200 font-semibold flex items-center gap-2.5 shadow-sm transition-colors">
-                  <span className="text-lg">{badge.icon}</span>
-                  <span>{badge.text}</span>
+            <div className="deals_content_header_nav" style={{ position: 'relative' }}>
+              <div
+                className="deals_content_header_nav_avatar j_nav_button"
+                onClick={() => setNavOpen(!navOpen)}
+                style={{ cursor: 'pointer' }}
+                title="Minha conta"
+              >
+                <img
+                  className="user_photo"
+                  src="https://www.etraducoes.com.br/themes/deals/assets/img/no_avatar.jpg"
+                  alt="Avatar"
+                />
+              </div>
+
+              {navOpen && (
+                <div className="deals_content_header_nav_open" style={{ display: 'block' }}>
+                  <div className="deals_content_header_nav_header">
+                    <div className="deals_content_header_nav_header_user">
+                      <div>
+                        <h2>Olá Visitante</h2>
+                        <p>Já possui uma conta?</p>
+                      </div>
+                    </div>
+                    <Link href="/me/login" className="btn btn-outline btn-small">
+                      Entrar
+                    </Link>
+                  </div>
+                  <div className="deals_content_header_nav_content">
+                    <ul>
+                      <li>
+                        <Link href="/me/login">
+                          <i className="far fa-user" style={{ marginRight: '8px' }}></i> Meus Pedidos
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/contato">
+                          <i className="far fa-envelope" style={{ marginRight: '8px' }}></i> Suporte
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
 
-          {/* Form */}
-          <div className="lg:sticky lg:top-24">
-            <QuoteForm />
+          {/* Form Container */}
+          <div className="deals_content_form">
+            <div className="deals_content_form_header" style={{ alignItems: 'center' }}>
+              <div className="deals_content_form_header_title">
+                <h1>Orçamento de Tradução</h1>
+              </div>
+              <div className="deals_content_form_info" style={{ justifyContent: 'flex-end', flex: 'initial' }}>
+                <div
+                  className="secure"
+                  style={{
+                    background: '#d7f3e7',
+                    padding: '10px 20px',
+                    borderRadius: '25px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                  }}
+                >
+                  <div className="deals_content_form_info_icon">
+                    <i className="far fa-lock-alt" style={{ color: 'var(--color-green)' }}></i>
+                  </div>
+                  <div className="deals_content_form_info_text">
+                    <p style={{ color: 'var(--color-green)', marginBottom: 0, fontWeight: 600, fontSize: '14px' }}>
+                      Sigilo total dos dados
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} method="post" encType="multipart/form-data">
+              <input type="hidden" name="action" value="create" />
+
+              {/* Row 1: Name and Email */}
+              <div className="label_g2">
+                <label className="label">
+                  <span className="legend">Nome completo</span>
+                  <input
+                    type="text"
+                    name="full_name"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="Digite seu nome completo"
+                    required
+                  />
+                </label>
+                <label className="label">
+                  <span className="legend">E-mail</span>
+                  <input
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Digite seu melhor e-mail"
+                    required
+                  />
+                </label>
+              </div>
+
+              {/* Row 2: WhatsApp and UF */}
+              <div className="label_g2">
+                <label className="label">
+                  <div className="label" style={{ marginBottom: 0 }}>
+                    <span className="legend" style={{ display: 'inline-block' }}>
+                      WhatsApp
+                    </span>
+                    <span
+                      style={{ fontSize: '0.9em', marginLeft: '10px', cursor: 'help' }}
+                      className="simple-tooltip color-blue-light"
+                      title="Formato: Código do País + DDD + Número de WhatsApp. Utilize apenas números sem espaços."
+                    >
+                      <i className="far fa-question-circle"></i>
+                    </span>
+                  </div>
+                  <div className="label" style={{ marginBottom: 0 }}>
+                    <input
+                      type="tel"
+                      name="wpp"
+                      id="whatsapp"
+                      value={whatsapp}
+                      onChange={handlePhoneChange}
+                      placeholder="(11) 98285-4183"
+                      autoComplete="none"
+                      required
+                    />
+                    {phoneError && (
+                      <div className="invalid-feedback" id="phone-error" style={{ display: 'block', color: '#dc2626', fontSize: '12px', marginTop: '4px' }}>
+                        Números brasileiros devem conter o dígito 9 após o DDD
+                      </div>
+                    )}
+                  </div>
+                </label>
+
+                <label className="label">
+                  <span className="legend">Estado de residência</span>
+                  <select
+                    name="addr_uf"
+                    className="addr_uf"
+                    value={addrUf}
+                    onChange={(e) => setAddrUf(e.target.value)}
+                    required
+                  >
+                    <option value="" disabled>
+                      Selecione um estado *
+                    </option>
+                    <option value="EX">Reside no Exterior</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                  </select>
+                </label>
+              </div>
+
+              {/* Service Type */}
+              <label className="label">
+                <span className="legend">Tipo de serviço</span>
+                <select
+                  name="type_service"
+                  value={typeService}
+                  onChange={(e) => setTypeService(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>
+                    Selecione *
+                  </option>
+                  <option value="trad">Tradução de Documentos</option>
+                  <option value="apostille">Só Apostilas</option>
+                </select>
+              </label>
+
+              {/* Documents Upload Section */}
+              <div className="label" style={{ marginBottom: 0 }}>
+                <span className="legend" style={{ marginBottom: 0, display: 'inline-block' }}>
+                  Documentos
+                </span>
+                <span style={{ margin: '0 10px', color: 'var(--color-secundary)', verticalAlign: 'middle', opacity: 0.7 }}>
+                  |
+                </span>
+                <span
+                  className="j_play"
+                  onClick={() => setVideoOpen(true)}
+                  style={{
+                    color: 'var(--color-primary)',
+                    cursor: 'pointer',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  <i className="far fa-play" style={{ marginRight: '5px' }}></i> Como enviar os documentos para tradução?
+                </span>
+              </div>
+
+              <div className="label">
+                <input
+                  type="file"
+                  name="files[]"
+                  multiple
+                  onChange={handleFileChange}
+                  className="file_uploader"
+                  style={{ height: '52px', paddingTop: '14px' }}
+                />
+                <span style={{ fontSize: '0.875em', color: 'var(--color-secundary)', display: 'block', marginTop: '10px' }}>
+                  Tamanho máximo de upload: <strong>1 GB</strong>
+                </span>
+
+                {files.length > 0 && (
+                  <div style={{ marginTop: '10px', padding: '10px', background: 'rgba(46, 126, 198, 0.08)', borderRadius: '8px' }}>
+                    <p style={{ margin: 0, fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)' }}>
+                      <i className="far fa-check-circle" style={{ marginRight: '6px' }}></i>
+                      {files.length} arquivo(s) selecionado(s): {files.map((f) => f.name).join(', ')}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Privacy Policy */}
+              <p style={{ margin: '12px 0 0', display: 'block', fontSize: '0.875em', color: 'var(--color-secundary)' }}>
+                Trataremos seus dados conforme nossa{' '}
+                <Link
+                  style={{ textDecoration: 'underline', fontWeight: 'bold' }}
+                  href="/politicas-de-privacidade"
+                  target="_blank"
+                  title="Políticas de Privacidade"
+                >
+                  Política de Privacidade
+                </Link>
+                .
+              </p>
+
+              {/* Action Button */}
+              <div className="action" style={{ marginTop: '24px' }}>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="btn btn-blue"
+                  style={{ opacity: submitting ? 0.7 : 1, cursor: submitting ? 'wait' : 'pointer' }}
+                >
+                  {submitting ? (
+                    <>
+                      Enviando... <i className="fas fa-spinner fa-spin" style={{ marginLeft: '8px' }}></i>
+                    </>
+                  ) : (
+                    <>
+                      Continuar <i className="far fa-long-arrow-alt-right" style={{ marginLeft: '8px' }}></i>
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
+
+        {/* Right Column: Attention info and Reviews Photo */}
+        <div className="deals_aside aside-info">
+          <div className="aside-info-item">
+            <div className="aside-info-content">
+              <span className="title-md">Atenção!</span>
+              <ul>
+                <li>
+                  Não envie documentos emitidos no Brasil com <strong>Apostila de Haia</strong>, pois isso aumenta o
+                  preço das suas traduções.
+                </li>
+                <li>
+                  Não envie documentos <strong>escritos à mão</strong>, precisamos verificar a viabilidade da
+                  tradução.
+                </li>
+                <li>Documentos plastificados ou muito antigos não podem ser apostilados.</li>
+                <li>
+                  Em ambos os casos,{' '}
+                  <a
+                    href="https://wa.me/5511982854183"
+                    target="_blank"
+                    rel="nofollow"
+                    style={{ textDecoration: 'underline' }}
+                  >
+                    <strong>chame um especialista no WhatsApp</strong>
+                  </a>
+                  .
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <img
+            src="https://www.etraducoes.com.br/themes/deals/assets/img/babi-avaliacoes.jpg"
+            alt="Avaliações TraduzTudo Google 4.9 de 5 estrelas"
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '50px' }}
+          />
+        </div>
       </div>
-    </div>
+
+      {/* Video Modal */}
+      {videoOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 99999,
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px',
+          }}
+          onClick={() => setVideoOpen(false)}
+        >
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '800px',
+              aspectRatio: '16 / 9',
+              background: '#000',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setVideoOpen(false)}
+              aria-label="Fechar vídeo"
+              style={{
+                position: 'absolute',
+                top: 12,
+                right: 12,
+                zIndex: 10,
+                background: 'rgba(0, 0, 0, 0.75)',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '50%',
+                width: 40,
+                height: 40,
+                fontSize: 24,
+                lineHeight: '40px',
+                textAlign: 'center',
+                cursor: 'pointer',
+              }}
+            >
+              &times;
+            </button>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube-nocookie.com/embed/Z5JrG-TKRx4?autoplay=1"
+              title="Como enviar os documentos para tradução?"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
