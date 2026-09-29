@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --color-primary: #2e7ec6;
   --color-secundary: #2e2e2f;
@@ -34,15 +36,19 @@ img[data-src] {
 }
 
 /* Theme dark support */
-body.theme-dark {
-  background-color: #121212 !important;
-  color: #e0e0e0 !important;
+body.theme-dark,
+html[data-theme="dark"] body {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
 }
 
 body.theme-dark .container,
 body.theme-dark header,
-body.theme-dark footer {
-  color: #e0e0e0;
+body.theme-dark footer,
+html[data-theme="dark"] .container,
+html[data-theme="dark"] header,
+html[data-theme="dark"] footer {
+  color: #f1f5f9;
 }
 
 /* Logo dark / light mode */
@@ -52,11 +58,137 @@ body.theme-dark footer {
 .traduztudo-logo-light {
   display: inline-block !important;
 }
-body.theme-dark .traduztudo-logo-light {
+body.theme-dark .traduztudo-logo-light,
+html[data-theme="dark"] .traduztudo-logo-light {
   display: none !important;
 }
-body.theme-dark .traduztudo-logo-dark {
+body.theme-dark .traduztudo-logo-dark,
+html[data-theme="dark"] .traduztudo-logo-dark {
   display: inline-block !important;
+}
+
+/* Dark mode styling for custom pages & components */
+html[data-theme="dark"] .bg-white,
+body.theme-dark .bg-white,
+html[data-theme="dark"] .bg-gray-50,
+body.theme-dark .bg-gray-50,
+html[data-theme="dark"] .bg-gray-100,
+body.theme-dark .bg-gray-100,
+html[data-theme="dark"] .bg-slate-50,
+body.theme-dark .bg-slate-50 {
+  background-color: #1a2233 !important;
+  border-color: #2a3449 !important;
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] .bg-white *,
+body.theme-dark .bg-white *,
+html[data-theme="dark"] .bg-gray-50 *,
+body.theme-dark .bg-gray-50 * {
+  color: inherit;
+}
+html[data-theme="dark"] .bg-gradient-to-br,
+body.theme-dark .bg-gradient-to-br {
+  background: #0f172a !important;
+}
+html[data-theme="dark"] .text-gray-900,
+body.theme-dark .text-gray-900 {
+  color: #ffffff !important;
+}
+html[data-theme="dark"] .text-gray-800,
+body.theme-dark .text-gray-800 {
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] .text-gray-700,
+body.theme-dark .text-gray-700 {
+  color: #e2e8f0 !important;
+}
+html[data-theme="dark"] .text-gray-600,
+body.theme-dark .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+html[data-theme="dark"] .text-gray-500,
+body.theme-dark .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+/* Tinted cards & badges in dark mode */
+html[data-theme="dark"] .bg-green-50,
+body.theme-dark .bg-green-50 {
+  background-color: rgba(34, 197, 94, 0.12) !important;
+  border-color: rgba(34, 197, 94, 0.3) !important;
+}
+html[data-theme="dark"] .bg-blue-50,
+body.theme-dark .bg-blue-50,
+html[data-theme="dark"] .bg-sky-100,
+body.theme-dark .bg-sky-100 {
+  background-color: rgba(56, 189, 248, 0.12) !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+}
+html[data-theme="dark"] .bg-purple-50,
+body.theme-dark .bg-purple-50 {
+  background-color: rgba(168, 85, 247, 0.12) !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+html[data-theme="dark"] .bg-amber-50,
+body.theme-dark .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+html[data-theme="dark"] .bg-red-50,
+body.theme-dark .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Tinted text in dark mode */
+html[data-theme="dark"] .text-green-800,
+body.theme-dark .text-green-800,
+html[data-theme="dark"] .text-green-700,
+body.theme-dark .text-green-700,
+html[data-theme="dark"] .text-green-600,
+body.theme-dark .text-green-600 {
+  color: #4ade80 !important;
+}
+html[data-theme="dark"] .text-blue-800,
+body.theme-dark .text-blue-800,
+html[data-theme="dark"] .text-blue-700,
+body.theme-dark .text-blue-700,
+html[data-theme="dark"] .text-blue-600,
+body.theme-dark .text-blue-600,
+html[data-theme="dark"] .text-sky-700,
+body.theme-dark .text-sky-700 {
+  color: #38bdf8 !important;
+}
+html[data-theme="dark"] .text-purple-800,
+body.theme-dark .text-purple-800,
+html[data-theme="dark"] .text-purple-700,
+body.theme-dark .text-purple-700 {
+  color: #c084fc !important;
+}
+html[data-theme="dark"] .text-amber-800,
+body.theme-dark .text-amber-800 {
+  color: #fbbf24 !important;
+}
+html[data-theme="dark"] .text-red-700,
+body.theme-dark .text-red-700,
+html[data-theme="dark"] .text-red-600,
+body.theme-dark .text-red-600 {
+  color: #f87171 !important;
+}
+
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea,
+body.theme-dark input:not([type="checkbox"]):not([type="radio"]),
+body.theme-dark select,
+body.theme-dark textarea {
+  background-color: #111726 !important;
+  color: #ffffff !important;
+  border-color: #2a3449 !important;
+}
+html[data-theme="dark"] input::placeholder,
+body.theme-dark input::placeholder {
+  color: #64748b !important;
 }
 
 /* Modal and popup defaults */
@@ -86,3 +218,57 @@ body.theme-dark .traduztudo-logo-dark {
   z-index: 99997;
   cursor: pointer;
 }
+
+/* Fix etraducoes.css global element interference */
+nav.flex,
+nav[class*="flex"],
+.breadcrumb-nav {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+}
+
+h1[class*="text-3xl"],
+h1[class*="text-4xl"],
+h1[class*="text-5xl"],
+.page-title {
+  font-size: 2.5rem !important;
+  line-height: 1.15 !important;
+  font-weight: 900 !important;
+  display: block !important;
+  text-align: left !important;
+  margin-top: 0 !important;
+  margin-bottom: 1.25rem !important;
+}
+@media (min-width: 1024px) {
+  h1[class*="text-3xl"],
+  h1[class*="text-4xl"],
+  h1[class*="text-5xl"],
+  .page-title {
+    font-size: 3rem !important;
+    line-height: 1.15 !important;
+  }
+}
+
+/* Light mode card text safety */
+.bg-white {
+  color: #1e293b;
+}
+.bg-white .text-gray-900 {
+  color: #0f172a !important;
+}
+.bg-white .text-gray-800 {
+  color: #1e293b !important;
+}
+.bg-white .text-gray-700 {
+  color: #334155 !important;
+}
+.bg-white .text-gray-600 {
+  color: #475569 !important;
+}
+.bg-white .text-gray-500 {
+  color: #64748b !important;
+}
+
