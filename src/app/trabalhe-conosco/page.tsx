@@ -1,58 +1,13 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Users, Briefcase, Award, CheckCircle } from 'lucide-react';
+import OriginalPageTemplate from '@/components/layout/OriginalPageTemplate';
 
 export const metadata: Metadata = {
-  title: 'Trabalhe Conosco | TraduzTudo',
-  description: 'Faça parte da rede de tradutores juramentados, técnicos e revisores da TraduzTudo.',
+  title: "Trabalhe Conosco - TraduzTudo",
+  description: "Você procura emprego em uma empresa de tradução? A eTradução busca tradutores, revisores e diagramadores freelancer e fixos. Agências em Curitiba e São Paulo.",
 };
 
-export default function TrabalheConoscoPage() {
-  return (
-    <div className="py-16 lg:py-24">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <span className="inline-block bg-[#2e7ec6]/10 text-[#2e7ec6] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
-            Oportunidades
-          </span>
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Trabalhe Conosco</h1>
-          <p className="text-lg text-gray-600">
-            Estamos sempre em busca de tradutores públicos juramentados, tradutores técnicos especializados e revisores comprometidos com a excelência.
-          </p>
-        </div>
+const bodyHtml = "\n<section class=\"padd-top-sm padd-bottom-lg\">\n    <div class=\"container\">\n        <div class=\"row justify-content-between align-items-center illustration-hero\">\n            <div class=\"col-md-6\">\n                <div class=\"about text\">\n                    <span class=\"sub-blue\">OPORTUNIDADE</span>\n                    <h1 class=\"title-xl\">Trabalhe Conosco</h1>\n                    <p>\n                        Você é um tradutor, revisor ou diagramador e busca oportunidades de trabalho?\n                    </p>\n                    <p>\n                        A TraduzTudo é uma empresa de tradução em grande crescimento.\n                    </p>\n                    <p>\n                        Nossa cultura é Empatia e Tecnologia, por isso amamos nosso time e nossas automações.\n                    </p>\n                    <p>\n                        Estamos frequentemente adicionando novos colaboradores em nosso banco de dados para serviços\n                        freelancer e até mesmo postos fixos.\n                    </p>\n                    <p>\n                        Possuímos agências de tradução em Curitiba e São Paulo.\n                    </p>\n                    <p>\n                        Ficou interessado? Veja as vagas abaixo.\n                    </p>\n                    <a href=\"#jobs\" class=\"btn btn-blue btn-big go_to\">Junte-se a nós</a>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <object type=\"image/svg+xml\"\n                        data=\"https://www.etraducoes.com.br/themes/web/components/motion/ilustracao-trabalhe-conosco.svg\"></object>\n            </div>\n        </div>\n    </div>\n</section>\n\n    <section class=\"padd-bottom-xl\" id=\"jobs\">\n        <div class=\"container\" style=\"position: relative;\">\n            <div class=\"bg-map bg-agency\">\n                <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/back-map-cinza.svg\" data-src=\"https://www.etraducoes.com.br/themes/web/assets/img/back-map-cinza.svg\" alt=\"\"/>\n            </div>\n\n            <div class=\"jobs text-center\">\n                <span class=\"sub-blue\">TRABALHE NA TRADUZTUDO</span>\n                <h2 class=\"title-md\">Vagas disponíveis</h2>\n                <div class=\"jobs-list\">\n                                            <div class=\"job-item radius\">\n                            <div class=\"infos\">\n                                <h3>Comercial Pleno em Joinville (SC)</h3>\n                                <p>Empresa de tecnologia com ênfase em tradução de documentos busca talentos para time comercial em Joinville (SC).</p>\n                                <span><i class=\"far fa-map-marker-alt\"></i> Joinville</span>\n                                <span><i class=\"far fa-file-contract\"></i> Pessoa Jurídica</span>\n                                <span><i class=\"far fa-sack-dollar\"></i> R$ 3.500,00</span>\n                                                                    <span><i class=\"far fa-building\"></i> Presencial</span>\n                                                            </div>\n                            <div class=\"action\">\n                                <a class=\"btn btn-blue-light\"\n                                   href=\"/vaga/comercial-pleno-em-joinville\">\n                                    Detalhes da vaga</a>\n                                <a class=\"btn btn-blue btn-share\"\n                                   href=\"https://www.linkedin.com/sharing/share-offsite/?url=https://www.etraducoes.com.br/vaga/comercial-pleno-em-joinville\">\n                                    <i class=\"fab fa-linkedin-in\"></i> Compartilhar</a>\n                            </div>\n                        </div>\n                                    </div>\n            </div>\n        </div>\n    </section>\n\n";
 
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 text-center">
-            <Award className="text-[#2e7ec6] mx-auto mb-3" size={32} />
-            <h3 className="font-bold text-gray-900 mb-2">Tradutor Juramentado</h3>
-            <p className="text-xs text-gray-500">Matriculado em Junta Comercial brasileira com certificado digital ICP-Brasil.</p>
-          </div>
-          <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 text-center">
-            <Briefcase className="text-[#2e7ec6] mx-auto mb-3" size={32} />
-            <h3 className="font-bold text-gray-900 mb-2">Tradutor Técnico</h3>
-            <p className="text-xs text-gray-500">Especialista em áreas médica, jurídica, engenharia ou finanças corporativas.</p>
-          </div>
-          <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 text-center">
-            <Users className="text-[#2e7ec6] mx-auto mb-3" size={32} />
-            <h3 className="font-bold text-gray-900 mb-2">Revisor & QA</h3>
-            <p className="text-xs text-gray-500">Profissional nativo ou bilíngue para controle de qualidade linguístico.</p>
-          </div>
-        </div>
-
-        <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">Envie sua apresentação</h2>
-          <p className="text-gray-600 mb-6">
-            Envie seu currículo, idiomas atendidos, número de matrícula (se juramentado) e áreas de especialidade para:
-          </p>
-          <a
-            href="mailto:contato@traduztudo.com.br?subject=Candidatura%20Tradutor%20TraduzTudo"
-            className="btn btn-blue"
-            style={{ display: 'inline-block' }}
-          >
-            Enviar E-mail para contato@traduztudo.com.br
-          </a>
-        </div>
-      </div>
-    </div>
-  );
+export default function Page() {
+  return <OriginalPageTemplate html={bodyHtml} />;
 }

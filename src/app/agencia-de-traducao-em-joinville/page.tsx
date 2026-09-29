@@ -1,83 +1,13 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import QuoteForm from '@/components/forms/QuoteForm';
-import { MapPin, Phone, Clock, ChevronRight } from 'lucide-react';
+import OriginalPageTemplate from '@/components/layout/OriginalPageTemplate';
 
 export const metadata: Metadata = {
-  title: 'Agência de Tradução em Joinville - SC | TraduzTudo',
-  description: 'Escritório de tradução juramentada e certificada em Joinville - SC. Atendimento presencial e online com orçamentos instantâneos.',
+  title: "Agência de Tradução em Joinville - TraduzTudo",
+  description: "Empresa especializada em traduções juramentadas, técnicas e simples de documentos em Joinville - SC.",
 };
 
-export default function Agency_agencia_de_traducao_em_joinville_Page() {
-  return (
-    <div>
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
-                <Link href="/" className="hover:text-[#2e7ec6]">Início</Link>
-                <ChevronRight size={14} />
-                <span className="text-gray-700">Joinville - SC</span>
-              </nav>
+const bodyHtml = "\n<section class=\"padd-top-sm padd-bottom-lg\">\n    <div class=\"container\">\n        <div class=\"row justify-content-between illustration-hero\">\n            <div class=\"col-md-6\">\n                <div class=\"about feature\">\n                    <span class=\"sub-blue\">EM SANTA CATARINA</span>\n                    <h1 class=\"title-xl\">Agência de Tradução em Joinville</h1>\n                    <ul class=\"mt-5\">\n                        <li><i class=\"far fa-check\"></i>\n                            <p>Empresa de tradução de documentos.</p>\n                        </li>\n                        <li><i class=\"far fa-check\"></i>\n                            <p>Traduções Juramentadas, Simples e Técnicas.</p>\n                        </li>\n                        <li><i class=\"far fa-check\"></i>\n                            <p>Orçamento online e entrega rápida.</p>\n                        </li>\n                        <li><i class=\"far fa-check\"></i>\n                            <p>Entrega em toda Santa Catarina e no Brasil.</p>\n                        </li>\n                    </ul>\n                    <div class=\"about-select about-select-padd mt-5\">\n                        <span class=\"sub-blue\">Orçamento Instantâneo:</span>\n                        <form action=\"/\" method=\"post\" class=\"about-seletc-size ds-flex\"> <input type=\"hidden\" name=\"action\" value=\"send_form\"> <div class=\"form-arrow\"> <select name=\"source\" data-select-post=\"/\" class=\"form-style radius\" required> <option value=\"\" disabled selected>Idioma de origem</option> <option value='pt_br'>Português</option><option value='it_it'>Italiano</option><option value='en_us'>Inglês</option><option value='fr_fr'>Francês</option><option value='es'>Espanhol</option><option value='de'>Alemão</option><option value='zh_cn'>Chinês</option><option value='ru_ru'>Russo</option><option value='nl_nl'>Holandês</option><option value='no'>Norueguês</option><option value='he'>Hebraico</option><option value='ar'>Árabe</option><option value='ja'>Japonês</option><option value='ko'>Coreano</option><option value='ro'>Romeno</option> </select> </div> <div class=\"form-arrow\"> <select name=\"target\" class=\"form-style radius\" required> <option value=\"\" disabled selected>Idioma de destino</option> </select> </div> <div> <button class=\"btn btn-blue-light\">Orçar Agora</button> </div></form>                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <img class=\"lazyload\" style=\"width: 100%\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/illustration-sc.svg\" data-src=\"https://www.etraducoes.com.br/themes/web/assets/img/illustration-sc.svg\"\n                    alt=\"Agência de Tradução em Joinville\" />\n            </div>\n        </div>\n    </div>\n</section>\n\n<section>\n    <div class=\"container\" style=\"position: relative;\">\n        <div class=\"bg-map bg-agency\">\n            <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/back-map-cinza.svg\" data-src=\"https://www.etraducoes.com.br/themes/web/assets/img/back-map-cinza.svg\" alt=\"\" />\n        </div>\n\n        <div class=\"agency\">\n            <span class=\"sub-blue\">ENDEREÇO</span>\n            <h2 class=\"title-md\">Onde é a empresa</h2>\n            <div class=\"row justify-content-between\">\n\n                <div class=\"col-xl-6 col-lg-6 mb-5\">\n                    <div id=\"map_canvas_sc\"></div>\n                    <div class=\"ds-flex agency-content\">\n                        <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-brazil.svg\" data-src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-brazil.svg\" alt=\"\" />\n                        <div>\n                            <span>Agência de Tradução em <strong>Joinville</strong></span>\n                            <p>Rua Ministro Calógeras, 343, 5º andar</p>\n                            <p>Bairro Bucarein – CEP: 89.202-207</p>\n                            <a href=\"https://maps.app.goo.gl/VkFDhgEoszgpfifC9\" target=\"_blank\"><i\n                                    class=\"far fa-external-link\"></i>Abrir no mapa</a>\n                        </div>\n                    </div>\n                </div>\n\n                <div class=\"col-xl-5 col-lg-6\">\n                    <div class=\"faq-aside\">\n                        <h2>CONTATOS</h2>\n                        <div class=\"d-flex\">\n                            <i class=\"far fa-envelope\"></i>\n                            <div>\n                                <p>Dúvidas? Fale conosco</p>\n                                <h3>contato@traduztudo.com.br</h3>\n                            </div>\n                        </div>\n                        <div class=\"d-flex\">\n                            <i class=\"far fa-clock\"></i>\n                            <div>\n                                <p>Horário de funcionamento</p>\n                                <h3>Segunda a Sexta das 9h às 18h</h3>\n                            </div>\n                        </div>\n                        <div class=\"d-flex\">\n                            <i class=\"fab fa-whatsapp\"></i>\n                            <div>\n                                <p>WhatsApp</p>\n                                <h3>(11) 98285-4183</h3>\n                            </div>\n                        </div>\n                        <div class=\"d-flex\">\n                            <i class=\"far fa-phone\"></i>\n                            <div>\n                                <p>Telefone</p>\n                                <h3><a href=\"tel:(11) 98285-4183\" style=\"color: var(--color-default)\">(11) 98285-4183</a></h3>\n                            </div>\n                        </div>\n                        <div class=\"d-flex align-items-start\">\n                            <i class=\"far fa-map-marker-alt\"></i>\n\n                            <div>\n                                <div>\n                                    <h3>Curitiba - PR</h3>\n                                    <a title=\"Abrir no mapa\" href=\"https://goo.gl/maps/nvF4zCtK6cmnjKPR8\"\n                                        target=\"_blank\">\n                                        <p>Rua Marechal Deodoro, nº 857 – SL 1505<br>\n                                            Centro – CEP: 80.060-010</p>\n                                    </a>\n                                </div>\n                                <div class=\"mt-3\">\n                                    <h3>São Paulo - SP</h3>\n                                    <a title=\"Abrir no mapa\" href=\"https://goo.gl/maps/ZYFQqgKZDRAYkurv5\"\n                                        target=\"_blank\">\n                                        <p>Avenida Angélica, nº 2447, Sala 41<br>\n                                            Consolação – CEP: 01.227-200</p>\n                                    </a>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n\n\n";
 
-              <span className="inline-block bg-[#2e7ec6]/10 text-[#2e7ec6] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
-                📍 Escritório Físico & Digital
-              </span>
-
-              <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-5">
-                Agência de Tradução em <span className="text-[#2e7ec6]">Joinville</span>
-              </h1>
-
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Atendemos pessoas físicas e empresas de Joinville e toda a região com traduções juramentadas, técnicas e certificadas válidas no Brasil e exterior.
-              </p>
-
-              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <MapPin className="text-[#2e7ec6] shrink-0 mt-1" size={20} />
-                  <div>
-                    <p className="font-bold text-gray-900">Endereço:</p>
-                    <p className="text-gray-600 text-sm">Rua Ministro Calógeras, 343, 5º andar, Bucarein</p>
-                    <p className="text-gray-400 text-xs">CEP: 89.202-207</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="text-[#2e7ec6] shrink-0" size={20} />
-                  <div>
-                    <p className="font-bold text-gray-900">Telefone / WhatsApp:</p>
-                    <p className="text-gray-600 text-sm">(11) 98285-4183</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Clock className="text-[#2e7ec6] shrink-0" size={20} />
-                  <div>
-                    <p className="font-bold text-gray-900">Horário:</p>
-                    <p className="text-gray-600 text-sm">Segunda a Sexta, das 9h às 18h</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                <a href="#orcamento-form" className="btn btn-blue">Orçamento Imediato</a>
-                <a
-                  href="https://wa.me/5511982854183?text=Olá!%20Gostaria%20de%20orçamento%20em%20Joinville."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-green"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-                >
-                  <i className="fab fa-whatsapp"></i> Falar no WhatsApp ((11) 98285-4183)
-                </a>
-              </div>
-            </div>
-
-            <div id="orcamento-form">
-              <QuoteForm  />
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+export default function Page() {
+  return <OriginalPageTemplate html={bodyHtml} />;
 }
