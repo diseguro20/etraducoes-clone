@@ -12,14 +12,14 @@ const offices = [
     city: 'Curitiba - PR',
     address: 'Rua Marechal Deodoro, nº 857, Sala 1505, Centro',
     cep: 'CEP 80060-010',
-    phone: '+55 41 3017-5521',
+    phone: '(11) 98285-4183',
     maps: 'https://maps.google.com/?q=-25.4291343,-49.2645651',
   },
   {
     city: 'São Paulo - SP',
     address: 'Avenida Angélica, nº 2447, Conjunto 41, Consolação',
     cep: 'CEP 01227-200',
-    phone: '+55 11 3231-1239',
+    phone: '(11) 98285-4183',
     maps: 'https://maps.google.com/?q=-23.5536879,-46.6617266',
   },
   {
@@ -49,20 +49,20 @@ export default function ContatoPage() {
           {/* Contact options */}
           <div className="grid md:grid-cols-3 gap-6 mb-16">
             <a
-              href="https://wa.me/5511920037059"
+              href="https://wa.me/5511982854183"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-3 bg-green-50 border border-green-200 hover:bg-green-100 rounded-2xl p-8 transition-colors group text-center"
             >
               <span className="text-4xl">💬</span>
               <h3 className="font-bold text-green-800 text-lg">WhatsApp</h3>
-              <p className="text-green-700 text-sm">+55 11 92003-7059</p>
+              <p className="text-green-700 text-sm">(11) 98285-4183</p>
               <p className="text-green-600 text-xs">Resposta rápida em horário comercial</p>
             </a>
             <div className="flex flex-col items-center gap-3 bg-blue-50 border border-blue-200 rounded-2xl p-8 text-center">
               <Phone size={32} className="text-[#2e7ec6]" />
               <h3 className="font-bold text-blue-800 text-lg">Telefone</h3>
-              <p className="text-blue-700 text-sm font-semibold">0800 604 2484</p>
+              <p className="text-blue-700 text-sm font-semibold">(11) 98285-4183</p>
               <p className="text-blue-600 text-xs">Gratuito — Seg a Sex, 9h às 18h</p>
             </div>
             <a

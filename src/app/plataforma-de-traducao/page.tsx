@@ -36,7 +36,7 @@ export default function PlataformaPage() {
               ))}
             </div>
             <a
-              href="https://wa.me/5511920037059?text=Tenho%20interesse%20na%20plataforma%20AIUTA"
+              href="https://wa.me/5511982854183?text=Tenho%20interesse%20na%20plataforma%20AIUTA"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white text-[#1a5fa8] font-extrabold px-8 py-4 rounded-full hover:bg-gray-50 transition-colors"

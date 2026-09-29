@@ -62,7 +62,7 @@ export default function IdiomasPage() {
               Falar com a equipe
             </Link>
             <a
-              href="https://wa.me/5511920037059"
+              href="https://wa.me/5511982854183"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-600 text-white font-extrabold px-8 py-4 rounded-full transition-colors"

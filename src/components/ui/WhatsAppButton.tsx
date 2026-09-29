@@ -57,7 +57,7 @@ export default function WhatsAppButton() {
       closePopup();
       const cleanPhone = phone.replace(/\D/g, '');
       const text = encodeURIComponent(`Olá! Meu nome é ${fullName} (Estado: ${uf}). Gostaria de informações sobre orçamento de tradução.`);
-      window.open(`https://wa.me/5511920037059?text=${text}`, '_blank');
+      window.open(`https://wa.me/5511982854183?text=${text}`, '_blank');
     };
 
     form?.addEventListener('submit', handleSubmit);

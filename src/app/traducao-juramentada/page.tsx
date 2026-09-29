@@ -78,7 +78,7 @@ export default function TraducaoJuramentadaPage() {
               </ul>
               <div className="flex gap-4">
                 <a
-                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5511920037059'}`}
+                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5511982854183'}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-full transition-colors"
