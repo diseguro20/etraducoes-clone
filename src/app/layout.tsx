@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -6,6 +6,16 @@ import { Toaster } from 'react-hot-toast';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://traduztudo.vercel.app'),
@@ -88,6 +98,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="stylesheet" href="/css/etraducoes.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
 
         {/* WhatsApp & Social Media Preview Meta Tags */}
         <meta property="og:image" content="https://traduztudo.vercel.app/img/og-preview.png" />
