@@ -855,16 +855,25 @@ body.theme-dark input:-webkit-autofill {
 .goog-te-banner-frame.skiptranslate,
 .goog-te-banner-frame,
 iframe.goog-te-banner-frame,
+iframe.skiptranslate,
+.skiptranslate iframe,
 .goog-te-gadget,
 #goog-gt-tt,
 .goog-te-balloon-frame {
   display: none !important;
   visibility: hidden !important;
+  height: 0px !important;
+  width: 0px !important;
+  border: none !important;
 }
 
 body {
   top: 0px !important;
   position: static !important;
+}
+
+html body {
+  top: 0px !important;
 }
 
 .goog-tooltip,

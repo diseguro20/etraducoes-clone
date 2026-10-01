@@ -151,7 +151,25 @@ export default function LanguageSelector() {
       }
     }, 100);
 
-    return () => clearInterval(interval);
+    // Prevent Google Translate from shifting body or showing top frame
+    const observer = new MutationObserver(() => {
+      if (document.body.style.top && document.body.style.top !== '0px') {
+        document.body.style.top = '0px';
+      }
+      const banners = document.querySelectorAll('.goog-te-banner-frame, iframe.skiptranslate, .skiptranslate iframe');
+      banners.forEach((b) => {
+        const el = b as HTMLElement;
+        el.style.display = 'none';
+        el.style.visibility = 'hidden';
+        el.style.height = '0px';
+      });
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ['style'] });
+
+    return () => {
+      clearInterval(interval);
+      observer.disconnect();
+    };
   }, []);
 
   // Close modal on Escape or outside click
