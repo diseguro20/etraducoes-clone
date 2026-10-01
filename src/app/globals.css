@@ -392,6 +392,86 @@ body.theme-dark .secure {
 }
 
 /* =========================================================
+   FIX: Map flag icons positioning (Pixel-perfect matching original)
+   ========================================================= */
+
+@media (min-width: 1200px) {
+  .img-map {
+    position: absolute !important;
+    left: 43% !important;
+    top: 460px !important;
+    width: 873px !important;
+    height: 401px !important;
+    display: block !important;
+    z-index: 2 !important;
+  }
+
+  .img-map > img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 873px !important;
+    height: 401px !important;
+    z-index: 1 !important;
+  }
+
+  .img-map a {
+    position: absolute !important;
+    z-index: 2 !important;
+    display: block !important;
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .img-map a img {
+    width: 52px !important;
+    height: 52px !important;
+    border: 2px solid #fff !important;
+    border-radius: 50% !important;
+    display: block !important;
+  }
+
+  /* Exact flag coordinates over world map */
+  .img-map a.arg { left: 180px !important; top: 344px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.br  { left: 256px !important; top: 284px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.ca  { left: 191px !important; top: 89px !important;  bottom: auto !important; right: auto !important; }
+  .img-map a.eua { left: 167px !important; top: 149px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.spa { left: 383px !important; top: 106px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.no  { left: 474px !important; top: -31px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.uk  { left: 394px !important; top: -1px !important;  bottom: auto !important; right: auto !important; }
+  .img-map a.fr  { left: 400px !important; top: 54px !important;  bottom: auto !important; right: auto !important; }
+  .img-map a.nl  { left: 446px !important; top: -6px !important;  bottom: auto !important; right: auto !important; width: 32px !important; height: 32px !important; }
+  .img-map a.nl img { width: 32px !important; height: 32px !important; }
+  .img-map a.de  { left: 457px !important; top: 44px !important;  bottom: auto !important; right: auto !important; }
+  .img-map a.ita { left: 457px !important; top: 114px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.rus { left: 623px !important; top: 64px !important;  bottom: auto !important; right: auto !important; }
+  .img-map a.ch  { left: 639px !important; top: 174px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.au  { left: 765px !important; top: 314px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.ko  { left: 660px !important; top: 154px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.ja  { left: 736px !important; top: 174px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.ar  { left: 472px !important; top: 174px !important; bottom: auto !important; right: auto !important; }
+  .img-map a.he  { left: 437px !important; top: 154px !important; bottom: auto !important; right: auto !important; width: 32px !important; height: 32px !important; }
+  .img-map a.he img { width: 32px !important; height: 32px !important; }
+}
+
+/* Shadow pulse animation for flag icons */
+.shadow-pulse {
+  animation: shadow-pulse 1s infinite !important;
+}
+
+@keyframes shadow-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 126, 198, 0.4); }
+  100% { box-shadow: 0 0 0 10px rgba(46, 126, 198, 0); }
+}
+
+/* Hide map flags on tablet and mobile (< 1200px) — mobile list .list-tr displays cleanly instead */
+@media (max-width: 1199px) {
+  .img-map {
+    display: none !important;
+  }
+}
+
+/* =========================================================
    COMPREHENSIVE CROSS-BROWSER & MOBILE COMPATIBILITY FIXES
    ========================================================= */
 
