@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
+import LanguageSelector from '@/components/ui/LanguageSelector';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -116,6 +117,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <WhatsAppButton />
+          <LanguageSelector />
           <Toaster
             position="top-right"
             toastOptions={{

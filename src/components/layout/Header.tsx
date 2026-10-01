@@ -6,7 +6,15 @@ import { usePathname } from 'next/navigation';
 const headerHtml = `            <header class="container-s"><div class="top"><div class="topbar"><span class="menu-btn" aria-label="Abrir Menu"></span><nav class="menu"><div class="ds-flex align-center logo-header"><a href="/" aria-label="Logo TraduzTudo" style="display:inline-flex;align-items:center;"><img src="/img/traduztudo-logo.svg" alt="TraduzTudo" class="traduztudo-logo-light" width="240" height="48" /><img src="/img/traduztudo-logo-white.svg" alt="TraduzTudo" class="traduztudo-logo-dark" width="240" height="48" /></a></div> <div class="theme-switch-wrapper"> <label class="theme-switch" for="checkbox"> <input type="checkbox" id="checkbox" aria-label="Alternar tema claro e escuro" />
     <div class="slider round"></div>
   </label></div>
+<div class="lang-switch-wrapper" id="header-lang-wrapper"></div>
 <div class="mobile-menu">
+  <div class="mobile-menu-lang-trigger-wrapper">
+    <button type="button" class="lang-btn-trigger mobile-menu-lang-btn" onclick="document.querySelector('.floating-lang-toggle')?.click();">
+      <span class="mobile-lang-icon">🌐</span>
+      <span>Alterar Idioma / Change Language</span>
+      <i class="fas fa-chevron-right" style="margin-left:auto;font-size:12px;opacity:0.6;"></i>
+    </button>
+  </div>
   <div class="sub-menu">
     <div class="arrow-b">
       <p>Serviços e Idiomas</p>
