@@ -100,14 +100,7 @@ export default function OriginalPageTemplate({ html }: OriginalPageTemplateProps
     const wppButtons = document.querySelectorAll('.wpp-btn-trigger');
     const handleWppClick = (e: Event) => {
       e.preventDefault();
-      const popup = document.getElementById('wpp-popup');
-      const overlay = document.getElementById('wpp-popup-overlay');
-      if (popup && overlay) {
-        popup.style.display = 'block';
-        overlay.style.display = 'block';
-      } else {
-        window.open('https://wa.me/5511982854183?text=Olá!%20Gostaria%20de%20um%20orçamento%20de%20tradução.', '_blank');
-      }
+      window.dispatchEvent(new CustomEvent('open-brian-chat'));
     };
     wppButtons.forEach((btn) => {
       btn.addEventListener('click', handleWppClick);
