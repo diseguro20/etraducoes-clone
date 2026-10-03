@@ -546,6 +546,7 @@ const bodyHtml = `<section class="modern-hero-section">
 
 export default function HomePage() {
   const [submitting, setSubmitting] = useState(false);
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
   useEffect(() => {
     // Intercept quote form in hero
@@ -600,9 +601,11 @@ export default function HomePage() {
 
     // Video player buttons (.j_play)
     const videoBtns = document.querySelectorAll('.j_play');
-    const handleVideo = function(this: Element) {
+    const handleVideo = function(this: Element, e: Event) {
+      e.preventDefault();
+      e.stopPropagation();
       const videoId = this.getAttribute('data-video-id') || 'bXejuFDqILQ';
-      window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+      setActiveVideoId(videoId);
     };
     videoBtns.forEach((btn) => btn.addEventListener('click', handleVideo));
 
@@ -626,7 +629,55 @@ export default function HomePage() {
     };
   }, []);
 
+  // Handle escape key to close video modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveVideoId(null);
+      }
+    };
+    if (activeVideoId) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activeVideoId]);
+
   return (
-    <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+    <>
+      <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+
+      {/* Video Modal */}
+      {activeVideoId && (
+        <div
+          className="global-video-modal-overlay"
+          onClick={() => setActiveVideoId(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="global-video-modal-card"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="global-video-modal-close"
+              onClick={() => setActiveVideoId(null)}
+              aria-label="Fechar vídeo"
+            >
+              &times;
+            </button>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${activeVideoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`}
+              title="Vídeo Tutorial TraduzTudo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

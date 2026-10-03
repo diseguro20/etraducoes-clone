@@ -10,6 +10,7 @@ interface OriginalPageTemplateProps {
 
 export default function OriginalPageTemplate({ html }: OriginalPageTemplateProps) {
   const [submitting, setSubmitting] = useState(false);
+  const [activeModalVideoId, setActiveModalVideoId] = useState<string | null>(null);
 
   useEffect(() => {
     const cleanups: Array<() => void> = [];
@@ -122,12 +123,82 @@ export default function OriginalPageTemplate({ html }: OriginalPageTemplateProps
       cleanups.push(() => acc.removeEventListener('click', handleAccordion));
     });
 
-    // 7. Video player buttons (.j_play)
+    // 7. Video blocks (.video-block) - Inline YouTube Player
+    const videoBlocks = document.querySelectorAll('.video-block');
+    videoBlocks.forEach((b) => {
+      const block = b as HTMLElement;
+      const handleVideoBlockClick = (e: MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // If iframe is already playing, do nothing
+        if (block.querySelector('iframe')) return;
+
+        // Retrieve YouTube Video ID
+        const iframeHolder = block.querySelector('.video-iframe') as HTMLElement | null;
+        let videoId =
+          iframeHolder?.getAttribute('data-src') ||
+          block.getAttribute('data-src') ||
+          block.getAttribute('data-video-id');
+
+        if (!videoId) {
+          const img = block.querySelector('img');
+          const m = img?.src.match(/\/vi\/([^/]+)\//);
+          if (m && m[1]) {
+            videoId = m[1];
+          }
+        }
+
+        if (!videoId) {
+          videoId = '24IaCHpTzHQ'; // Default tutorial fallback
+        }
+
+        // Hide thumbnail and play button
+        const thumb = block.querySelector('.video-thumb') as HTMLElement | null;
+        if (thumb) {
+          thumb.style.display = 'none';
+        }
+
+        // Create responsive YouTube iframe
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
+        iframe.title = 'Vídeo Tutorial TraduzTudo';
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute(
+          'allow',
+          'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+        );
+        iframe.setAttribute('allowfullscreen', 'true');
+        iframe.style.position = 'absolute';
+        iframe.style.top = '0';
+        iframe.style.left = '0';
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        iframe.style.borderRadius = '16px';
+        iframe.style.zIndex = '10';
+
+        if (iframeHolder) {
+          iframeHolder.innerHTML = '';
+          iframeHolder.appendChild(iframe);
+          iframeHolder.style.display = 'block';
+        } else {
+          block.appendChild(iframe);
+        }
+      };
+
+      block.addEventListener('click', handleVideoBlockClick);
+      cleanups.push(() => block.removeEventListener('click', handleVideoBlockClick));
+    });
+
+    // 8. Video player buttons (.j_play) - Open in Video Lightbox Modal
     const videoBtns = document.querySelectorAll('.j_play');
     videoBtns.forEach((btn) => {
-      const handleVideo = () => {
+      const handleVideo = (e: Event) => {
+        e.preventDefault();
+        e.stopPropagation();
         const videoId = btn.getAttribute('data-video-id') || 'bXejuFDqILQ';
-        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+        setActiveModalVideoId(videoId);
       };
       btn.addEventListener('click', handleVideo);
       cleanups.push(() => btn.removeEventListener('click', handleVideo));
@@ -138,5 +209,55 @@ export default function OriginalPageTemplate({ html }: OriginalPageTemplateProps
     };
   }, [html]);
 
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  // Handle escape key to close video modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveModalVideoId(null);
+      }
+    };
+    if (activeModalVideoId) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activeModalVideoId]);
+
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+
+      {/* Global Video Modal for .j_play buttons */}
+      {activeModalVideoId && (
+        <div
+          className="global-video-modal-overlay"
+          onClick={() => setActiveModalVideoId(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="global-video-modal-card"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="global-video-modal-close"
+              onClick={() => setActiveModalVideoId(null)}
+              aria-label="Fechar vídeo"
+            >
+              &times;
+            </button>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${activeModalVideoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`}
+              title="Vídeo Tutorial TraduzTudo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
