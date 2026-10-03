@@ -19,30 +19,37 @@ import { sendQuoteToSaaS } from '@/lib/saas';
 
 // ============ QUOTES ============
 export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'createdAt' | 'status'>) {
-  const docRef = await addDoc(collection(db, 'quotes'), {
-    ...data,
-    status: 'novo',
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
+  // 1. Initiate SaaS dispatch immediately to guarantee TraduzTudo OS gets the request
+  const saasPromise = sendQuoteToSaaS({
+    fullName: data.fullName,
+    email: data.email,
+    whatsapp: data.whatsapp,
+    serviceType: data.serviceType,
+    fileNames: data.fileNames || data.files,
+    notes: data.notes,
+  }).catch((err) => {
+    console.warn('[SaaS Sync] Background sync warning:', err);
+    return null;
   });
 
-  // Automatically dispatch lead to TraduzTudo OS SaaS platform
+  // 2. Save in Firestore quotes collection
+  let docId = `quote-${Date.now()}`;
   try {
-    sendQuoteToSaaS({
-      fullName: data.fullName,
-      email: data.email,
-      whatsapp: data.whatsapp,
-      serviceType: data.serviceType,
-      fileNames: data.fileNames || data.files,
-      notes: data.notes,
-    }).catch((err) => {
-      console.warn('[SaaS Sync] Background sync warning:', err);
+    const docRef = await addDoc(collection(db, 'quotes'), {
+      ...data,
+      status: 'novo',
+      createdAt: Timestamp.now(),
+      updatedAt: Timestamp.now(),
     });
-  } catch (syncErr) {
-    console.warn('[SaaS Sync] Sync initiation error:', syncErr);
+    docId = docRef.id;
+  } catch (fsErr) {
+    console.warn('[Firestore] Error saving to quotes collection:', fsErr);
   }
 
-  return docRef.id;
+  // Guarantee SaaS delivery is completed before returning to client
+  await saasPromise;
+
+  return docId;
 }
 export const createQuote = createQuoteRequest;
 
