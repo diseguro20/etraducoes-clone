@@ -91,7 +91,7 @@ export default function WhatsAppButton() {
           {
             id: 'msg-3',
             sender: 'bot',
-            text: 'Para começarmos, qual é o seu **nome completo**?',
+            text: 'Para começarmos, qual é o seu **nome**?',
             time: getCurrentTime(),
           },
         ]);
@@ -512,7 +512,7 @@ export default function WhatsAppButton() {
                   className="brian-chat-input"
                   placeholder={
                     step === 0
-                      ? 'Digite seu nome completo...'
+                      ? 'Digite seu nome...'
                       : step === 1
                       ? 'Ou digite o tipo de serviço...'
                       : step === 2
