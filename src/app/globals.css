@@ -1591,17 +1591,15 @@ body.theme-dark .floating-lang-toggle {
   margin-left: 2px;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   .floating-lang-toggle {
-    bottom: 20px;
-    left: 16px;
-    height: 38px;
-    padding: 0 12px;
-    font-size: 12px;
+    display: none !important;
   }
-  .floating-lang-sub {
-    display: none;
-  }
+}
+
+.iti input,
+.iti input.modern-input-field {
+  padding-left: 52px !important;
 }
 
 /* Modal Overlay & Dialog */
@@ -1827,6 +1825,742 @@ body.theme-dark .lang-modal-footer {
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   INNOVATIVE & MODERN REDESIGN SYSTEM (2026) - TRADUZTUDO
+   ========================================================================== */
+
+/* 1. Global Suppression of Client Logos ("Confiam em nossas traduções") */
+.our-jobs,
+.trust-company {
+  display: none !important;
+}
+
+/* 2. Modern Hero Section */
+.modern-hero-section {
+  position: relative;
+  padding: 40px 0 80px;
+  overflow: hidden;
+}
+
+.modern-hero-ambient {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.12) 0%, rgba(6, 182, 212, 0.06) 45%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="dark"] .modern-hero-ambient,
+body.theme-dark .modern-hero-ambient {
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.22) 0%, rgba(14, 165, 233, 0.1) 45%, transparent 70%);
+}
+
+.modern-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 991px) {
+  .modern-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Innovation Pill Badge */
+.modern-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 9999px;
+  padding: 6px 16px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .modern-hero-badge,
+body.theme-dark .modern-hero-badge {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.modern-badge-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0ea5e9;
+  box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7);
+  animation: modernPulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes modernPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(14, 165, 233, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+  }
+}
+
+.modern-badge-text {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #1d4ed8;
+  text-transform: uppercase;
+}
+
+[data-theme="dark"] .modern-badge-text,
+body.theme-dark .modern-badge-text {
+  color: #38bdf8;
+}
+
+/* Modern Headline */
+.modern-hero-title {
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  line-height: 1.14;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-default);
+  margin-bottom: 20px;
+}
+
+.modern-gradient-text {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+[data-theme="dark"] .modern-gradient-text,
+body.theme-dark .modern-gradient-text {
+  background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero Description */
+.modern-hero-desc {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-secundary);
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+
+/* Hero Feature Tags */
+.modern-hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.modern-feature-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(241, 245, 249, 0.85);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.modern-feature-tag i {
+  color: #10b981;
+  font-size: 14px;
+}
+
+[data-theme="dark"] .modern-feature-tag,
+body.theme-dark .modern-feature-tag {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+/* Hero Action Buttons */
+.modern-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 36px;
+  align-items: center;
+}
+
+.modern-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  font-size: 15px;
+  font-weight: 700 !important;
+  padding: 13px 26px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+}
+
+.modern-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px -5px rgba(16, 185, 129, 0.5);
+  filter: brightness(1.05);
+}
+
+.modern-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid #cbd5e1;
+  color: #1e293b !important;
+  font-size: 15px;
+  font-weight: 600 !important;
+  padding: 12px 24px;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.modern-btn-secondary i {
+  color: #2563eb;
+  font-size: 16px;
+}
+
+.modern-btn-secondary:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .modern-btn-secondary,
+body.theme-dark .modern-btn-secondary {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: #334155;
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .modern-btn-secondary:hover,
+body.theme-dark .modern-btn-secondary:hover {
+  background: #1e293b;
+  border-color: #64748b;
+}
+
+/* 3. Modern Trust Grid (Replacing old logos) */
+.modern-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+}
+
+@media (max-width: 575px) {
+  .modern-trust-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modern-trust-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 14px;
+  padding: 12px 16px;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.modern-trust-card:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.12);
+}
+
+[data-theme="dark"] .modern-trust-card,
+body.theme-dark .modern-trust-card {
+  background: rgba(26, 34, 52, 0.6);
+  border-color: rgba(51, 65, 85, 0.7);
+}
+
+[data-theme="dark"] .modern-trust-card:hover,
+body.theme-dark .modern-trust-card:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 10px 20px -5px rgba(56, 189, 248, 0.2);
+}
+
+.modern-trust-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(6, 182, 212, 0.12));
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .modern-trust-icon-box,
+body.theme-dark .modern-trust-icon-box {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(6, 182, 212, 0.25));
+  color: #38bdf8;
+}
+
+.modern-trust-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-default);
+  line-height: 1.25;
+}
+
+.modern-trust-sub {
+  display: block;
+  font-size: 12px;
+  color: var(--color-secundary);
+  margin-top: 2px;
+}
+
+/* 4. Modern Quote Card (.modern-form-card) */
+.modern-form-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(226, 232, 240, 0.5);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .modern-form-card,
+body.theme-dark .modern-form-card {
+  background: #111a2e;
+  border-color: #243048;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(36, 48, 72, 0.8);
+}
+
+.modern-card-glow-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0ea5e9, #2563eb, #8b5cf6);
+}
+
+.modern-form-header {
+  margin-bottom: 22px;
+}
+
+.modern-form-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e0f2fe;
+  color: #0284c7;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+[data-theme="dark"] .modern-form-header-badge,
+body.theme-dark .modern-form-header-badge {
+  background: rgba(14, 165, 233, 0.18);
+  color: #38bdf8;
+}
+
+.modern-form-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-default);
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.modern-form-subtitle {
+  font-size: 13px;
+  color: var(--color-secundary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.modern-input-group {
+  margin-bottom: 16px;
+}
+
+.modern-input-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-default);
+  margin-bottom: 6px;
+}
+
+.modern-input-label i {
+  color: #2563eb;
+  font-size: 13px;
+}
+
+[data-theme="dark"] .modern-input-label i,
+body.theme-dark .modern-input-label i {
+  color: #38bdf8;
+}
+
+.modern-input-field {
+  width: 100% !important;
+  height: 46px !important;
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 0 16px !important;
+  font-size: 14px !important;
+  font-family: inherit !important;
+  color: var(--color-default) !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+.modern-input-field:focus {
+  border-color: #2563eb !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+  outline: none !important;
+}
+
+[data-theme="dark"] .modern-input-field,
+body.theme-dark .modern-input-field {
+  background: #18233a !important;
+  border-color: #2b3a56 !important;
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .modern-input-field:focus,
+body.theme-dark .modern-input-field:focus {
+  border-color: #38bdf8 !important;
+  background: #1c2944 !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2) !important;
+}
+
+.modern-select-wrapper {
+  position: relative;
+}
+
+.modern-select-wrapper::after {
+  content: "\f078";
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  pointer-events: none;
+  font-size: 12px;
+}
+
+.modern-select-field {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 40px !important;
+}
+
+/* Modern Dropzone */
+.modern-dropzone {
+  position: relative;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modern-dropzone:hover {
+  border-color: #2563eb;
+  background: rgba(37, 99, 235, 0.04);
+}
+
+[data-theme="dark"] .modern-dropzone,
+body.theme-dark .modern-dropzone {
+  background: #18233a;
+  border-color: #2b3a56;
+}
+
+[data-theme="dark"] .modern-dropzone:hover,
+body.theme-dark .modern-dropzone:hover {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.modern-dropzone-icon {
+  font-size: 24px;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .modern-dropzone-icon,
+body.theme-dark .modern-dropzone-icon {
+  color: #38bdf8;
+}
+
+.modern-dropzone-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.modern-dropzone-info strong {
+  font-size: 13px;
+  color: var(--color-default);
+}
+
+.modern-dropzone-info span {
+  font-size: 11px;
+  color: #64748b;
+}
+
+[data-theme="dark"] .modern-dropzone-info span,
+body.theme-dark .modern-dropzone-info span {
+  color: #94a3b8;
+}
+
+.modern-hidden-file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Security Note */
+.modern-security-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 14px 0 18px 0;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+.modern-security-note i {
+  color: #10b981;
+  font-size: 12px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .modern-security-note,
+body.theme-dark .modern-security-note {
+  color: #94a3b8;
+}
+
+.modern-security-note a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+[data-theme="dark"] .modern-security-note a,
+body.theme-dark .modern-security-note a {
+  color: #38bdf8;
+}
+
+/* High-Converting Primary Submit Button */
+.modern-submit-btn {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #1d4ed8 100%);
+  color: #ffffff !important;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px -5px rgba(37, 99, 235, 0.55);
+  filter: brightness(1.06);
+}
+
+/* 5. Modern Sticky Frosted Glass Navbar */
+header.container-s {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 990 !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  transition: all 0.3s ease !important;
+}
+
+[data-theme="dark"] header.container-s,
+body.theme-dark header.container-s {
+  background: rgba(11, 17, 32, 0.88) !important;
+  border-bottom-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+/* Modernize Navbar CTA button */
+.top .topbar .menu .b-act .btn {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  border-radius: 50px !important;
+  padding: 10px 22px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
+  transition: all 0.25s ease !important;
+}
+
+.top .topbar .menu .b-act .btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45) !important;
+}
+
+/* 6. Modernize Document Types Cards Grid (.type-content) */
+.type-content {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 20px !important;
+  padding: 28px 24px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03) !important;
+  margin-bottom: 24px !important;
+}
+
+.type-content:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.1) !important;
+  border-color: #38bdf8 !important;
+}
+
+[data-theme="dark"] .type-content,
+body.theme-dark .type-content {
+  background: #141c2e !important;
+  border-color: #223049 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="dark"] .type-content:hover,
+body.theme-dark .type-content:hover {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 20px 30px -10px rgba(56, 189, 248, 0.15) !important;
+}
+
+.type-content h4 {
+  font-weight: 700 !important;
+  font-size: 1.15em !important;
+  margin: 16px 0 10px !important;
+}
+
+.type-content .btn {
+  border-radius: 50px !important;
+  padding: 8px 20px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-top: 14px !important;
+}
+
+/* 7. Modernize Google Reviews Cards (.references) */
+.references {
+  border-radius: 20px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 28px !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s ease !important;
+}
+
+.references:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.08) !important;
+  border-color: #38bdf8 !important;
+}
+
+[data-theme="dark"] .references,
+body.theme-dark .references {
+  background: #141c2e !important;
+  border-color: #223049 !important;
+}
+
+[data-theme="dark"] .references:hover,
+body.theme-dark .references:hover {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 20px 30px -10px rgba(56, 189, 248, 0.12) !important;
+}
+
+/* 8. Modernize "Entenda como traduzir" Steps */
+.under-content > div > div {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 30px 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+}
+
+.under-content > div > div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.08);
+  border-color: #38bdf8;
+}
+
+[data-theme="dark"] .under-content > div > div,
+body.theme-dark .under-content > div > div {
+  background: #141c2e;
+  border-color: #223049;
+}
+
+[data-theme="dark"] .under-content > div > div:hover,
+body.theme-dark .under-content > div > div:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 20px 30px -10px rgba(56, 189, 248, 0.12);
+}
+
+.under-content span.icon {
+  border-radius: 16px !important;
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.2) !important;
 }
 
 
