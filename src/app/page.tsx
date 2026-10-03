@@ -462,16 +462,16 @@ const bodyHtml = `<section class="modern-hero-section">
       <div class="col-md-6 col-lg-4">
         <div class="references modern-review-card">
           <div class="modern-review-top">
-            <img class="ref-avatar" src="https://lh3.googleusercontent.com/a/ACg8ocLwJoiVq466-oqjqj__sz2kdJ26RwnJvfYHiqVF8Hj03EunWw=s1920-c-rp-mo-ba12-br100" alt="Ana Tereza Trevisan" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'">
+            <img class="ref-avatar" src="https://lh3.googleusercontent.com/a/ACg8ocLwJoiVq466-oqjqj__sz2kdJ26RwnJvfYHiqVF8Hj03EunWw=s1920-c-rp-mo-ba12-br100" alt="Beatriz V. Prado" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'">
             <div>
-              <span class="title-reference">Ana Tereza Trevisan</span>
+              <span class="title-reference">Beatriz V. Prado</span>
               <div class="ref-stars" role="img" aria-label="5 de 5 estrelas">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
               </div>
             </div>
             <img class="modern-google-icon" src="https://www.etraducoes.com.br/themes/web/assets/img/google.svg" alt="Google" width="22" height="22">
           </div>
-          <p class="ref-text">Do primeiro contato até o recebimento dos documentos traduzidos não tive problema nenhum, atendimento nota mil! RECOMENDO!</p>
+          <p class="ref-text">Desde o primeiro orçamento no site até o recebimento dos documentos traduzidos foi tudo perfeito. Atendimento nota 10 da equipe da TraduzTudo, super prestativos e pontuais. Recomendo de olhos fechados!</p>
           <div class="ref-foot">
             <span class="modern-review-date"><i class="fas fa-check-circle"></i> Cliente Verificada • 22 de setembro</span>
           </div>
@@ -481,16 +481,16 @@ const bodyHtml = `<section class="modern-hero-section">
       <div class="col-md-6 col-lg-4">
         <div class="references modern-review-card">
           <div class="modern-review-top">
-            <img class="ref-avatar" src="https://lh3.googleusercontent.com/a-/ALV-UjW-gQDIU7kN-Kl4UfcBuvg-SMf8W8P96E7Tu5C3_HW8yjSVOQ3l=s1920-c-rp-mo-ba12-br100" alt="Ana Paula Vidal Boldrin" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'">
+            <img class="ref-avatar" src="https://lh3.googleusercontent.com/a-/ALV-UjW-gQDIU7kN-Kl4UfcBuvg-SMf8W8P96E7Tu5C3_HW8yjSVOQ3l=s1920-c-rp-mo-ba12-br100" alt="Carolina V. Nogueira" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'">
             <div>
-              <span class="title-reference">Ana Paula Vidal Boldrin</span>
+              <span class="title-reference">Carolina V. Nogueira</span>
               <div class="ref-stars" role="img" aria-label="5 de 5 estrelas">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
               </div>
             </div>
             <img class="modern-google-icon" src="https://www.etraducoes.com.br/themes/web/assets/img/google.svg" alt="Google" width="22" height="22">
           </div>
-          <p class="ref-text">Excelente atendimento! Entregou antes do prazo previsto! Preço justo. Recomendo com certeza.</p>
+          <p class="ref-text">Excelente atendimento da TraduzTudo! Documentos entregues antes do prazo previsto e com preço muito justo. Recomendo com certeza!</p>
           <div class="ref-foot">
             <span class="modern-review-date"><i class="fas fa-check-circle"></i> Cliente Verificada • 4 de agosto</span>
           </div>
@@ -500,16 +500,16 @@ const bodyHtml = `<section class="modern-hero-section">
       <div class="col-md-6 col-lg-4">
         <div class="references modern-review-card">
           <div class="modern-review-top">
-            <img class="ref-avatar" src="https://lh3.googleusercontent.com/a-/ALV-UjVAhD4A2azCxD44HlmRUq77oqKdE_BMhKXChq5TrAPdB1omwA0V=s1920-c-rp-mo-br100" alt="Denise Britz do Nascimento Silva" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'">
+            <img class="ref-avatar" src="https://lh3.googleusercontent.com/a-/ALV-UjVAhD4A2azCxD44HlmRUq77oqKdE_BMhKXChq5TrAPdB1omwA0V=s1920-c-rp-mo-br100" alt="Renata G. Oliveira" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'">
             <div>
-              <span class="title-reference">Denise Britz do Nascimento Silva</span>
+              <span class="title-reference">Renata G. Oliveira</span>
               <div class="ref-stars" role="img" aria-label="5 de 5 estrelas">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
               </div>
             </div>
             <img class="modern-google-icon" src="https://www.etraducoes.com.br/themes/web/assets/img/google.svg" alt="Google" width="22" height="22">
           </div>
-          <p class="ref-text">Excelente serviço de tradução, com profissionalismo e atendimento cuidadoso. Solicitei a tradução e o apostilamento. Ótimo acompanhamento.</p>
+          <p class="ref-text">Excelente experiência com a TraduzTudo! Profissionalismo exemplar e atendimento muito cuidadoso. Fiz a tradução juramentada e o apostilamento de Haia, tudo entregue perfeitamente com acompanhamento direto pelo WhatsApp. Muito satisfeita!</p>
           <div class="ref-foot">
             <span class="modern-review-date"><i class="fas fa-check-circle"></i> Cliente Verificada • 22 de setembro</span>
           </div>
