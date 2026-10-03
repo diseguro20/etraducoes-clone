@@ -273,28 +273,6 @@ export default function LanguageSelector() {
         document.getElementById('header-lang-wrapper') &&
         createPortal(HeaderButton, document.getElementById('header-lang-wrapper')!)}
 
-      {/* Floating Language Switcher Badge (Bottom-Left) */}
-      <button
-        type="button"
-        onClick={() => setIsOpen((prev) => !prev)}
-        className="lang-btn-trigger floating-lang-toggle"
-        aria-label="Alterar idioma do site / Change site language"
-        title="Alterar Idioma / Change Language"
-      >
-        <img
-          src={activeLangObj.flagSvg}
-          alt=""
-          width="24"
-          height="24"
-          className="floating-lang-icon"
-          style={{ borderRadius: '50%', objectFit: 'cover', display: 'block' }}
-        />
-        <span className="floating-lang-text">
-          {activeLangObj.code.toUpperCase()} <span className="floating-lang-sub">• Idioma</span>
-        </span>
-        <i className="fas fa-globe floating-globe"></i>
-      </button>
-
       {/* Language Picker Modal / Dropdown */}
       {isOpen && (
         <div className="lang-modal-overlay">

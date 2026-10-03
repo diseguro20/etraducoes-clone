@@ -9,7 +9,7 @@ const headerHtml = `            <header class="container-s"><div class="top"><di
 <div class="lang-switch-wrapper" id="header-lang-wrapper"></div>
 <div class="mobile-menu">
   <div class="mobile-menu-lang-trigger-wrapper">
-    <button type="button" class="lang-btn-trigger mobile-menu-lang-btn" onclick="document.querySelector('.floating-lang-toggle')?.click();">
+    <button type="button" class="lang-btn-trigger mobile-menu-lang-btn" onclick="document.querySelector('.header-lang-button')?.click();">
       <span class="mobile-lang-icon">🌐</span>
       <span>Alterar Idioma / Change Language</span>
       <i class="fas fa-chevron-right" style="margin-left:auto;font-size:12px;opacity:0.6;"></i>

@@ -4,177 +4,545 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { createQuote } from '@/lib/firestore';
 
-const bodyHtml = `<section class=\"modern-hero-section\">
-  <div class=\"modern-hero-ambient\"></div>
-  <div class=\"container\">
-    <div class=\"modern-hero-grid\">
+const bodyHtml = `<section class="modern-hero-section">
+  <div class="modern-hero-ambient"></div>
+  <div class="container">
+    <div class="modern-hero-grid">
       <!-- Left Column: Copy & Value Proposition -->
-      <div class=\"modern-hero-col-text\">
-        <div class=\"modern-hero-badge\">
-          <span class=\"modern-badge-pulse\"></span>
-          <span class=\"modern-badge-text\">PLATAFORMA INTELIGENTE DE TRADUÇÕES OFICIAIS</span>
+      <div class="modern-hero-col-text">
+        <div class="modern-hero-badge">
+          <span class="modern-badge-pulse"></span>
+          <span class="modern-badge-text">TRADUÇÕES OFICIAIS COM FÉ PÚBLICA • VALIDADE INTERNACIONAL</span>
         </div>
 
-        <h1 class=\"modern-hero-title\">
-          Traduções Juramentadas com <span class=\"modern-gradient-text\">Velocidade Recorde</span> e Validade Oficial
+        <h1 class="modern-hero-title">
+          Tradução Juramentada Oficial <br class="d-none d-lg-block" />
+          <span class="modern-gradient-text">com Máxima Validade &amp; Agilidade</span>
         </h1>
 
-        <p class=\"modern-hero-desc\">
-          A união perfeita entre tecnologia avançada e tradutores juramentados matriculados. Receba seu orçamento online em minutos com segurança jurídica, carimbo CNJ e entrega expressa em todo o Brasil e exterior.
+        <p class="modern-hero-desc">
+          Conectamos você aos melhores tradutores juramentados e matriculados do país. Receba sua cotação em minutos, com assinatura digital ICP-Brasil e validade jurídica em cartórios, embaixadas e tribunais em mais de 120 países.
         </p>
 
-        <div class=\"modern-hero-features\">
-          <div class=\"modern-feature-tag\">
-            <i class=\"fas fa-check-circle\"></i> Assinatura Digital ICP-Brasil
+        <div class="modern-hero-features">
+          <div class="modern-feature-tag">
+            <i class="fas fa-certificate"></i> Assinatura Digital ICP-Brasil
           </div>
-          <div class=\"modern-feature-tag\">
-            <i class=\"fas fa-check-circle\"></i> Válido em Embaixadas e Cartórios
+          <div class="modern-feature-tag">
+            <i class="fas fa-balance-scale"></i> Fé Pública CNJ &amp; Haia
           </div>
-          <div class=\"modern-feature-tag\">
-            <i class=\"fas fa-check-circle\"></i> +10 Idiomas com Tradutor Nativo
+          <div class="modern-feature-tag">
+            <i class="fas fa-globe-americas"></i> +15 Idiomas Nativos
           </div>
         </div>
 
-        <div class=\"modern-hero-actions\">
-          <a href=\"javascript:void(0)\" class=\"modern-btn-primary wpp-btn-trigger\">
-            <i class=\"fab fa-whatsapp\"></i> Orçar pelo WhatsApp
+        <div class="modern-hero-actions">
+          <a href="javascript:void(0)" class="modern-btn-primary wpp-btn-trigger">
+            <i class="fab fa-whatsapp"></i> Falar no WhatsApp com Especialista
           </a>
-          <span class=\"modern-btn-secondary j_play\" data-video-id=\"bXejuFDqILQ\">
-            <i class=\"fas fa-play\"></i> Conheça a TraduzTudo
+          <span class="modern-btn-secondary j_play" data-video-id="bXejuFDqILQ">
+            <i class="fas fa-play-circle"></i> Ver Como Funciona
           </span>
         </div>
 
-        <!-- Modern High-Trust Strip (Replacing old logos) -->
-        <div class=\"modern-trust-grid\">
-          <div class=\"modern-trust-card\">
-            <div class=\"modern-trust-icon-box\">
-              <i class=\"fas fa-bolt\"></i>
-            </div>
-            <div>
-              <span class=\"modern-trust-title\">Orçamento Ágil</span>
-              <span class=\"modern-trust-sub\">Em até 15 minutos</span>
-            </div>
+        <!-- Modern Trust Metrics Strip -->
+        <div class="modern-hero-stats">
+          <div class="modern-stat-item">
+            <div class="modern-stat-num">⚡ 15 min</div>
+            <div class="modern-stat-label">Cotação Média</div>
           </div>
-
-          <div class=\"modern-trust-card\">
-            <div class=\"modern-trust-icon-box\">
-              <i class=\"fas fa-stamp\"></i>
-            </div>
-            <div>
-              <span class=\"modern-trust-title\">Fé Pública CNJ</span>
-              <span class=\"modern-trust-sub\">Válido no Brasil e exterior</span>
-            </div>
+          <div class="modern-stat-item">
+            <div class="modern-stat-num">📜 100%</div>
+            <div class="modern-stat-label">Aceito no Exterior</div>
           </div>
-
-          <div class=\"modern-trust-card\">
-            <div class=\"modern-trust-icon-box\">
-              <i class=\"fas fa-shield-alt\"></i>
-            </div>
-            <div>
-              <span class=\"modern-trust-title\">Sigilo Absoluto</span>
-              <span class=\"modern-trust-sub\">Protegido por criptografia</span>
-            </div>
+          <div class="modern-stat-item">
+            <div class="modern-stat-num">⭐ 4.9/5</div>
+            <div class="modern-stat-label">Google Avaliações</div>
           </div>
-
-          <div class=\"modern-trust-card\">
-            <div class=\"modern-trust-icon-box\">
-              <i class=\"fas fa-star\"></i>
-            </div>
-            <div>
-              <span class=\"modern-trust-title\">Avaliação 4.9/5</span>
-              <span class=\"modern-trust-sub\">+1.500 clientes satisfeitos</span>
-            </div>
+          <div class="modern-stat-item">
+            <div class="modern-stat-num">🔒 LGPD</div>
+            <div class="modern-stat-label">Sigilo Absoluto</div>
           </div>
         </div>
       </div>
 
-      <!-- Right Column: Innovative Quote Card -->
-      <div class=\"modern-hero-col-form\">
-        <div class=\"modern-form-card request\">
-          <div class=\"modern-card-glow-bar\"></div>
+      <!-- Right Column: Innovative Compact Quote Card -->
+      <div class="modern-hero-col-form">
+        <div class="modern-form-card request">
+          <div class="modern-card-glow-bar"></div>
 
-          <div class=\"modern-form-header\">
-            <div class=\"modern-form-header-badge\">
-              <i class=\"fas fa-stopwatch\"></i> RÁPIDO & INSTANTÂNEO
+          <div class="modern-form-header">
+            <div class="modern-form-header-badge">
+              <i class="fas fa-bolt"></i> COTAÇÃO INSTANTÂNEA EM MINUTOS
             </div>
-            <h2 class=\"modern-form-title\">Solicite seu Orçamento</h2>
-            <p class=\"modern-form-subtitle\">Preencha abaixo para receber preço e prazo em minutos</p>
+            <h2 class="modern-form-title">Solicite seu Orçamento Grátis</h2>
+            <p class="modern-form-subtitle">Preencha abaixo para receber preço e prazo de entrega em minutos</p>
           </div>
 
-          <form action=\"/orcamento-traducoes\" method=\"post\" enctype=\"multipart/form-data\">
-            <input type=\"hidden\" name=\"action\" value=\"create\">
-            <input type=\"hidden\" name=\"copy_docs\" value=\"yes\">
+          <form action="/orcamento-traducoes" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="create">
+            <input type="hidden" name="copy_docs" value="yes">
 
-            <div class=\"modern-input-group\">
-              <label for=\"name\" class=\"modern-input-label\">
-                <i class=\"far fa-user\"></i> Nome completo
-              </label>
-              <input class=\"form modern-input-field\" id=\"name\" type=\"text\" name=\"full_name\" placeholder=\"Seu nome e sobrenome\" required>
+            <div class="modern-form-row">
+              <div class="modern-input-group">
+                <label for="name" class="modern-input-label">
+                  <i class="far fa-user"></i> Nome completo
+                </label>
+                <input class="form modern-input-field" id="name" type="text" name="full_name" placeholder="Seu nome completo" required>
+              </div>
+
+              <div class="modern-input-group">
+                <label for="mail" class="modern-input-label">
+                  <i class="far fa-envelope"></i> E-mail de contato
+                </label>
+                <input class="form modern-input-field" type="email" id="mail" name="email" required placeholder="exemplo@email.com">
+              </div>
             </div>
 
-            <div class=\"modern-input-group\">
-              <label for=\"mail\" class=\"modern-input-label\">
-                <i class=\"far fa-envelope\"></i> E-mail de contato
-              </label>
-              <input class=\"form modern-input-field\" type=\"email\" id=\"mail\" name=\"email\" required placeholder=\"exemplo@email.com\">
-            </div>
+            <div class="modern-form-row">
+              <div class="modern-input-group">
+                <label for="whatsapp" class="modern-input-label">
+                  <i class="fab fa-whatsapp"></i> WhatsApp com DDD
+                </label>
+                <div class="tel">
+                  <input type="tel" name="wpp" class="form modern-input-field" id="whatsapp" autocomplete="none" placeholder="(11) 98765-4321" required aria-labelledby="WhatsApp">
+                  <div class="invalid-feedback" id="phone-error" style="display: none;">
+                    Números brasileiros devem conter o dígito 9 após o DDD
+                  </div>
+                </div>
+              </div>
 
-            <div class=\"modern-input-group\">
-              <label for=\"whatsapp\" class=\"modern-input-label\">
-                <i class=\"fab fa-whatsapp\"></i> WhatsApp com DDD
-              </label>
-              <div class=\"tel\">
-                <input type=\"tel\" name=\"wpp\" class=\"form modern-input-field\" id=\"whatsapp\" autocomplete=\"none\" placeholder=\"(11) 98765-4321\" required aria-labelledby=\"WhatsApp\">
-                <div class=\"invalid-feedback\" id=\"phone-error\" style=\"display: none;\">
-                  Números brasileiros devem conter o dígito 9 após o DDD
+              <div class="modern-input-group">
+                <label for="service" class="modern-input-label">
+                  <i class="far fa-file-alt"></i> Tipo de serviço
+                </label>
+                <div class="modern-select-wrapper">
+                  <select name="type_service" class="form modern-input-field modern-select-field" id="service" required>
+                    <option value="" selected disabled>Selecione a modalidade *</option>
+                    <option value="trad">📜 Tradução Juramentada / Oficial</option>
+                    <option value="apostille">🏛️ Apostilamento de Haia</option>
+                    <option value="certificada">📄 Tradução Certificada Internacional</option>
+                    <option value="tecnica">⚙️ Tradução Técnica &amp; Empresarial</option>
+                  </select>
                 </div>
               </div>
             </div>
 
-            <div class=\"modern-input-group\">
-              <label for=\"service\" class=\"modern-input-label\">
-                <i class=\"far fa-file-alt\"></i> Tipo de serviço
+            <div class="modern-input-group">
+              <label for="docs" class="modern-input-label">
+                <i class="far fa-folder-open"></i> Documentos para tradução (opcional)
               </label>
-              <div class=\"modern-select-wrapper\">
-                <select name=\"type_service\" class=\"form modern-input-field modern-select-field\" id=\"service\" required>
-                  <option value=\"\" selected disabled>Selecione a modalidade desejada *</option>
-                  <option value=\"trad\">📜 Tradução Juramentada / Oficial</option>
-                  <option value=\"apostille\">🏛️ Apostilamento de Haia</option>
-                  <option value=\"certificada\">📄 Tradução Certificada Internacional</option>
-                  <option value=\"tecnica\">⚙️ Tradução Técnica & Empresarial</option>
-                </select>
-              </div>
-            </div>
-
-            <div class=\"modern-input-group\">
-              <label for=\"docs\" class=\"modern-input-label\">
-                <i class=\"far fa-folder-open\"></i> Documentos para tradução (opcional)
-              </label>
-              <div class=\"modern-dropzone\">
-                <i class=\"fas fa-cloud-upload-alt modern-dropzone-icon\"></i>
-                <div class=\"modern-dropzone-info\">
-                  <strong>Clique aqui para anexar documentos</strong>
+              <div class="modern-dropzone-compact">
+                <i class="fas fa-cloud-upload-alt modern-dropzone-icon"></i>
+                <div class="modern-dropzone-info">
+                  <strong>Clique ou arraste documentos para anexar</strong>
                   <span>PDF, Word, JPG ou PNG (até 1 GB)</span>
                 </div>
-                <input type=\"file\" id=\"docs\" name=\"files[]\" class=\"file_uploader modern-hidden-file-input\" multiple>
+                <input type="file" id="docs" name="files[]" class="file_uploader modern-hidden-file-input" multiple>
               </div>
             </div>
 
-            <div class=\"modern-security-note\">
-              <i class=\"fas fa-lock\"></i>
-              <span>Tratamos seus dados com sigilo absoluto conforme nossa <a href=\"/politicas-de-privacidade\" target=\"_blank\">Política de Privacidade</a>.</span>
-            </div>
-
-            <button type=\"submit\" class=\"modern-submit-btn\">
+            <button type="submit" class="modern-submit-btn">
               <span>Calcular Preço e Prazo Agora</span>
-              <i class=\"fas fa-arrow-right\"></i>
+              <i class="fas fa-arrow-right"></i>
             </button>
+
+            <div class="modern-security-note">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tratamos seus documentos com sigilo absoluto e criptografia conforme a <a href="/politicas-de-privacidade" target="_blank">LGPD</a>.</span>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-</section>\n<section class=\"bg-bottom-gray\">\n  <div class=\"padd-bottom-lg\" style=\"position: relative;\">\n    <div class=\"container\">\n      <div class=\"solutions\">\n        <div class=\"mt-4\"> <span class=\"sub-blue\">SOLUÇÕES DE TRADUÇÃO</span>\n          <h2 class=\"title-md\">O que nós fazemos</h2> <span class=\"arrow-down go_to\" href=\"#tradocs\"><i\n              class=\"far fa-long-arrow-down radius\"></i></span>\n          <h3 class=\"title-md\" id=\"tradocs\">Traduções de<br> documentos</h3>\n          <ul>\n            <li><i class=\"far fa-check\"></i>\n              <p>Somos uma <strong>empresa de tradução de documentos.</strong></p>\n            </li>\n            <li><i class=\"far fa-check\"></i>\n              <p>Traduzimos com muita <strong>rapidez, qualidade e tecnologia.</strong></p>\n            </li>\n            <li style=\"max-width: 450px;\"><i class=\"far fa-check\"></i>\n              <p>Oferecemos traduções <strong>juramentadas, certificadas e técnicas</strong> no Brasil e no mundo.</p>\n            </li>\n            <li style=\"max-width: 450px;\"><i class=\"far fa-check\"></i>\n              <p>Entregamos as traduções fisicamente e digitalmente por e-mail com validade no Brasil e exterior.</p>\n            </li>\n            <li style=\"max-width: 450px;\"><i class=\"far fa-check\"></i>\n              <p>Tradução de inglês, espanhol, italiano, francês, português, holandês, alemão, mandarim, russo, entre\n                outros.</p>\n            </li>\n          </ul>\n          <div class=\"pt-2\"> <a href=\"javascript:void(0)\" title=\"Iniciar conversa\"\n              class=\"btn btn-green wpp-btn-trigger\"><i class=\"fab fa-whatsapp\"></i>Iniciar Conversa</a> <a\n              href=\"/orcamento-traducoes\" title=\"Orçamento e prazo\" class=\"btn btn-blue ml-2\">Orçamento e\n              Prazo</a> </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"img-map\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/map-etra.svg\" width=\"873\"\n        height=\"401\" alt=\"Mapa de Idiomas TraduzTudo\"> <a href=\"/traducao-juramentada-na-argentina\"\n        class=\"arg\"> <img class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Juramentada na Argentina\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-argentina.svg\" width=\"52\" height=\"52\"\n          alt=\"Tradução Juramentada na Argentina\"> </a><a href=\"/traducao-de-portugues\" class=\"br\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Português\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-brazil.svg\" width=\"52\" height=\"52\" alt=\"Tradução Português\"> </a> <a\n        href=\"/traducao-certificada-canada\" class=\"ca\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Canadá\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-canada.svg\" width=\"52\" height=\"52\" alt=\"Tradução Canadá\"> </a> <a\n        href=\"/traducao-de-ingles\" class=\"eua\"> <img class=\"btn-hover shadow-pulse simple-tooltip\"\n          title=\"Tradução Inglês\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-united-states-of-america.svg\" width=\"52\"\n          height=\"52\" alt=\"Tradução Inglês\"> </a> <a href=\"/traducao-de-espanhol\" class=\"spa\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Espanhol\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-spain.svg\" width=\"52\" height=\"52\" alt=\"Tradução Espanhol\"> </a> <a\n        href=\"/traducao-de-noruegues\" class=\"no\"> <img class=\"btn-hover shadow-pulse simple-tooltip\"\n          title=\"Tradução Norueguês\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-noruega.svg\" width=\"52\" height=\"52\"\n          alt=\"Tradução Norueguês\">\n      </a><a href=\"/traducao-certificada-na-inglaterra\" class=\"uk\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Certificada na Inglaterra\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-inglaterra.svg\" width=\"52\" height=\"52\" alt=\"Tradução Inglaterra\">\n      </a><a href=\"/traducao-frances\" class=\"fr\"> <img class=\"btn-hover shadow-pulse simple-tooltip\"\n          title=\"Tradução Francês\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-france.svg\" width=\"52\" height=\"52\"\n          alt=\"Tradução Francês\"> </a> <a href=\"/traducao-de-holandes\" class=\"nl\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Holandês\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-holanda.svg\" width=\"52\" height=\"52\" alt=\"Tradução Holandês\"> </a> <a\n        href=\"/traducao-de-alemao\" class=\"de\"> <img class=\"btn-hover shadow-pulse simple-tooltip\"\n          title=\"Tradução Alemão\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-germany.svg\" width=\"52\" height=\"52\"\n          alt=\"Tradução Alemão\"> </a> <a href=\"/traducao-de-italiano\" class=\"ita\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Italiano\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-italy.svg\" width=\"52\" height=\"52\" alt=\"Tradução Italiano\"> </a> <a\n        href=\"/traducao-russo\" class=\"rus\"> <img class=\"btn-hover shadow-pulse simple-tooltip\"\n          title=\"Tradução Russo\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-russia.svg\" width=\"52\" height=\"52\"\n          alt=\"Tradução Russo\"> </a> <a href=\"/traducao-mandarim\" class=\"ch\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Chinês\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-china.svg\" width=\"52\" height=\"52\" alt=\"Tradução Chinês\"> </a><a\n        href=\"/traducao-certificada-naati\" class=\"au\"> <img class=\"btn-hover shadow-pulse simple-tooltip\"\n          title=\"Tradução Austrália NAATI\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-australia.svg\" width=\"52\" height=\"52\"\n          alt=\"Tradução Austrália NAATI\">\n      </a><!-- Romanian disabled\n      <a href=\"/traducao-juramentada-romeno\" class=\"ro\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Romeno\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-romenia.svg\" width=\"52\" height=\"52\" alt=\"Tradução Romeno\">\n      </a>\n      --><a href=\"/traducao-juramentada-coreano\" class=\"ko\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Coreano\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-coreia-do-sul.svg\" width=\"52\" height=\"52\" alt=\"Tradução Coreano\">\n      </a><a href=\"/traducao-juramentada-japones\" class=\"ja\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Japonês\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-japao.svg\" width=\"52\" height=\"52\" alt=\"Tradução Japonês\">\n      </a><a href=\"/traducao-juramentada-arabe\" class=\"ar\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Árabe\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-arabia.svg\" width=\"52\" height=\"52\" alt=\"Tradução Árabe\">\n      </a><a href=\"/traducao-juramentada-hebraico\" class=\"he\"> <img\n          class=\"btn-hover shadow-pulse simple-tooltip\" title=\"Tradução Hebraico\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-israel.svg\" width=\"52\" height=\"52\" alt=\"Tradução Hebraico\">\n      </a>\n    </div>\n    <div class=\"col list-tr home-list desktop-none\">\n      <div class=\"container\"> <img class=\"vector1 lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/Vector%201.svg\" width=\"96\"\n          height=\"92\" alt=\"Pattern idioma\"> <img class=\"vector2 lazyload\"\n          src=\"https://www.etraducoes.com.br/themes/web/assets/img/seleci0-idio.svg\" width=\"163\" height=\"16\" alt=\"Selecione um idioma\">\n        <div class=\"list-tr-content\">\n          <ul>\n            <li> <a href=\"/traducao-de-portugues\"> <img class=\"lazyload\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-brazil.svg\" width=\"24\" height=\"24\"\n                  alt=\"Bandeira do Brasil\"> Tradução em Português </a> </li>\n            <li> <a href=\"/traducao-de-ingles\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-united-states-of-america.svg\"\n                  alt=\"Bandeira dos Estados Unidos da América\"> Tradução em Inglês </a> </li>\n            <li> <a href=\"/traducao-de-italiano\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-italy.svg\" alt=\"Bandeira da Itália\"> Tradução em Italiano\n              </a> </li>\n            <li> <a href=\"/traducao-de-espanhol\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-spain.svg\" alt=\"Bandeira da Espanha\"> Tradução em Espanhol\n              </a> </li>\n            <li> <a href=\"/traducao-frances\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-france.svg\" alt=\"Bandeira da França\"> Tradução em Francês\n              </a> </li>\n            <li> <a href=\"/traducao-russo\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-russia.svg\" alt=\"Bandeira da Rússia\"> Tradução em Russo\n              </a> </li>\n            <li> <a href=\"/traducao-mandarim\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-china.svg\" alt=\"Bandeira da China\"> Tradução em Chinês\n              </a> </li>\n            <li> <a href=\"/traducao-de-alemao\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-germany.svg\" alt=\"Bandeira da Alemanha\"> Tradução em\n                Alemão </a> </li>\n            <li> <a href=\"/traducao-de-holandes\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-holanda.svg\" alt=\"Bandeira da Holanda\"> Tradução em\n                Holandês </a> </li>\n            <li> <a href=\"/traducao-de-noruegues\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-noruega.svg\" alt=\"Bandeira da Noruega\"> Tradução em\n                Norueguês </a> </li>\n            <li> <a href=\"/traducao-de-hebraico\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-israel.svg\" alt=\"Bandeira de Israel\"> Tradução em\n                Hebraico </a> </li>\n            <li> <a href=\"/traducao-de-arabe\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-arabia.svg\" alt=\"Bandeira da Arábia\"> Tradução em\n                Árabe </a> </li>\n            <li> <a href=\"/traducao-de-coreano\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-coreia-do-sul.svg\" alt=\"Bandeira da Coreia do Sul\">\n                Tradução\n                em Coreano </a> </li>\n            <!-- Romanian disabled\n            <li> <a href=\"/traducao-de-romeno\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-romenia.svg\" alt=\"Bandeira da Romênia\"> Tradução em\n                Romeno </a> </li>\n            -->\n            <li> <a href=\"/traducao-de-japones\"> <img class=\"lazyload\" width=\"24\" height=\"24\"\n                  src=\"https://www.etraducoes.com.br/themes/web/assets/img/icon-japao.svg\" alt=\"Bandeira do Japão\"> Tradução em\n                Japonês </a> </li>\n          </ul>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"container\">\n    <div class=\"row align-center padd-bottom-lg\">\n      <div class=\"col-md-6\"> <img class=\"lazyload\" alt=\"Ilustração Apostila de Haia\" width=\"601\" height=\"346.96\"\n          src=\"/img/apostilamento-de-haia.png\"> </div>\n      <div class=\"col-md-6\">\n        <div class=\"text\">\n          <h3 class=\"title-md\">Apostilamento de Haia</h3>\n          <p>Vai apresentar os <strong>documentos no exterior?</strong> É necessário apostilar!</p>\n          <p>A TraduzTudo oferece o serviço de apostilamento de documentos.</p>\n          <p>Entregamos suas traduções e documentos apostilados por Cartório autorizado pelo CNJ - Conselho Nacional de\n            Justiça.</p>\n          <p>Ideal para processos de imigração, cidadania, intercâmbio para quem vai apresentar\n            a documentação brasileiras em outros países signatários da Convenção de Haia.</p> <a\n            href=\"/apostilamento-de-haia\" class=\"btn btn-blue-light mt-2\">Saiba mais</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"container\" style=\"position: relative;\">\n    <div class=\"bg-map\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/back-map.svg\" width=\"1185\"\n        height=\"707\" alt=\"Background mapa TraduzTudo\"> </div>\n    <div class=\"z-two al-center padd-top-lg \"> <span class=\"sub-blue\">RÁPIDO, SIMPLES E SEGURO</span>\n      <h2 class=\"title-md\">Entenda como traduzir seus<br> documentos</h2>\n    </div>\n    <div class=\"row under-content under-padd\">\n      <div class=\"col-lg-3 col-md-6\"> <span class=\"icon-right\"> <img class=\"lazyload\" width=\"168\" height=\"7\"\n            src=\"https://www.etraducoes.com.br/themes/web/assets/img/under.svg\" alt=\"Separador\"> </span>\n        <div> <span class=\"icon clock-icon\"> <img class=\"lazyload\" width=\"35\" height=\"35\"\n              src=\"https://www.etraducoes.com.br/themes/web/assets/img/fast-budget.svg\" alt=\"Orçamento ultra rápido\"> </span> <span\n            class=\"title-under\">Orçamento ultra rápido</span>\n          <p>Envie as cópias dos documentos pelo site e em <strong>poucos minutos apresentamos o orçamento e\n              prazo.</strong></p>\n        </div>\n      </div>\n      <div class=\"col-lg-3 col-md-6\"> <span class=\"icon-right\"> <img class=\"lazyload\" width=\"168\" height=\"7\"\n            src=\"https://www.etraducoes.com.br/themes/web/assets/img/under.svg\" alt=\"Separador\"> </span>\n        <div> <span class=\"icon talk-icon\"> <img class=\"lazyload\" width=\"35\" height=\"35\"\n              src=\"https://www.etraducoes.com.br/themes/web/assets/img/buy-conversation.svg\" alt=\"Converse ou contrate\"> </span> <span\n            class=\"title-under\">Converse ou contrate</span>\n          <p>Esclareça suas dúvidas pelo WhatsApp, e-mail ou 0800 ou <strong>contrate online </strong>escolhendo a forma\n            de pagamento.</p>\n        </div>\n      </div>\n      <div class=\"col-lg-3 col-md-6\"> <span class=\"icon-right\"> <img class=\"lazyload\" width=\"168\" height=\"7\"\n            src=\"https://www.etraducoes.com.br/themes/web/assets/img/under.svg\" alt=\"Separador\"> </span>\n        <div> <span class=\"icon sync-icon\"> <img class=\"lazyload\" width=\"35\" height=\"35\"\n              src=\"https://www.etraducoes.com.br/themes/web/assets/img/forever-sync.svg\" alt=\"Sempre atualizado\"> </span> <span\n            class=\"title-under\">Sempre atualizado</span>\n          <p>Receba acesso à nossa plataforma e mantenha-se atualizado recebendo <strong>notificações em tempo\n              real.</strong></p>\n        </div>\n      </div>\n      <div class=\"col-lg-3 col-md-6\">\n        <div> <span class=\"icon envelope-icon\"> <img width=\"35\" height=\"23\" class=\"lazyload\"\n              src=\"https://www.etraducoes.com.br/themes/web/assets/img/receiving-translation.svg\" alt=\"Receba suas traduções\"> </span>\n          <span class=\"title-under\">Receba suas traduções</span>\n          <p>Receba em casa e por e-mail suas traduções e apostilas com <strong>segurança e rapidez.</strong> <br>\n            (Brasil e exterior) </p>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<section id=\"howtranslate\">\n  <div class=\"container\">\n    <div class=\"type\"> <span class=\"sub-blue\">TIPOS DE DOCUMENTOS</span>\n      <h2 class=\"title-md\">O que traduzimos</h2> <span class=\"arrow-down go_to\" href=\"#howtranslate\"><i\n          class=\"far fa-long-arrow-down radius\"></i></span>\n    </div>\n    <div class=\"type-content-height\">\n      <h3 class=\"title-sm\" style=\"margin-top: 120px;\">Traduções Juramentadas no Brasil</h3>\n      <div class=\"row\">\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\"\n              src=\"https://www.etraducoes.com.br/themes/web/assets/img/type-passport%20(4)%201.svg\" width=\"56\" height=\"56\"\n              alt=\"Cidadania Italiana\">\n            <h4>Cidadania Italiana</h4>\n            <p>Tradução Juramentada Italiano para processos de Cidadania Italiana e AIRE, além de Apostila de Haia.</p>\n            <a href=\"/traducao-juramentada-para-cidadania-italiana\" title=\"Saiba mais\"\n              class=\"btn btn-blue-light-outline radius\">Saiba mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/type-award%201.svg\"\n              width=\"56\" height=\"56\" alt=\"Acadêmico\">\n            <h4>Acadêmico</h4>\n            <p> Traduções de Diplomas, Históricos Escolares, Artigos e Acadêmicos, TCC, Resumos Abstracts e Monografias.\n            </p> <a href=\"/traducao-academica\" title=\"Saiba mais\"\n              class=\"btn btn-blue-light-outline radius\">Saiba mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\"\n              src=\"https://www.etraducoes.com.br/themes/web/assets/img/type-carteira-de-motorista%201.svg\" width=\"56\" height=\"56\"\n              alt=\"Documentos Pessoais\">\n            <h4>Documentos Pessoais</h4>\n            <p>Traduções Juramentadas de Autorização de Viagem, Carteira de Motorista - CNH, Carteira de Vacinação e\n              Currículo.</p> <a href=\"/traducao-de-documentos\"\n              class=\"btn btn-blue-light-outline radius\">Saiba mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\"\n              src=\"https://www.etraducoes.com.br/themes/web/assets/img/type-file%20(2)%201.svg\" width=\"56\" height=\"56\" alt=\"Certidões\">\n            <h4>Certidões</h4>\n            <p>Traduções Juramentadas de Certidões de Nascimento, Casamento, Óbito e Antecedentes Criminais.</p> <a\n              href=\"/traducao-juramentada-de-certidoes\" class=\"btn btn-blue-light-outline radius\">Saiba\n              mais</a>\n          </div>\n        </div>\n      </div>\n\n      <h3 class=\"title-sm\" style=\"margin-top: 120px;\">Traduções Certificadas e Juramentadas no Mundo</h3>\n      <div class=\"row\">\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/eua.svg\" width=\"56\"\n              height=\"56\" alt=\"Estados Unidos\">\n            <h4>Estados Unidos</h4>\n            <p>Tradução feita nos EUA\n              por tradutor certificado pela ATA\n              (Associação Americana de Tradutores)</p>\n            <a href=\"/traducao-certificada-nos-eua\" title=\"Saiba mais\"\n              class=\"btn btn-blue-light-outline radius\">Saiba\n              mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/canada.svg\" width=\"56\"\n              height=\"56\" alt=\"Canadá\">\n            <h4>Canadá</h4>\n            <p>\n              Tradução feita no Canadá\n              por tradutor certificado pela ATIO\n              (Associação de Tradutores de Ontário)\n            </p> <a href=\"/traducao-certificada-canada\" title=\"Saiba mais\"\n              class=\"btn btn-blue-light-outline radius\">Saiba mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/australia.svg\"\n              width=\"56\" height=\"56\" alt=\"Austrália\">\n            <h4>Austrália</h4>\n            <p>Tradução feita na Autrália por\n              tradutor certificado pela NAATI\n              (Autoridade Nacional de Tradutores)</p> <a href=\"/traducao-certificada-naati\"\n              class=\"btn btn-blue-light-outline radius\">Saiba\n              mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/inglaterra.svg\"\n              width=\"56\" height=\"56\" alt=\"Inglaterra\">\n            <h4>Inglaterra</h4>\n            <p>Tradução feita na Inglaterra por tradutor certificado pelo ITI (Instituto de Tradução e Interpretação)\n            </p> <a href=\"/traducao-certificada-na-inglaterra\"\n              class=\"btn btn-blue-light-outline radius\">Saiba\n              mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\" type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/espanha.svg\"\n              width=\"56\" height=\"56\" alt=\"Espanha\">\n            <h4>Espanha</h4>\n            <p style=\"min-height: 110px;\">Tradução feita na Espanha\n              por tradutor certificado pelo MAE\n              (Ministério das Relações Exteriores)</p> <a href=\"/traducao-juramentada-na-espanha\"\n              class=\"btn btn-blue-light-outline radius\">Saiba\n              mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\" type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/argentina.svg\"\n              width=\"56\" height=\"56\" alt=\"Argentina\">\n            <h4>Argentina</h4>\n            <p style=\"min-height: 110px;\">Tradução feita na Argentina\n              por tradutor certificado pelo CTPIPBA\n              (Colégio dos Tradutores Públicos)</p> <a href=\"/traducao-juramentada-na-argentina\"\n              class=\"btn btn-blue-light-outline radius\">Saiba\n              mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/alemanha.svg\"\n              width=\"56\" height=\"56\" alt=\"Alemanha\">\n            <h4>Alemanha</h4>\n            <p style=\"min-height: 110px;\">Tradução feita na Alemanha\n              por tradutor certificado pela BDÜ\n              (Associação Federal de Tradutores)</p>\n            <a href=\"/traducao-juramentada-na-alemanha\" class=\"btn btn-blue-light-outline radius\">Saiba\n              mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/holanda.svg\"\n              width=\"56\" height=\"56\" alt=\"Holanda\">\n            <h4>Holanda</h4>\n            <p style=\"min-height: 110px;\">Tradução feita na Holanda\n              por tradutor credenciado pelo RBTV\n              (Registro de Tradutores)</p>\n            <a href=\"/traducao-juramentada-na-holanda\" class=\"btn btn-blue-light-outline radius\">Saiba\n              mais</a>\n          </div>\n        </div>\n      </div>\n\n      <h3 class=\"title-sm\" style=\"margin-top: 120px;\">Traduções Técnicas</h3>\n      <div class=\"row \">\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/type-law.svg\"\n              width=\"56\" height=\"56\" alt=\"Jurídico\">\n            <h4>Jurídico</h4>\n            <p> Traduções Técnicas de Contratos, Laudos, Processos, Estatutos, Comprovantes, Regulamentos e Leis. </p>\n            <a href=\"/traducao-tecnica\" class=\"btn btn-blue-light-outline radius\">Saiba mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/type-finances.svg\"\n              width=\"56\" height=\"56\" alt=\"Financeiro e Comercial\">\n            <h4>Financeiro</h4>\n            <p>Traduções Técnicas de Documentos Fiscais, Bancários, Patentes, Propostas, Auditorias, Investimentos e\n              Balancetes. </p> <a href=\"/traducao-tecnica\"\n              class=\"btn btn-blue-light-outline radius\">Saiba mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/type-technical.svg\"\n              width=\"56\" height=\"56\" alt=\"Engenharia e Indústria\">\n            <h4>Documentos Técnicos</h4>\n            <p> Traduções Técnicas de Manuais, Bulas, Especificações e Normas Técnicas, Licitações, Relatórios de\n              Engenharia e Inspeção. </p> <a href=\"/traducao-tecnica\"\n              class=\"btn btn-blue-light-outline radius\">Saiba mais</a>\n          </div>\n        </div>\n        <div class=\"col-lg-3 col-md-6\">\n          <div class=\"type-content\"> <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/type-contract.svg\"\n              width=\"56\" height=\"56\" alt=\"Empresarial e Comercial\">\n            <h4>Empresarial e Comercial</h4>\n            <p>Traduções Técnicas de Especificações e Embalagem de Produtos, Comunicações Internas, Artigos e Propostas.\n            </p> <a href=\"/traducao-tecnica\" class=\"btn btn-blue-light-outline radius\">Saiba mais</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"padd-top-lg\">\n    <div class=\"container z-two\">\n      <div class=\"row align-items-center\">\n        <div class=\"col-lg-6\">\n          <div class=\"answer text\"> <span class=\"sub-blue\">VAMOS COMEÇAR?</span>\n            <h2 class=\"title-md\">Orçamento de Serviço de Tradução</h2>\n            <p>Tornamos simples e rápido solicitar informações e cotações de serviços de traduções juramentadas e\n              técnicas.</p>\n            <p>Nossos orçamentos são disponibilizados de forma online e apresentados em poucos minutos.</p>\n            <p>Oferecemos um serviço de tradução confiável, com preços justos e ótimos prazos de entrega.</p>\n            <p>Ficou com dúvidas? Chame um especialista no WhatsApp.</p>\n            <div> <a href=\"javascript:void(0)\" title=\"Iniciar Conversa\"\n                            class=\"btn btn-green mt-2 wpp-btn-trigger\"><i class=\"fab fa-whatsapp\"></i>Iniciar\n                            Conversa</a> <a\n                href=\"/orcamento-traducoes\" title=\"Orçamento e Prazo\"\n                class=\"btn btn-blue mt-2 ml-2\">Orçamento e Prazo</a> </div>\n          </div>\n        </div>\n        <div class=\"col-lg-6\">\n          <div class=\"answer-img\"> <img class=\"lazyload\"\n              src=\"/img/whatsapp-conversa-brian.webp\"\n              alt=\"Conversa com o Brian no WhatsApp TraduzTudo\" width=\"563px\" height=\"714px\"> </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<section class=\"padd-top-lg padd-bottom-md bg-gray\"> <style>\n    .s-comment .references { height: 100%; display: flex; flex-direction: column; }\n    .s-comment .references > div:first-child { display: flex; align-items: center; }\n    .s-comment .references .ref-stars { color: #fbbc05; font-size: 13px; margin: 4px 0 10px; }\n    .s-comment .references .ref-text {\n        display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical;\n        overflow: hidden; flex-grow: 1; margin-bottom: 16px;\n    }\n    .s-comment .references .ref-avatar {\n        width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex: 0 0 42px;\n    }\n    .s-comment .references .ref-foot { margin-top: auto; }\n    .s-comment .row > [class*=\"col-\"] { display: flex; margin-bottom: 24px; }\n</style>\n<div class=\"s-comment\">\n    <div class=\"container\" style=\"display: block\">\n        <div class=\"mt-4\">\n            <span class=\"sub-blue\">NOSSAS REFERÊNCIAS</span>\n            <h2 class=\"title-md\">O que falam da gente</h2>\n        </div>\n        <div class=\"row\">\n                                            <div class=\"col-md-6 col-lg-4\">\n                    <div class=\"references\">\n                        <div>\n                            <img class=\"ref-avatar\"\n                                 src=\"https://lh3.googleusercontent.com/a/ACg8ocLwJoiVq466-oqjqj__sz2kdJ26RwnJvfYHiqVF8Hj03EunWw=s1920-c-rp-mo-ba12-br100\"\n                                 alt=\"Ana Tereza Trevisan\" loading=\"lazy\"\n                                 referrerpolicy=\"no-referrer\"\n                                 onerror=\"this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'\">\n                            <span class=\"title-reference\">Ana Tereza Trevisan</span>\n                        </div>\n                        <div class=\"ref-stars\" role=\"img\" aria-label=\"5 de 5 estrelas\">\n                            <i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i>                        </div>\n                        <p class=\"ref-text\">Do primeiro contato até o recebimento dos documentos traduzidos nao tive problema, atendimento nota mil! RECOMENDO!</p>\n                        <div class=\"ref-foot\">\n                                                            <p>Publicado em <span>22 de setembro de 2026</span></p>\n                                                        <a href=\"https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pKb05WZFpVbXhtVERWUllXVnhhSEV5VDFKYU5uYxAB!2m1!1s0x0:0x5f0cd385a0e70f81!3m1!1s2@1:CAIQACodChtycF9oOjJoNVdZUmxmTDVRYWVxaHEyT1JaNnc%7C%7C?hl=pt-BR\" target=\"_blank\" rel=\"nofollow noopener\">\n                                <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/google.svg\" alt=\"Google\">\n                            </a>\n                        </div>\n                    </div>\n                </div>\n                                            <div class=\"col-md-6 col-lg-4\">\n                    <div class=\"references\">\n                        <div>\n                            <img class=\"ref-avatar\"\n                                 src=\"https://lh3.googleusercontent.com/a-/ALV-UjW-gQDIU7kN-Kl4UfcBuvg-SMf8W8P96E7Tu5C3_HW8yjSVOQ3l=s1920-c-rp-mo-ba12-br100\"\n                                 alt=\"Ana Paula Vidal Boldrin\" loading=\"lazy\"\n                                 referrerpolicy=\"no-referrer\"\n                                 onerror=\"this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'\">\n                            <span class=\"title-reference\">Ana Paula Vidal Boldrin</span>\n                        </div>\n                        <div class=\"ref-stars\" role=\"img\" aria-label=\"5 de 5 estrelas\">\n                            <i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i>                        </div>\n                        <p class=\"ref-text\">Excelente atendimento! Entregou antes do prazo previsto! Preço justo. Recomendo.</p>\n                        <div class=\"ref-foot\">\n                                                            <p>Publicado em <span>4 de agosto de 2026</span></p>\n                                                        <a href=\"https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25adWFEZEhVRWczUWpaTE9WQk5NMFozZW5ReU1FRRAB!2m1!1s0x0:0x5f0cd385a0e70f81!3m1!1s2@1:CAIQACodChtycF9oOnZuaDdHUEg3QjZLOVBNM0Z3enQyMEE%7C%7C?hl=pt-BR\" target=\"_blank\" rel=\"nofollow noopener\">\n                                <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/google.svg\" alt=\"Google\">\n                            </a>\n                        </div>\n                    </div>\n                </div>\n                                            <div class=\"col-md-6 col-lg-4\">\n                    <div class=\"references\">\n                        <div>\n                            <img class=\"ref-avatar\"\n                                 src=\"https://lh3.googleusercontent.com/a-/ALV-UjVAhD4A2azCxD44HlmRUq77oqKdE_BMhKXChq5TrAPdB1omwA0V=s1920-c-rp-mo-br100\"\n                                 alt=\"Denise Britz do Nascimento Silva\" loading=\"lazy\"\n                                 referrerpolicy=\"no-referrer\"\n                                 onerror=\"this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'\">\n                            <span class=\"title-reference\">Denise Britz do Nascimento Silva</span>\n                        </div>\n                        <div class=\"ref-stars\" role=\"img\" aria-label=\"5 de 5 estrelas\">\n                            <i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i><i class=\"fas fa-star\" aria-hidden=\"true\"></i>                        </div>\n                        <p class=\"ref-text\">Excelente serviço de tradução, com profissionalismo e um atendimento cuidadoso. Solicitei a tradução e o apostilamento de um documento. Obrigada Clelton pelo ótimo atendimento e acompanhamento durante todo o processo de trabalho.</p>\n                        <div class=\"ref-foot\">\n                                                            <p>Publicado em <span>22 de setembro de 2026</span></p>\n                                                        <a href=\"https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2w5WVJVbFNiRVZuVEc5Sk9VZzRWMFJTVUZnMVJrRRAB!2m1!1s0x0:0x5f0cd385a0e70f81!3m1!1s2@1:CAIQACodChtycF9oOl9YRUlSbEVnTG9JOUg4V0RSUFg1RkE%7C%7C?hl=pt-BR\" target=\"_blank\" rel=\"nofollow noopener\">\n                                <img class=\"lazyload\" src=\"https://www.etraducoes.com.br/themes/web/assets/img/google.svg\" alt=\"Google\">\n                            </a>\n                        </div>\n                    </div>\n                </div>\n                    </div>\n        <div class=\"text-center\" style=\"margin-top: 8px\">\n            <a href=\"/avaliacoes\" class=\"btn btn-outline\">Ver todas as avaliações</a>\n        </div>\n    </div>\n</div>\n</section>\n<section style=\"position: relative;\" id=\"prefooter\">   <div class=\"container padd-top-lg padd-bottom-lg\">\n    <div class=\"bg-map\"> <img class=\"lazyload\" width=\"1192\" height=\"712\"\n        src=\"https://www.etraducoes.com.br/themes/web/assets/img/back-map-cinza.svg\" alt=\"Mapa cinza TraduzTudo\"> </div>\n    <div class=\"al-center translate\"> <svg width=\"54\" height=\"54\" viewBox=\"0 0 22 22\" fill=\"none\"\n        xmlns=\"http://www.w3.org/2000/svg\">\n        <path\n          d=\"M6.88 5.76787H3.17227C3.06299 5.76787 2.9582 5.72446 2.88093 5.6472C2.80366 5.56993 2.76025 5.46513 2.76025 5.35586C2.76025 5.24659 2.80366 5.14179 2.88093 5.06452C2.9582 4.98726 3.06299 4.94385 3.17227 4.94385H6.88C6.98921 4.94404 7.0939 4.98751 7.17112 5.06474C7.24835 5.14196 7.29182 5.24665 7.29201 5.35586C7.33314 5.60299 7.12713 5.76787 6.88 5.76787Z\"\n          fill=\"var(--color-secundary)\" />\n        <path\n          d=\"M6.88 3.79033H3.17227C3.06299 3.79033 2.9582 3.74692 2.88093 3.66966C2.80366 3.59239 2.76025 3.48759 2.76025 3.37832C2.76025 3.26905 2.80366 3.16425 2.88093 3.08698C2.9582 3.00972 3.06299 2.96631 3.17227 2.96631H6.88C6.98921 2.9665 7.0939 3.00998 7.17112 3.0872C7.24835 3.16443 7.29182 3.26911 7.29201 3.37832C7.29555 3.43334 7.28732 3.48849 7.26786 3.54008C7.24841 3.59167 7.21818 3.63852 7.17919 3.67751C7.1402 3.7165 7.09335 3.74673 7.04176 3.76618C6.99017 3.78564 6.93503 3.79387 6.88 3.79033Z\"\n          fill=\"var(--color-secundary)\" />\n        <path\n          d=\"M19.0338 8.56426H11.4945C11.3853 8.56406 11.2806 8.52059 11.2034 8.44337C11.1262 8.36614 11.0827 8.26146 11.0825 8.15225C11.0901 8.04548 11.1359 7.94503 11.2116 7.86934C11.2873 7.79366 11.3878 7.74781 11.4945 7.74023H19.0338C19.143 7.74023 19.2478 7.78364 19.3251 7.86091C19.4024 7.93818 19.4458 8.04297 19.4458 8.15225C19.4458 8.26152 19.4024 8.36632 19.3251 8.44358C19.2478 8.52085 19.143 8.56426 19.0338 8.56426Z\"\n          fill=\"var(--color-primary)\" />\n        <path\n          d=\"M19.0338 6.58721H11.4945C11.3853 6.58721 11.2805 6.5438 11.2032 6.46653C11.1259 6.38927 11.0825 6.28447 11.0825 6.1752C11.0825 6.06592 11.1259 5.96113 11.2032 5.88386C11.2805 5.80659 11.3853 5.76318 11.4945 5.76318H19.0338C19.143 5.76338 19.2477 5.80685 19.3249 5.88408C19.4021 5.9613 19.4456 6.06598 19.4458 6.1752C19.4493 6.23022 19.4411 6.28536 19.4216 6.33696C19.4022 6.38855 19.3719 6.4354 19.3329 6.47439C19.294 6.51337 19.2471 6.5436 19.1955 6.56306C19.1439 6.58251 19.0888 6.59075 19.0338 6.58721Z\"\n          fill=\"var(--color-primary)\" />\n        <path\n          d=\"M19.6927 21.1197H10.4232C10.1202 21.1203 9.82 21.0611 9.53991 20.9455C9.25983 20.8299 9.00532 20.6601 8.79097 20.446C8.57663 20.2318 8.40666 19.9774 8.29083 19.6974C8.175 19.4174 8.11558 19.1173 8.11597 18.8143H9.352C9.35705 19.0968 9.47155 19.3662 9.67137 19.5659C9.87118 19.7656 10.1407 19.8799 10.4232 19.8847H19.6927C19.9751 19.8799 20.2447 19.7656 20.4445 19.5659C20.6443 19.3662 20.7588 19.0968 20.7638 18.8143V5.31279C20.7588 5.03034 20.6443 4.76089 20.4445 4.56121C20.2447 4.36153 19.9751 4.24722 19.6927 4.24237H10.4232C10.1407 4.24722 9.87118 4.36153 9.67137 4.56121C9.47155 4.76089 9.35705 5.03034 9.352 5.31279V9.38844H8.11597V5.31279C8.11563 5.00981 8.17509 4.70975 8.29094 4.42979C8.40679 4.14984 8.57676 3.89551 8.7911 3.68138C9.00544 3.46724 9.25994 3.29752 9.54 3.18194C9.82006 3.06635 10.1202 3.00718 10.4232 3.00782H19.6927C19.9957 3.00718 20.2958 3.06635 20.5758 3.18194C20.8559 3.29752 21.1104 3.46724 21.3247 3.68138C21.5391 3.89551 21.7091 4.14984 21.8249 4.42979C21.9408 4.70975 22.0002 5.00981 21.9999 5.31279V18.8558C21.992 19.4613 21.745 20.0391 21.3128 20.4632C20.8806 20.8872 20.2982 21.1232 19.6927 21.1197Z\"\n          fill=\"var(--color-primary)\" />\n        <path d=\"M10.7938 9.2207L8.65146 12.3519L6.46802 9.2207H10.7938Z\" fill=\"var(--color-primary)\" />\n        <path\n          d=\"M11.5767 17.9214H2.3072C2.00407 17.9219 1.70384 17.8626 1.42369 17.7468C1.14355 17.631 0.889016 17.4611 0.674676 17.2467C0.460336 17.0324 0.290408 16.7779 0.174634 16.4977C0.0588593 16.2176 -0.000484978 15.9173 2.98492e-06 15.6142V2.3072C-0.000484978 2.00407 0.0588593 1.70384 0.174634 1.42369C0.290408 1.14355 0.460336 0.889016 0.674676 0.674676C0.889016 0.460336 1.14355 0.290408 1.42369 0.174634C1.70384 0.0588593 2.00407 -0.000484978 2.3072 2.98492e-06H11.5767C11.8798 -0.000484978 12.1801 0.0588593 12.4602 0.174634C12.7404 0.290408 12.9949 0.460336 13.2092 0.674676C13.4236 0.889016 13.5935 1.14355 13.7093 1.42369C13.8251 1.70384 13.8844 2.00407 13.8839 2.3072H12.6479C12.6428 2.02468 12.5284 1.75515 12.3286 1.55535C12.1288 1.35555 11.8592 1.24108 11.5767 1.23604H2.3072C2.02468 1.24108 1.75515 1.35555 1.55535 1.55535C1.35555 1.75515 1.24108 2.02468 1.23604 2.3072V15.6142C1.24108 15.8967 1.35555 16.1663 1.55535 16.3661C1.75515 16.5659 2.02468 16.6803 2.3072 16.6854H11.5767C11.8592 16.6803 12.1288 16.5659 12.3286 16.3661C12.5284 16.1663 12.6428 15.8967 12.6479 15.6142V12.4419H13.8839V15.6142C13.8779 16.2243 13.6329 16.8076 13.2015 17.239C12.7701 17.6704 12.1868 17.9154 11.5767 17.9214Z\"\n          fill=\"var(--color-secundary)\" />\n        <path d=\"M11.2058 12.517L13.3481 9.38574L15.5316 12.517H11.2058Z\" fill=\"var(--color-secundary)\" />\n      </svg>\n      <h2>Traduza seus documentos<br>com a TraduzTudo</h2>\n            <div> <a href=\"/orcamento-traducoes\" title=\"Faça um orçamento instantâneo\"\n          class=\"btn btn-blue\">Faça um orçamento instantâneo</a> <span class=\"ou\">OU</span> <a href=\"javascript:void(0)\"\n          title=\"Iniciar Conversa\" class=\"btn btn-green wpp-btn-trigger\"><i class=\"fab fa-whatsapp\"></i>Orçamento\n          pelo WhatsApp</a>\n      </div>\n    </div>`;
+</section>
+
+<!-- SECTION 2: GLOBAL COVERAGE & GUARANTEES -->
+<section class="modern-network-section" id="tradocs">
+  <div class="container">
+    <div class="modern-section-header text-center">
+      <span class="modern-section-badge"><i class="fas fa-globe-americas"></i> COBERTURA GLOBAL &amp; IDIOMAS OFICIAIS</span>
+      <h2 class="modern-section-title">Traduções Juramentadas em Mais de 15 Idiomas</h2>
+      <p class="modern-section-desc">Tradutores públicos concursados pelas Juntas Comerciais do Brasil e autorizados pelas maiores associações de tradução do mundo.</p>
+    </div>
+
+    <div class="modern-guarantees-grid">
+      <div class="modern-guarantee-card">
+        <div class="modern-guarantee-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Velocidade Recorde</h3>
+        <p>Orçamento online em minutos e prazos expressos de entrega a partir de 24 horas úteis para sua tranquilidade.</p>
+      </div>
+
+      <div class="modern-guarantee-card">
+        <div class="modern-guarantee-icon"><i class="fas fa-stamp"></i></div>
+        <h3>Fé Pública Nacional</h3>
+        <p>Validade jurídica incontestável perante cartórios, bancos, juntas comerciais, tribunais e órgãos públicos.</p>
+      </div>
+
+      <div class="modern-guarantee-card">
+        <div class="modern-guarantee-icon"><i class="fas fa-globe"></i></div>
+        <h3>Validade Internacional</h3>
+        <p>Traduções juramentadas e certificadas aceitas em consulados, embaixadas e universidades de todo o mundo.</p>
+      </div>
+
+      <div class="modern-guarantee-card">
+        <div class="modern-guarantee-icon"><i class="fas fa-fingerprint"></i></div>
+        <h3>Assinatura ICP-Brasil</h3>
+        <p>Entrega digital criptografada com assinatura digital e carimbo de tempo com validação oficial online instantânea.</p>
+      </div>
+    </div>
+
+    <!-- Global Language Network Grid (16 Key Languages) -->
+    <div class="modern-network-hub">
+      <div class="modern-network-hub-header">
+        <span class="modern-badge-pulse"></span>
+        <span>REDE OFICIAL DE TRADUTORES DISPONÍVEIS AGORA</span>
+      </div>
+
+      <div class="modern-lang-chips">
+        <a href="/traducao-de-ingles" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-united-states-of-america.svg" width="24" height="24" alt="EUA"> <div><strong>Inglês (EUA / UK)</strong><span>Certificação ATA &amp; ITI</span></div></a>
+        <a href="/traducao-de-espanhol" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-spain.svg" width="24" height="24" alt="Espanha"> <div><strong>Espanhol</strong><span>Espanha &amp; América Latina</span></div></a>
+        <a href="/traducao-de-italiano" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-italy.svg" width="24" height="24" alt="Itália"> <div><strong>Italiano</strong><span>Cidadania &amp; AIRE</span></div></a>
+        <a href="/traducao-frances" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-france.svg" width="24" height="24" alt="França"> <div><strong>Francês</strong><span>França, Canadá &amp; Bélgica</span></div></a>
+        <a href="/traducao-de-alemao" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-germany.svg" width="24" height="24" alt="Alemanha"> <div><strong>Alemão</strong><span>Alemanha &amp; Suíça (BDÜ)</span></div></a>
+        <a href="/traducao-mandarim" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-china.svg" width="24" height="24" alt="China"> <div><strong>Mandarim</strong><span>China &amp; Negócios</span></div></a>
+        <a href="/traducao-de-japones" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-japao.svg" width="24" height="24" alt="Japão"> <div><strong>Japonês</strong><span>Vistos, Docs &amp; Certidões</span></div></a>
+        <a href="/traducao-de-portugues" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-brazil.svg" width="24" height="24" alt="Brasil"> <div><strong>Português</strong><span>Fé Pública Nacional</span></div></a>
+        <a href="/traducao-de-holandes" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-holanda.svg" width="24" height="24" alt="Holanda"> <div><strong>Holandês</strong><span>Certificação RBTV</span></div></a>
+        <a href="/traducao-russo" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-russia.svg" width="24" height="24" alt="Rússia"> <div><strong>Russo</strong><span>Rússia &amp; Leste Europeu</span></div></a>
+        <a href="/traducao-certificada-naati" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-australia.svg" width="24" height="24" alt="Austrália"> <div><strong>Austrália</strong><span>Certificação NAATI</span></div></a>
+        <a href="/traducao-certificada-canada" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-canada.svg" width="24" height="24" alt="Canadá"> <div><strong>Canadá</strong><span>Certificação ATIO</span></div></a>
+        <a href="/traducao-juramentada-coreano" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-coreia-do-sul.svg" width="24" height="24" alt="Coreia do Sul"> <div><strong>Coreano</strong><span>Tradução Juramentada</span></div></a>
+        <a href="/traducao-juramentada-arabe" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-arabia.svg" width="24" height="24" alt="Arábia"> <div><strong>Árabe</strong><span>Oriente Médio &amp; Chancelaria</span></div></a>
+        <a href="/traducao-juramentada-hebraico" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-israel.svg" width="24" height="24" alt="Israel"> <div><strong>Hebraico</strong><span>Tradução Juramentada</span></div></a>
+        <a href="/traducao-de-noruegues" class="modern-lang-chip"><img src="https://www.etraducoes.com.br/themes/web/assets/img/icon-noruega.svg" width="24" height="24" alt="Noruega"> <div><strong>Norueguês</strong><span>Escandinávia &amp; Europa</span></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: APOSTILAMENTO DE HAIA -->
+<section class="modern-apostille-section">
+  <div class="container">
+    <div class="modern-apostille-card">
+      <div class="row align-items-center">
+        <div class="col-lg-5 text-center">
+          <div class="modern-apostille-img-wrapper">
+            <img class="lazyload modern-apostille-img" alt="Ilustração Apostila de Haia TraduzTudo" width="480" height="277" src="/img/apostilamento-de-haia.png">
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="modern-apostille-content">
+            <span class="modern-section-badge"><i class="fas fa-balance-scale"></i> CONVENÇÃO DA HAIA • CARTÓRIO CNJ</span>
+            <h2 class="modern-apostille-title">Apostilamento de Haia Oficial com Validade em +120 Países</h2>
+            <p class="modern-apostille-desc">
+              Vai apresentar seus documentos no exterior? O apostilamento confere validade jurídica internacional aos seus documentos emitidos no Brasil. A TraduzTudo entrega suas traduções e certidões apostiladas por Cartório autorizado pelo CNJ (Conselho Nacional de Justiça).
+            </p>
+            <div class="modern-apostille-checklist">
+              <div class="modern-check-item"><i class="fas fa-check-circle"></i> <span>Reconhecimento oficial perante a Convenção de Haia</span></div>
+              <div class="modern-check-item"><i class="fas fa-check-circle"></i> <span>Indispensável para Cidadania Italiana, Portuguesa e Espanhola</span></div>
+              <div class="modern-check-item"><i class="fas fa-check-circle"></i> <span>Válido para imigração, vistos consulares e estudos no exterior</span></div>
+              <div class="modern-check-item"><i class="fas fa-check-circle"></i> <span>Processo 100% online com envio seguro e rastreável</span></div>
+            </div>
+            <div class="modern-apostille-actions">
+              <a href="/apostilamento-de-haia" class="modern-btn-primary"><i class="fas fa-file-signature"></i> Solicitar Apostilamento</a>
+              <a href="javascript:void(0)" class="modern-btn-secondary wpp-btn-trigger"><i class="fab fa-whatsapp"></i> Tirar Dúvidas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: COMO FUNCIONA -->
+<section class="modern-steps-section">
+  <div class="container">
+    <div class="modern-section-header text-center">
+      <span class="modern-section-badge"><i class="fas fa-tasks"></i> FLUXO 100% ONLINE E TRANSPARENTE</span>
+      <h2 class="modern-section-title">Como Funciona seu Pedido em 4 Passos</h2>
+      <p class="modern-section-desc">Da cotação à entrega oficial, um processo ágil, desburocratizado e seguro.</p>
+    </div>
+
+    <div class="modern-steps-grid">
+      <div class="modern-step-card">
+        <div class="modern-step-number">01</div>
+        <div class="modern-step-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <h3>Envio dos Documentos</h3>
+        <p>Envie fotos ou PDFs dos seus documentos através do formulário ou diretamente pelo WhatsApp.</p>
+      </div>
+
+      <div class="modern-step-card">
+        <div class="modern-step-number">02</div>
+        <div class="modern-step-icon"><i class="fas fa-calculator"></i></div>
+        <h3>Cotação Instantânea</h3>
+        <p>Nossa equipe analisa a contagem de laudas e apresenta o orçamento exato com o menor prazo do mercado.</p>
+      </div>
+
+      <div class="modern-step-card">
+        <div class="modern-step-number">03</div>
+        <div class="modern-step-icon"><i class="fas fa-stamp"></i></div>
+        <h3>Tradução com Fé Pública</h3>
+        <p>Tradutores juramentados matriculados realizam a tradução oficial com assinatura digital ICP-Brasil e carimbo.</p>
+      </div>
+
+      <div class="modern-step-card">
+        <div class="modern-step-number">04</div>
+        <div class="modern-step-icon"><i class="fas fa-paper-plane"></i></div>
+        <h3>Entrega Rápida</h3>
+        <p>Receba a versão digital por e-mail com QR Code de validação e a via física expressa entregue onde você preferir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: O QUE TRADUZIMOS -->
+<section id="howtranslate" class="modern-docs-section">
+  <div class="container">
+    <div class="modern-section-header text-center">
+      <span class="modern-section-badge"><i class="fas fa-folder-open"></i> CATEGORIAS DE SERVIÇOS</span>
+      <h2 class="modern-section-title">Quais Documentos Traduzimos</h2>
+      <p class="modern-section-desc">Expertise jurídica, técnica e acadêmica em todos os segmentos da tradução oficial.</p>
+    </div>
+
+    <div class="type-content-height">
+      <h3 class="title-sm" style="margin-top: 40px; margin-bottom: 24px;">Traduções Juramentadas no Brasil</h3>
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/type-passport%20(4)%201.svg" width="56" height="56" alt="Cidadania Italiana">
+            <h4>Cidadania Italiana</h4>
+            <p>Tradução Juramentada Italiano para processos de Cidadania Italiana e AIRE, além de Apostila de Haia.</p>
+            <a href="/traducao-juramentada-para-cidadania-italiana" title="Saiba mais" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/type-award%201.svg" width="56" height="56" alt="Acadêmico">
+            <h4>Acadêmico</h4>
+            <p>Traduções de Diplomas, Históricos Escolares, Artigos e Acadêmicos, TCC, Resumos Abstracts e Monografias.</p>
+            <a href="/traducao-academica" title="Saiba mais" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/type-carteira-de-motorista%201.svg" width="56" height="56" alt="Documentos Pessoais">
+            <h4>Documentos Pessoais</h4>
+            <p>Traduções Juramentadas de Autorização de Viagem, Carteira de Motorista - CNH, Carteira de Vacinação e Currículo.</p>
+            <a href="/traducao-de-documentos" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/type-file%20(2)%201.svg" width="56" height="56" alt="Certidões">
+            <h4>Certidões</h4>
+            <p>Traduções Juramentadas de Certidões de Nascimento, Casamento, Óbito e Antecedentes Criminais.</p>
+            <a href="/traducao-juramentada-de-certidoes" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="title-sm" style="margin-top: 50px; margin-bottom: 24px;">Traduções Certificadas e Juramentadas no Mundo</h3>
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/eua.svg" width="56" height="56" alt="Estados Unidos">
+            <h4>Estados Unidos</h4>
+            <p>Tradução feita nos EUA por tradutor certificado pela ATA (Associação Americana de Tradutores)</p>
+            <a href="/traducao-certificada-nos-eua" title="Saiba mais" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/canada.svg" width="56" height="56" alt="Canadá">
+            <h4>Canadá</h4>
+            <p>Tradução feita no Canadá por tradutor certificado pela ATIO (Associação de Tradutores de Ontário)</p>
+            <a href="/traducao-certificada-canada" title="Saiba mais" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/australia.svg" width="56" height="56" alt="Austrália">
+            <h4>Austrália</h4>
+            <p>Tradução feita na Austrália por tradutor certificado pela NAATI (Autoridade Nacional de Tradutores)</p>
+            <a href="/traducao-certificada-naati" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/inglaterra.svg" width="56" height="56" alt="Inglaterra">
+            <h4>Inglaterra</h4>
+            <p>Tradução feita na Inglaterra por tradutor certificado pelo ITI (Instituto de Tradução e Interpretação)</p>
+            <a href="/traducao-certificada-na-inglaterra" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="title-sm" style="margin-top: 50px; margin-bottom: 24px;">Traduções Técnicas Especializadas</h3>
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/type-law.svg" width="56" height="56" alt="Jurídico">
+            <h4>Jurídico</h4>
+            <p>Traduções Técnicas de Contratos, Laudos, Processos, Estatutos, Comprovantes, Regulamentos e Leis.</p>
+            <a href="/traducao-tecnica" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/type-finances.svg" width="56" height="56" alt="Financeiro">
+            <h4>Financeiro</h4>
+            <p>Traduções Técnicas de Documentos Fiscais, Bancários, Patentes, Propostas, Auditorias e Balancetes.</p>
+            <a href="/traducao-tecnica" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/type-technical.svg" width="56" height="56" alt="Documentos Técnicos">
+            <h4>Documentos Técnicos</h4>
+            <p>Traduções Técnicas de Manuais, Bulas, Especificações, Normas Técnicas, Licitações e Relatórios.</p>
+            <a href="/traducao-tecnica" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="type-content">
+            <img class="lazyload" src="https://www.etraducoes.com.br/themes/web/assets/img/type-contract.svg" width="56" height="56" alt="Empresarial">
+            <h4>Empresarial</h4>
+            <p>Traduções Técnicas de Especificações, Embalagens de Produtos, Comunicações Internas e Propostas.</p>
+            <a href="/traducao-tecnica" class="btn btn-blue-light-outline radius">Saiba mais</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: BRIAN BOT & WHATSAPP INTERACTION -->
+<section class="modern-brian-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="modern-brian-content">
+          <span class="modern-section-badge"><i class="fab fa-whatsapp"></i> ATENDIMENTO INTELIGENTE</span>
+          <h2 class="modern-section-title">Orçamento Instantâneo com a TraduzTudo</h2>
+          <p class="modern-section-desc">
+            Tornamos rápido e intuitivo solicitar informações e cotações de serviços de traduções juramentadas e apostilamentos.
+          </p>
+          <ul class="modern-brian-points">
+            <li><i class="fas fa-check"></i> Orçamentos apresentados em poucos minutos.</li>
+            <li><i class="fas fa-check"></i> Atendimento personalizado por WhatsApp ou e-mail.</li>
+            <li><i class="fas fa-check"></i> Melhores prazos e valores transparentes sem taxas ocultas.</li>
+          </ul>
+          <div class="modern-brian-actions">
+            <a href="javascript:void(0)" class="modern-btn-primary wpp-btn-trigger"><i class="fab fa-whatsapp"></i> Iniciar Conversa no WhatsApp</a>
+            <a href="/orcamento-traducoes" class="modern-btn-secondary"><i class="fas fa-calculator"></i> Simular no Site</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <div class="modern-phone-wrapper">
+          <img class="lazyload modern-phone-mockup" src="/img/whatsapp-conversa-brian.webp" alt="Conversa com o Brian no WhatsApp TraduzTudo" width="480" height="608">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: GOOGLE REVIEWS -->
+<section class="modern-reviews-section">
+  <div class="container">
+    <div class="modern-section-header text-center">
+      <span class="modern-section-badge"><i class="fab fa-google"></i> AVALIAÇÕES GOOGLE VERIFICADAS</span>
+      <h2 class="modern-section-title">O Que Nossos Clientes Dizem</h2>
+      <p class="modern-section-desc">⭐ 4.9 de 5 baseado em mais de 1.500 avaliações autênticas no Google Meu Negócio.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <div class="references modern-review-card">
+          <div class="modern-review-top">
+            <img class="ref-avatar" src="https://lh3.googleusercontent.com/a/ACg8ocLwJoiVq466-oqjqj__sz2kdJ26RwnJvfYHiqVF8Hj03EunWw=s1920-c-rp-mo-ba12-br100" alt="Ana Tereza Trevisan" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'">
+            <div>
+              <span class="title-reference">Ana Tereza Trevisan</span>
+              <div class="ref-stars" role="img" aria-label="5 de 5 estrelas">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+            <img class="modern-google-icon" src="https://www.etraducoes.com.br/themes/web/assets/img/google.svg" alt="Google" width="22" height="22">
+          </div>
+          <p class="ref-text">Do primeiro contato até o recebimento dos documentos traduzidos não tive problema nenhum, atendimento nota mil! RECOMENDO!</p>
+          <div class="ref-foot">
+            <span class="modern-review-date"><i class="fas fa-check-circle"></i> Cliente Verificada • 22 de setembro</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="references modern-review-card">
+          <div class="modern-review-top">
+            <img class="ref-avatar" src="https://lh3.googleusercontent.com/a-/ALV-UjW-gQDIU7kN-Kl4UfcBuvg-SMf8W8P96E7Tu5C3_HW8yjSVOQ3l=s1920-c-rp-mo-ba12-br100" alt="Ana Paula Vidal Boldrin" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'">
+            <div>
+              <span class="title-reference">Ana Paula Vidal Boldrin</span>
+              <div class="ref-stars" role="img" aria-label="5 de 5 estrelas">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+            <img class="modern-google-icon" src="https://www.etraducoes.com.br/themes/web/assets/img/google.svg" alt="Google" width="22" height="22">
+          </div>
+          <p class="ref-text">Excelente atendimento! Entregou antes do prazo previsto! Preço justo. Recomendo com certeza.</p>
+          <div class="ref-foot">
+            <span class="modern-review-date"><i class="fas fa-check-circle"></i> Cliente Verificada • 4 de agosto</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="references modern-review-card">
+          <div class="modern-review-top">
+            <img class="ref-avatar" src="https://lh3.googleusercontent.com/a-/ALV-UjVAhD4A2azCxD44HlmRUq77oqKdE_BMhKXChq5TrAPdB1omwA0V=s1920-c-rp-mo-br100" alt="Denise Britz do Nascimento Silva" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://www.etraducoes.com.br/themes/web/assets/img/review-1.webp'">
+            <div>
+              <span class="title-reference">Denise Britz do Nascimento Silva</span>
+              <div class="ref-stars" role="img" aria-label="5 de 5 estrelas">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+            <img class="modern-google-icon" src="https://www.etraducoes.com.br/themes/web/assets/img/google.svg" alt="Google" width="22" height="22">
+          </div>
+          <p class="ref-text">Excelente serviço de tradução, com profissionalismo e atendimento cuidadoso. Solicitei a tradução e o apostilamento. Ótimo acompanhamento.</p>
+          <div class="ref-foot">
+            <span class="modern-review-date"><i class="fas fa-check-circle"></i> Cliente Verificada • 22 de setembro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 32px">
+      <a href="/avaliacoes" class="modern-btn-secondary"><i class="fas fa-external-link-alt"></i> Ver todas as avaliações no Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: PRE-FOOTER CTA BANNER -->
+<section class="modern-prefooter-section">
+  <div class="container">
+    <div class="modern-prefooter-box">
+      <div class="modern-prefooter-ambient"></div>
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h2 class="modern-prefooter-title">Pronto para Traduzir seus Documentos com Validade Oficial?</h2>
+          <p class="modern-prefooter-desc">Receba sua cotação personalizada em minutos ou tire todas as suas dúvidas diretamente com nossa equipe especializada.</p>
+        </div>
+        <div class="col-lg-4 text-lg-right text-center mt-4 mt-lg-0">
+          <div class="modern-prefooter-buttons">
+            <a href="/orcamento-traducoes" class="modern-btn-primary"><i class="fas fa-calculator"></i> Orçamento Instantâneo</a>
+            <a href="javascript:void(0)" class="modern-btn-whatsapp wpp-btn-trigger"><i class="fab fa-whatsapp"></i> Chamar no WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
 
 export default function HomePage() {
   const [submitting, setSubmitting] = useState(false);
