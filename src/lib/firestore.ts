@@ -15,6 +15,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import type { QuoteRequest, Order, UserProfile } from '@/types';
+import { sendQuoteToSaaS } from '@/lib/saas';
 
 // ============ QUOTES ============
 export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'createdAt' | 'status'>) {
@@ -24,6 +25,23 @@ export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
     createdAt: Timestamp.now(),
     updatedAt: Timestamp.now(),
   });
+
+  // Automatically dispatch lead to TraduzTudo OS SaaS platform
+  try {
+    sendQuoteToSaaS({
+      fullName: data.fullName,
+      email: data.email,
+      whatsapp: data.whatsapp,
+      serviceType: data.serviceType,
+      fileNames: data.fileNames || data.files,
+      notes: data.notes,
+    }).catch((err) => {
+      console.warn('[SaaS Sync] Background sync warning:', err);
+    });
+  } catch (syncErr) {
+    console.warn('[SaaS Sync] Sync initiation error:', syncErr);
+  }
+
   return docRef.id;
 }
 export const createQuote = createQuoteRequest;

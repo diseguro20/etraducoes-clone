@@ -62,7 +62,7 @@ export default function CadastroPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <span className="text-3xl font-extrabold">e<span className="text-[#2e7ec6]">Traduções</span></span>
+            <span className="text-3xl font-extrabold">Traduz<span className="text-[#2e7ec6]">Tudo</span></span>
           </Link>
           <h1 className="text-2xl font-extrabold text-gray-900 mt-4 mb-1">Criar Conta</h1>
           <p className="text-gray-500 text-sm">Acompanhe seus pedidos de tradução</p>
