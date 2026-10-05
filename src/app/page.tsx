@@ -85,10 +85,8 @@ const bodyHtml = `<section class="modern-hero-section">
 
             <div class="modern-form-row">
               <div class="modern-input-group">
-                <label for="name" class="modern-input-label">
-                  <i class="far fa-user"></i> Nome completo
-                </label>
-                <input class="form modern-input-field" id="name" type="text" name="full_name" placeholder="Seu nome completo" required>
+                <label for="name" class="modern-input-label"><i class="far fa-user"></i> Nome</label>
+                <input class="form modern-input-field" id="name" type="text" name="full_name" placeholder="Seu nome" required>
               </div>
 
               <div class="modern-input-group">
@@ -193,30 +191,86 @@ const bodyHtml = `<section class="modern-hero-section">
       </div>
     </div>
 
-    <!-- Global Language Network Grid (16 Key Languages) -->
+    <!-- World Map with Country Flags (Perfeito em Desktop e Mobile) -->
+    <div class="traduztudo-map-viewport" aria-label="Mapa Mundi de Idiomas TraduzTudo">
+      <div class="traduztudo-map-stage">
+        <img src="/themes/web/assets/img/map-etra.svg" width="873" height="401" alt="Mapa Mundi de Idiomas TraduzTudo" class="traduztudo-map-base" loading="lazy">
+        <a href="/traducao-juramentada-na-argentina" class="arg" title="Tradução Juramentada na Argentina">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-argentina.svg" width="52" height="52" alt="Argentina">
+        </a>
+        <a href="/traducao-de-portugues" class="br" title="Tradução Português">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-brazil.svg" width="52" height="52" alt="Brasil">
+        </a>
+        <a href="/traducao-certificada-canada" class="ca" title="Tradução Canadá">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-canada.svg" width="52" height="52" alt="Canadá">
+        </a>
+        <a href="/traducao-de-ingles" class="eua" title="Tradução Inglês (EUA)">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-united-states-of-america.svg" width="52" height="52" alt="EUA">
+        </a>
+        <a href="/traducao-de-espanhol" class="spa" title="Tradução Espanhol">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-spain.svg" width="52" height="52" alt="Espanha">
+        </a>
+        <a href="/traducao-de-noruegues" class="no" title="Tradução Norueguês">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-noruega.svg" width="52" height="52" alt="Noruega">
+        </a>
+        <a href="/traducao-certificada-na-inglaterra" class="uk" title="Tradução Inglês (UK)">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-inglaterra.svg" width="52" height="52" alt="Reino Unido">
+        </a>
+        <a href="/traducao-frances" class="fr" title="Tradução Francês">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-france.svg" width="52" height="52" alt="França">
+        </a>
+        <a href="/traducao-de-holandes" class="nl" title="Tradução Holandês">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-holanda.svg" width="32" height="32" alt="Holanda">
+        </a>
+        <a href="/traducao-de-alemao" class="de" title="Tradução Alemão">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-germany.svg" width="52" height="52" alt="Alemanha">
+        </a>
+        <a href="/traducao-de-italiano" class="ita" title="Tradução Italiano">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-italy.svg" width="52" height="52" alt="Itália">
+        </a>
+        <a href="/traducao-russo" class="rus" title="Tradução Russo">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-russia.svg" width="52" height="52" alt="Rússia">
+        </a>
+        <a href="/traducao-mandarim" class="ch" title="Tradução Mandarim">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-china.svg" width="52" height="52" alt="China">
+        </a>
+        <a href="/traducao-certificada-naati" class="au" title="Tradução Austrália">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-australia.svg" width="52" height="52" alt="Austrália">
+        </a>
+        <a href="/traducao-juramentada-coreano" class="ko" title="Tradução Coreano">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-coreia-do-sul.svg" width="52" height="52" alt="Coreia do Sul">
+        </a>
+        <a href="/traducao-de-japones" class="ja" title="Tradução Japonês">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-japao.svg" width="52" height="52" alt="Japão">
+        </a>
+        <a href="/traducao-juramentada-arabe" class="ar" title="Tradução Árabe">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-arabia.svg" width="52" height="52" alt="Árabe">
+        </a>
+        <a href="/traducao-juramentada-hebraico" class="he" title="Tradução Hebraico">
+          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-israel.svg" width="32" height="32" alt="Israel">
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick language chips below map -->
     <div class="modern-network-hub">
       <div class="modern-network-hub-header">
         <span class="modern-badge-pulse"></span>
-        <span>REDE OFICIAL DE TRADUTORES DISPONÍVEIS AGORA</span>
+        <span>ATENDIMENTO OFICIAL EM MAIS DE 15 IDIOMAS NATIVOS</span>
       </div>
-
       <div class="modern-lang-chips">
-        <a href="/traducao-de-ingles" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-united-states-of-america.svg" width="24" height="24" alt="EUA"> <div><strong>Inglês (EUA / UK)</strong><span>Certificação ATA &amp; ITI</span></div></a>
-        <a href="/traducao-de-espanhol" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-spain.svg" width="24" height="24" alt="Espanha"> <div><strong>Espanhol</strong><span>Espanha &amp; América Latina</span></div></a>
-        <a href="/traducao-de-italiano" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-italy.svg" width="24" height="24" alt="Itália"> <div><strong>Italiano</strong><span>Cidadania &amp; AIRE</span></div></a>
-        <a href="/traducao-frances" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-france.svg" width="24" height="24" alt="França"> <div><strong>Francês</strong><span>França, Canadá &amp; Bélgica</span></div></a>
-        <a href="/traducao-de-alemao" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-germany.svg" width="24" height="24" alt="Alemanha"> <div><strong>Alemão</strong><span>Alemanha &amp; Suíça (BDÜ)</span></div></a>
-        <a href="/traducao-mandarim" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-china.svg" width="24" height="24" alt="China"> <div><strong>Mandarim</strong><span>China &amp; Negócios</span></div></a>
-        <a href="/traducao-de-japones" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-japao.svg" width="24" height="24" alt="Japão"> <div><strong>Japonês</strong><span>Vistos, Docs &amp; Certidões</span></div></a>
-        <a href="/traducao-de-portugues" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-brazil.svg" width="24" height="24" alt="Brasil"> <div><strong>Português</strong><span>Fé Pública Nacional</span></div></a>
-        <a href="/traducao-de-holandes" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-holanda.svg" width="24" height="24" alt="Holanda"> <div><strong>Holandês</strong><span>Certificação RBTV</span></div></a>
-        <a href="/traducao-russo" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-russia.svg" width="24" height="24" alt="Rússia"> <div><strong>Russo</strong><span>Rússia &amp; Leste Europeu</span></div></a>
-        <a href="/traducao-certificada-naati" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-australia.svg" width="24" height="24" alt="Austrália"> <div><strong>Austrália</strong><span>Certificação NAATI</span></div></a>
-        <a href="/traducao-certificada-canada" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-canada.svg" width="24" height="24" alt="Canadá"> <div><strong>Canadá</strong><span>Certificação ATIO</span></div></a>
-        <a href="/traducao-juramentada-coreano" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-coreia-do-sul.svg" width="24" height="24" alt="Coreia do Sul"> <div><strong>Coreano</strong><span>Tradução Juramentada</span></div></a>
-        <a href="/traducao-juramentada-arabe" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-arabia.svg" width="24" height="24" alt="Arábia"> <div><strong>Árabe</strong><span>Oriente Médio &amp; Chancelaria</span></div></a>
-        <a href="/traducao-juramentada-hebraico" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-israel.svg" width="24" height="24" alt="Israel"> <div><strong>Hebraico</strong><span>Tradução Juramentada</span></div></a>
-        <a href="/traducao-de-noruegues" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-noruega.svg" width="24" height="24" alt="Noruega"> <div><strong>Norueguês</strong><span>Escandinávia &amp; Europa</span></div></a>
+        <a href="/traducao-de-ingles" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-united-states-of-america.svg" width="22" height="22" alt="EUA"> <div><strong>Inglês</strong><span>EUA / UK</span></div></a>
+        <a href="/traducao-de-espanhol" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-spain.svg" width="22" height="22" alt="Espanha"> <div><strong>Espanhol</strong><span>América Latina</span></div></a>
+        <a href="/traducao-de-italiano" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-italy.svg" width="22" height="22" alt="Itália"> <div><strong>Italiano</strong><span>Cidadania</span></div></a>
+        <a href="/traducao-frances" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-france.svg" width="22" height="22" alt="França"> <div><strong>Francês</strong><span>França / Canadá</span></div></a>
+        <a href="/traducao-de-alemao" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-germany.svg" width="22" height="22" alt="Alemanha"> <div><strong>Alemão</strong><span>Alemanha</span></div></a>
+        <a href="/traducao-mandarim" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-china.svg" width="22" height="22" alt="China"> <div><strong>Mandarim</strong><span>China</span></div></a>
+        <a href="/traducao-de-japones" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-japao.svg" width="22" height="22" alt="Japão"> <div><strong>Japonês</strong><span>Japão</span></div></a>
+        <a href="/traducao-de-portugues" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-brazil.svg" width="22" height="22" alt="Brasil"> <div><strong>Português</strong><span>Fé Pública</span></div></a>
+        <a href="/traducao-russo" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-russia.svg" width="22" height="22" alt="Rússia"> <div><strong>Russo</strong><span>Leste Europeu</span></div></a>
+        <a href="/traducao-juramentada-coreano" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-coreia-do-sul.svg" width="22" height="22" alt="Coreia"> <div><strong>Coreano</strong><span>Juramentado</span></div></a>
+        <a href="/traducao-juramentada-arabe" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-arabia.svg" width="22" height="22" alt="Árabe"> <div><strong>Árabe</strong><span>Oriente Médio</span></div></a>
+        <a href="/traducao-de-noruegues" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-noruega.svg" width="22" height="22" alt="Noruega"> <div><strong>Norueguês</strong><span>Escandinávia</span></div></a>
       </div>
     </div>
   </div>
