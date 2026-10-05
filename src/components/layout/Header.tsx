@@ -183,7 +183,7 @@ export default function Header() {
                     <li>
                       <Link href="/traducao-de-portugues" title="Tradução Português">
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-brazil.svg"
+                          src="/themes/web/assets/img/icon-brazil.svg"
                           width="20"
                           height="20"
                           alt="Brasil"
@@ -194,7 +194,7 @@ export default function Header() {
                     <li>
                       <Link href="/traducao-de-ingles" title="Tradução Inglês">
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-united-states-of-america.svg"
+                          src="/themes/web/assets/img/icon-united-states-of-america.svg"
                           width="20"
                           height="20"
                           alt="EUA"
@@ -205,7 +205,7 @@ export default function Header() {
                     <li>
                       <Link href="/traducao-de-espanhol" title="Tradução Espanhol">
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-spain.svg"
+                          src="/themes/web/assets/img/icon-spain.svg"
                           width="20"
                           height="20"
                           alt="Espanha"
@@ -216,7 +216,7 @@ export default function Header() {
                     <li>
                       <Link href="/traducao-de-italiano" title="Tradução Italiano">
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-italy.svg"
+                          src="/themes/web/assets/img/icon-italy.svg"
                           width="20"
                           height="20"
                           alt="Itália"
@@ -227,7 +227,7 @@ export default function Header() {
                     <li>
                       <Link href="/traducao-frances" title="Tradução Francês">
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-france.svg"
+                          src="/themes/web/assets/img/icon-france.svg"
                           width="20"
                           height="20"
                           alt="França"
@@ -238,7 +238,7 @@ export default function Header() {
                     <li>
                       <Link href="/traducao-de-alemao" title="Tradução Alemão">
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-germany.svg"
+                          src="/themes/web/assets/img/icon-germany.svg"
                           width="20"
                           height="20"
                           alt="Alemanha"
@@ -249,7 +249,7 @@ export default function Header() {
                     <li>
                       <Link href="/traducao-mandarim" title="Tradução Chinês Mandarim">
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-china.svg"
+                          src="/themes/web/assets/img/icon-china.svg"
                           width="20"
                           height="20"
                           alt="China"
@@ -260,7 +260,7 @@ export default function Header() {
                     <li>
                       <Link href="/traducao-russo" title="Tradução Russo">
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-russia.svg"
+                          src="/themes/web/assets/img/icon-russia.svg"
                           width="20"
                           height="20"
                           alt="Rússia"
@@ -271,7 +271,7 @@ export default function Header() {
                     <li>
                       <Link href="/traducao-de-holandes" title="Tradução Holandês">
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-holanda.svg"
+                          src="/themes/web/assets/img/icon-holanda.svg"
                           width="20"
                           height="20"
                           alt="Holanda"
@@ -282,7 +282,7 @@ export default function Header() {
                     <li>
                       <Link href="/idiomas" title="Ver todos os idiomas" style={{ fontWeight: 700 }}>
                         <img
-                          src="https://www.etraducoes.com.br/themes/web/assets/img/icon-mundo.svg"
+                          src="/themes/web/assets/img/icon-mundo.svg"
                           width="20"
                           height="20"
                           alt="Todos"

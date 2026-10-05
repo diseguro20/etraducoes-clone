@@ -15,7 +15,6 @@ export default function OrcamentoPage() {
   const [files, setFiles] = useState<File[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-  const [videoOpen, setVideoOpen] = useState(false);
 
   // Format and validate phone
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,7 +145,7 @@ export default function OrcamentoPage() {
               >
                 <img
                   className="user_photo"
-                  src="https://www.etraducoes.com.br/themes/deals/assets/img/no_avatar.jpg"
+                  src="/themes/deals/assets/img/no_avatar.jpg"
                   alt="Avatar"
                 />
               </div>
@@ -340,23 +339,7 @@ export default function OrcamentoPage() {
               {/* Documents Upload Section */}
               <div className="label" style={{ marginBottom: 0 }}>
                 <span className="legend" style={{ marginBottom: 0, display: 'inline-block' }}>
-                  Documentos
-                </span>
-                <span style={{ margin: '0 10px', color: 'var(--color-secundary)', verticalAlign: 'middle', opacity: 0.7 }}>
-                  |
-                </span>
-                <span
-                  className="j_play"
-                  onClick={() => setVideoOpen(true)}
-                  style={{
-                    color: 'var(--color-primary)',
-                    cursor: 'pointer',
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  <i className="far fa-play" style={{ marginRight: '5px' }}></i> Como enviar os documentos para tradução?
+                  Documentos para tradução (opcional)
                 </span>
               </div>
 
@@ -451,76 +434,43 @@ export default function OrcamentoPage() {
             </div>
           </div>
 
-          <img
-            src="https://www.etraducoes.com.br/themes/deals/assets/img/babi-avaliacoes.jpg"
-            alt="Avaliações TraduzTudo Google 4.9 de 5 estrelas"
-            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '50px' }}
-          />
-        </div>
-      </div>
-
-      {/* Video Modal */}
-      {videoOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 99999,
-            backgroundColor: 'rgba(0, 0, 0, 0.85)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '20px',
-          }}
-          onClick={() => setVideoOpen(false)}
-        >
           <div
             style={{
-              position: 'relative',
-              width: '100%',
-              maxWidth: '800px',
-              aspectRatio: '16 / 9',
-              background: '#000',
-              borderRadius: '12px',
-              overflow: 'hidden',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+              background: 'linear-gradient(135deg, rgba(46,126,198,0.08) 0%, rgba(46,126,198,0.02) 100%)',
+              border: '1px solid var(--border-color)',
+              borderRadius: '24px',
+              padding: '24px',
+              textAlign: 'center',
             }}
-            onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setVideoOpen(false)}
-              aria-label="Fechar vídeo"
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#fff', padding: '8px 16px', borderRadius: '50px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', marginBottom: '16px' }}>
+              <img src="/themes/web/assets/img/google.svg" alt="Google" width="18" height="18" />
+              <span style={{ fontWeight: 700, fontSize: '13px', color: '#1a1a1a' }}>Google Avaliações</span>
+              <span style={{ color: '#f59e0b', fontSize: '13px' }}>★ 4.9/5</span>
+            </div>
+            <h4 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 8px', color: 'var(--color-primary)' }}>
+              Traduções Rápidas &amp; Aceitas no Exterior
+            </h4>
+            <p style={{ fontSize: '13px', color: 'var(--color-secundary)', margin: '0 0 16px', lineHeight: 1.5 }}>
+              Mais de 1.350 clientes atendidos com nota máxima em São Paulo e em todo o Brasil.
+            </p>
+            <Link
+              href="/avaliacoes"
               style={{
-                position: 'absolute',
-                top: 12,
-                right: 12,
-                zIndex: 10,
-                background: 'rgba(0, 0, 0, 0.75)',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '50%',
-                width: 40,
-                height: 40,
-                fontSize: 24,
-                lineHeight: '40px',
-                textAlign: 'center',
-                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontSize: '12px',
+                fontWeight: 600,
+                color: 'var(--color-primary)',
+                textDecoration: 'underline',
               }}
             >
-              &times;
-            </button>
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube-nocookie.com/embed/Z5JrG-TKRx4?autoplay=1"
-              title="Como enviar os documentos para tradução?"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+              Ver avaliações verificadas <i className="far fa-arrow-right"></i>
+            </Link>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
