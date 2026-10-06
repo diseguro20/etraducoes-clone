@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import toast from 'react-hot-toast';
 import { createQuote } from '@/lib/firestore';
 
@@ -10,13 +11,13 @@ const bodyHtml = `<section class="modern-hero-section">
     <div class="modern-hero-grid">
       <!-- Left Column: Copy & Value Proposition -->
       <div class="modern-hero-col-text">
+        <span class="modern-hero-eyebrow"><i class="fas fa-certificate" aria-hidden="true"></i> TRADUÇÕES OFICIAIS PARA O BRASIL E O EXTERIOR</span>
         <h1 class="modern-hero-title">
-          Tradução Juramentada Oficial <br class="d-none d-lg-block" />
-          <span class="modern-gradient-text">com Máxima Validade &amp; Agilidade</span>
+          Seus documentos prontos para <span class="modern-gradient-text">cruzar fronteiras.</span>
         </h1>
 
         <p class="modern-hero-desc">
-          Conectamos você aos melhores tradutores juramentados e matriculados do país. Receba sua cotação em minutos, com assinatura digital ICP-Brasil e validade jurídica em cartórios, embaixadas e tribunais em mais de 120 países.
+          Tradução juramentada, certificada e apostilamento com atendimento especializado. Envie seus documentos e receba uma cotação com preço e prazo de entrega.
         </p>
 
         <div class="modern-hero-features">
@@ -645,5 +646,21 @@ export default function HomePage() {
     };
   }, []);
 
-  return <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />;
+  return (
+    <>
+      <div className="home-brand-banner">
+        <Image
+          src="/img/traduztudo-banner-principal.jpg"
+          alt="TraduzTudo: tradução juramentada com alcance internacional"
+          width={1655}
+          height={931}
+          priority
+          unoptimized
+          sizes="100vw"
+          className="home-brand-banner-image"
+        />
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+    </>
+  );
 }

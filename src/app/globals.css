@@ -4785,3 +4785,191 @@ html, body {
 *, *::before, *::after {
   box-sizing: border-box;
 }
+
+/* TraduzTudo home: branded banner esticado preenchendo a tela na proporção inteira e correta */
+.home-brand-banner {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #071a35 !important;
+  line-height: 0 !important;
+  display: block !important;
+}
+
+.home-brand-banner::before {
+  display: none !important;
+}
+
+.home-brand-banner-image {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  aspect-ratio: 1655 / 931 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.modern-header-brand .traduztudo-logo-dark {
+  display: none !important;
+}
+
+[data-theme="dark"] .modern-header-brand .traduztudo-logo-light,
+body.theme-dark .modern-header-brand .traduztudo-logo-light {
+  display: none !important;
+}
+
+[data-theme="dark"] .modern-header-brand .traduztudo-logo-dark,
+body.theme-dark .modern-header-brand .traduztudo-logo-dark {
+  display: block !important;
+}
+
+.modern-hero-section {
+  background: linear-gradient(180deg, #f2f7fd 0%, #fff 100%);
+  padding-block: clamp(40px, 5vw, 80px) clamp(56px, 6vw, 96px);
+}
+
+.modern-hero-section .modern-hero-ambient {
+  opacity: 0.45;
+}
+
+.modern-hero-section .modern-hero-grid {
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.modern-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 20px;
+  color: #095a9b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+}
+
+.modern-hero-eyebrow i {
+  color: #d09a3b;
+  font-size: 1rem;
+}
+
+.modern-hero-section .modern-hero-title {
+  max-width: 13ch;
+  color: #0a2344;
+  font-size: clamp(2.5rem, 4.15vw, 4.35rem);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+  margin-bottom: 24px;
+}
+
+.modern-hero-section .modern-gradient-text {
+  background: linear-gradient(105deg, #0677c9, #0a50ae);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.modern-hero-section .modern-hero-desc {
+  max-width: 54ch;
+  color: #42566e;
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  line-height: 1.65;
+}
+
+.modern-hero-section .modern-feature-tag,
+.modern-hero-section .modern-stat-item {
+  background: #fff;
+  border-color: #dce7f2;
+}
+
+.modern-hero-section .modern-form-card {
+  border-color: #d9e7f4;
+  box-shadow: 0 24px 65px -28px rgba(5, 39, 77, 0.3);
+}
+
+.modern-hero-section .modern-form-card:focus-within {
+  box-shadow: 0 26px 70px -28px rgba(5, 72, 133, 0.35);
+}
+
+.modern-hero-section .modern-btn-primary:focus-visible,
+.modern-hero-section .modern-btn-secondary:focus-visible,
+.modern-hero-section .modern-submit-btn:focus-visible {
+  outline: 3px solid #094f9d;
+  outline-offset: 3px;
+}
+
+[data-theme="dark"] .modern-hero-section,
+body.theme-dark .modern-hero-section {
+  background: linear-gradient(180deg, #0c203b 0%, #0f172a 100%);
+}
+
+[data-theme="dark"] .modern-hero-section .modern-hero-title,
+body.theme-dark .modern-hero-section .modern-hero-title {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .modern-hero-eyebrow,
+body.theme-dark .modern-hero-eyebrow {
+  color: #8bd0ff;
+}
+
+[data-theme="dark"] .modern-hero-section .modern-hero-desc,
+body.theme-dark .modern-hero-section .modern-hero-desc {
+  color: #c5d3e5;
+}
+
+[data-theme="dark"] .modern-hero-section .modern-feature-tag,
+body.theme-dark .modern-hero-section .modern-feature-tag,
+[data-theme="dark"] .modern-hero-section .modern-stat-item,
+body.theme-dark .modern-hero-section .modern-stat-item {
+  background: #17243a;
+  border-color: #314260;
+}
+
+@media (max-width: 767px) {
+  .modern-hero-section {
+    padding: 28px 0 52px !important;
+  }
+
+  .modern-hero-section .modern-hero-grid {
+    gap: 26px !important;
+  }
+
+  .modern-hero-eyebrow {
+    margin-bottom: 14px;
+    font-size: 0.66rem;
+    letter-spacing: 0.075em;
+  }
+
+  .modern-hero-section .modern-hero-title {
+    max-width: 16ch;
+    font-size: clamp(2rem, 7vw, 2.7rem) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .modern-hero-section .modern-hero-desc {
+    font-size: 0.98rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .modern-hero-section .modern-form-card {
+    border-radius: 18px !important;
+    padding: 22px 18px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modern-hero-section .modern-feature-tag,
+  .modern-hero-section .modern-stat-item,
+  .modern-hero-section .modern-btn-primary,
+  .modern-hero-section .modern-btn-secondary {
+    transition: none;
+  }
+}
