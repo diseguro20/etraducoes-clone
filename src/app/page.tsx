@@ -252,27 +252,6 @@ const bodyHtml = `<section class="modern-hero-section">
       </div>
     </div>
 
-    <!-- Quick language chips below map -->
-    <div class="modern-network-hub">
-      <div class="modern-network-hub-header">
-        <span class="modern-badge-pulse"></span>
-        <span>ATENDIMENTO OFICIAL EM MAIS DE 15 IDIOMAS NATIVOS</span>
-      </div>
-      <div class="modern-lang-chips">
-        <a href="/traducao-de-ingles" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-united-states-of-america.svg" width="22" height="22" alt="EUA"> <div><strong>Inglês</strong><span>EUA / UK</span></div></a>
-        <a href="/traducao-de-espanhol" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-spain.svg" width="22" height="22" alt="Espanha"> <div><strong>Espanhol</strong><span>América Latina</span></div></a>
-        <a href="/traducao-de-italiano" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-italy.svg" width="22" height="22" alt="Itália"> <div><strong>Italiano</strong><span>Cidadania</span></div></a>
-        <a href="/traducao-frances" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-france.svg" width="22" height="22" alt="França"> <div><strong>Francês</strong><span>França / Canadá</span></div></a>
-        <a href="/traducao-de-alemao" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-germany.svg" width="22" height="22" alt="Alemanha"> <div><strong>Alemão</strong><span>Alemanha</span></div></a>
-        <a href="/traducao-mandarim" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-china.svg" width="22" height="22" alt="China"> <div><strong>Mandarim</strong><span>China</span></div></a>
-        <a href="/traducao-de-japones" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-japao.svg" width="22" height="22" alt="Japão"> <div><strong>Japonês</strong><span>Japão</span></div></a>
-        <a href="/traducao-de-portugues" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-brazil.svg" width="22" height="22" alt="Brasil"> <div><strong>Português</strong><span>Fé Pública</span></div></a>
-        <a href="/traducao-russo" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-russia.svg" width="22" height="22" alt="Rússia"> <div><strong>Russo</strong><span>Leste Europeu</span></div></a>
-        <a href="/traducao-juramentada-coreano" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-coreia-do-sul.svg" width="22" height="22" alt="Coreia"> <div><strong>Coreano</strong><span>Juramentado</span></div></a>
-        <a href="/traducao-juramentada-arabe" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-arabia.svg" width="22" height="22" alt="Árabe"> <div><strong>Árabe</strong><span>Oriente Médio</span></div></a>
-        <a href="/traducao-de-noruegues" class="modern-lang-chip"><img src="/themes/web/assets/img/icon-noruega.svg" width="22" height="22" alt="Noruega"> <div><strong>Norueguês</strong><span>Escandinávia</span></div></a>
-      </div>
-    </div>
   </div>
 </section>
 
