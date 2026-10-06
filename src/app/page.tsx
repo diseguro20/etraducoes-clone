@@ -339,7 +339,7 @@ const bodyHtml = `<section class="modern-hero-section">
       <div class="row">
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/type-passport%20(4)%201.svg" width="56" height="56" alt="Cidadania Italiana">
+            <img class="type-icon-img" src="/themes/web/assets/img/type-passport.svg" width="56" height="56" alt="Cidadania Italiana" loading="lazy">
             <h4>Cidadania Italiana</h4>
             <p>Tradução Juramentada Italiano para processos de Cidadania Italiana e AIRE, além de Apostila de Haia.</p>
             <a href="/traducao-juramentada-para-cidadania-italiana" title="Saiba mais" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -347,7 +347,7 @@ const bodyHtml = `<section class="modern-hero-section">
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/type-award%201.svg" width="56" height="56" alt="Acadêmico">
+            <img class="type-icon-img" src="/themes/web/assets/img/type-award.svg" width="56" height="56" alt="Acadêmico" loading="lazy">
             <h4>Acadêmico</h4>
             <p>Traduções de Diplomas, Históricos Escolares, Artigos e Acadêmicos, TCC, Resumos Abstracts e Monografias.</p>
             <a href="/traducao-academica" title="Saiba mais" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -355,7 +355,7 @@ const bodyHtml = `<section class="modern-hero-section">
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/type-carteira-de-motorista%201.svg" width="56" height="56" alt="Documentos Pessoais">
+            <img class="type-icon-img" src="/themes/web/assets/img/type-carteira-de-motorista.svg" width="56" height="56" alt="Documentos Pessoais" loading="lazy">
             <h4>Documentos Pessoais</h4>
             <p>Traduções Juramentadas de Autorização de Viagem, Carteira de Motorista - CNH, Carteira de Vacinação e Currículo.</p>
             <a href="/traducao-de-documentos" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -363,7 +363,7 @@ const bodyHtml = `<section class="modern-hero-section">
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/type-file%20(2)%201.svg" width="56" height="56" alt="Certidões">
+            <img class="type-icon-img" src="/themes/web/assets/img/type-file.svg" width="56" height="56" alt="Certidões" loading="lazy">
             <h4>Certidões</h4>
             <p>Traduções Juramentadas de Certidões de Nascimento, Casamento, Óbito e Antecedentes Criminais.</p>
             <a href="/traducao-juramentada-de-certidoes" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -375,7 +375,7 @@ const bodyHtml = `<section class="modern-hero-section">
       <div class="row">
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/eua.svg" width="56" height="56" alt="Estados Unidos">
+            <img class="type-icon-img" src="/themes/web/assets/img/eua.svg" width="56" height="56" alt="Estados Unidos" loading="lazy">
             <h4>Estados Unidos</h4>
             <p>Tradução feita nos EUA por tradutor certificado pela ATA (Associação Americana de Tradutores)</p>
             <a href="/traducao-certificada-nos-eua" title="Saiba mais" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -383,7 +383,7 @@ const bodyHtml = `<section class="modern-hero-section">
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/canada.svg" width="56" height="56" alt="Canadá">
+            <img class="type-icon-img" src="/themes/web/assets/img/canada.svg" width="56" height="56" alt="Canadá" loading="lazy">
             <h4>Canadá</h4>
             <p>Tradução feita no Canadá por tradutor certificado pela ATIO (Associação de Tradutores de Ontário)</p>
             <a href="/traducao-certificada-canada" title="Saiba mais" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -391,7 +391,7 @@ const bodyHtml = `<section class="modern-hero-section">
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/australia.svg" width="56" height="56" alt="Austrália">
+            <img class="type-icon-img" src="/themes/web/assets/img/australia.svg" width="56" height="56" alt="Austrália" loading="lazy">
             <h4>Austrália</h4>
             <p>Tradução feita na Austrália por tradutor certificado pela NAATI (Autoridade Nacional de Tradutores)</p>
             <a href="/traducao-certificada-naati" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -399,7 +399,7 @@ const bodyHtml = `<section class="modern-hero-section">
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/inglaterra.svg" width="56" height="56" alt="Inglaterra">
+            <img class="type-icon-img" src="/themes/web/assets/img/inglaterra.svg" width="56" height="56" alt="Inglaterra" loading="lazy">
             <h4>Inglaterra</h4>
             <p>Tradução feita na Inglaterra por tradutor certificado pelo ITI (Instituto de Tradução e Interpretação)</p>
             <a href="/traducao-certificada-na-inglaterra" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -411,7 +411,7 @@ const bodyHtml = `<section class="modern-hero-section">
       <div class="row">
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/type-law.svg" width="56" height="56" alt="Jurídico">
+            <img class="type-icon-img" src="/themes/web/assets/img/type-law.svg" width="56" height="56" alt="Jurídico" loading="lazy">
             <h4>Jurídico</h4>
             <p>Traduções Técnicas de Contratos, Laudos, Processos, Estatutos, Comprovantes, Regulamentos e Leis.</p>
             <a href="/traducao-tecnica" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -419,7 +419,7 @@ const bodyHtml = `<section class="modern-hero-section">
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/type-finances.svg" width="56" height="56" alt="Financeiro">
+            <img class="type-icon-img" src="/themes/web/assets/img/type-finances.svg" width="56" height="56" alt="Financeiro" loading="lazy">
             <h4>Financeiro</h4>
             <p>Traduções Técnicas de Documentos Fiscais, Bancários, Patentes, Propostas, Auditorias e Balancetes.</p>
             <a href="/traducao-tecnica" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -427,7 +427,7 @@ const bodyHtml = `<section class="modern-hero-section">
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/type-technical.svg" width="56" height="56" alt="Documentos Técnicos">
+            <img class="type-icon-img" src="/themes/web/assets/img/type-technical.svg" width="56" height="56" alt="Documentos Técnicos" loading="lazy">
             <h4>Documentos Técnicos</h4>
             <p>Traduções Técnicas de Manuais, Bulas, Especificações, Normas Técnicas, Licitações e Relatórios.</p>
             <a href="/traducao-tecnica" class="btn btn-blue-light-outline radius">Saiba mais</a>
@@ -435,7 +435,7 @@ const bodyHtml = `<section class="modern-hero-section">
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="type-content">
-            <img class="lazyload" src="/themes/web/assets/img/type-contract.svg" width="56" height="56" alt="Empresarial">
+            <img class="type-icon-img" src="/themes/web/assets/img/type-contract.svg" width="56" height="56" alt="Empresarial" loading="lazy">
             <h4>Empresarial</h4>
             <p>Traduções Técnicas de Especificações, Embalagens de Produtos, Comunicações Internas e Propostas.</p>
             <a href="/traducao-tecnica" class="btn btn-blue-light-outline radius">Saiba mais</a>
