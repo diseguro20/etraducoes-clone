@@ -650,10 +650,10 @@ export default function HomePage() {
     <>
       <div className="home-brand-banner">
         <Image
-          src="/img/traduztudo-banner-principal.webp"
+          src="/img/traduztudo-banner-principal.jpg"
           alt="TraduzTudo: tradução juramentada com alcance internacional"
-          width={1920}
-          height={1080}
+          width={1024}
+          height={576}
           priority
           unoptimized
           sizes="100vw"
