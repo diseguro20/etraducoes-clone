@@ -4809,9 +4809,20 @@ html, body {
   width: 100% !important;
   height: auto !important;
   max-width: 100% !important;
-  aspect-ratio: 16 / 9 !important;
+  aspect-ratio: 1024 / 440 !important;
   object-fit: cover !important;
   object-position: center !important;
+}
+
+@media (min-width: 992px) {
+  .home-brand-banner {
+    max-height: 440px !important;
+  }
+  .home-brand-banner-image {
+    max-height: 440px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
 }
 
 .modern-header-brand .traduztudo-logo-dark {
