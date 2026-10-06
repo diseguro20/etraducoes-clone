@@ -20,13 +20,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://traduztudo.vercel.app'),
+  metadataBase: new URL('https://traduztudo.com'),
   title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
   description:
     'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98285-4183.',
   keywords:
     'tradução juramentada, tradução certificada, tradução técnica, apostilamento de haia, tradução oficial, tradutudo',
-  authors: [{ name: 'TraduzTudo', url: 'https://traduztudo.vercel.app' }],
+  authors: [{ name: 'TraduzTudo', url: 'https://traduztudo.com' }],
   creator: 'TraduzTudo',
   publisher: 'TraduzTudo',
   formatDetection: {
@@ -37,22 +37,22 @@ export const metadata: Metadata = {
     title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
     description:
       'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98285-4183.',
-    url: 'https://traduztudo.vercel.app',
+    url: 'https://traduztudo.com',
     siteName: 'TraduzTudo',
     locale: 'pt_BR',
     type: 'website',
     images: [
       {
-        url: 'https://traduztudo.vercel.app/img/og-preview.png',
+        url: 'https://traduztudo.com/img/og-preview.png',
         width: 1200,
         height: 630,
         alt: 'TraduzTudo - Traduções Juramentadas e Certificadas',
         type: 'image/png',
       },
       {
-        url: 'https://traduztudo.vercel.app/img/og-square.png',
-        width: 600,
-        height: 600,
+        url: 'https://traduztudo.com/img/og-square.png',
+        width: 800,
+        height: 800,
         alt: 'TraduzTudo - Contato e Orçamento',
         type: 'image/png',
       },
@@ -63,20 +63,22 @@ export const metadata: Metadata = {
     title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
     description:
       'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98285-4183.',
-    images: ['https://traduztudo.vercel.app/img/og-preview.png'],
+    images: ['https://traduztudo.com/img/og-preview.png'],
     site: '@traduztudo',
     creator: '@traduztudo',
   },
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/img/traduztudo-emblem.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/img/traduztudo-favicon-32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/img/traduztudo-favicon.png', type: 'image/png', sizes: '192x192' },
+      { url: '/img/traduztudo-emblem.png', type: 'image/png', sizes: '512x512' },
     ],
     apple: '/apple-touch-icon.png',
   },
   other: {
-    'thumbnail': 'https://traduztudo.vercel.app/img/og-preview.png',
-    'whatsapp:image': 'https://traduztudo.vercel.app/img/og-preview.png',
+    'thumbnail': 'https://traduztudo.com/img/og-preview.png',
+    'whatsapp:image': 'https://traduztudo.com/img/og-preview.png',
   },
 };
 
@@ -102,15 +104,21 @@ export default function RootLayout({
         <link rel="stylesheet" href="/css/etraducoes.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
 
+        {/* Favicon & App Icons */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/traduztudo-favicon-32.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/img/traduztudo-favicon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
         {/* WhatsApp & Social Media Preview Meta Tags */}
-        <meta property="og:image" content="https://traduztudo.vercel.app/img/og-preview.png" />
-        <meta property="og:image:secure_url" content="https://traduztudo.vercel.app/img/og-preview.png" />
+        <meta property="og:image" content="https://traduztudo.com/img/og-preview.png" />
+        <meta property="og:image:secure_url" content="https://traduztudo.com/img/og-preview.png" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="TraduzTudo - Traduções Juramentadas e Certificadas" />
-        <meta name="twitter:image" content="https://traduztudo.vercel.app/img/og-preview.png" />
-        <link rel="image_src" href="https://traduztudo.vercel.app/img/og-preview.png" />
+        <meta name="twitter:image" content="https://traduztudo.com/img/og-preview.png" />
+        <link rel="image_src" href="https://traduztudo.com/img/og-preview.png" />
       </head>
       <body>
         <AuthProvider>
