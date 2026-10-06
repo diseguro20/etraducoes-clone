@@ -52,9 +52,27 @@ export default function OrcamentoPage() {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFiles(Array.from(e.target.files));
+    if (e.target.files && e.target.files.length > 0) {
+      const incoming = Array.from(e.target.files);
+      setFiles((prev) => {
+        const next = [...prev];
+        incoming.forEach((f) => {
+          if (!next.some((existing) => existing.name === f.name && existing.size === f.size)) {
+            next.push(f);
+          }
+        });
+        return next;
+      });
+      toast.success(
+        incoming.length === 1
+          ? '✓ Documento anexado com sucesso!'
+          : `✓ ${incoming.length} documentos anexados com sucesso!`
+      );
     }
+  };
+
+  const handleRemoveFile = (indexToRemove: number) => {
+    setFiles((prev) => prev.filter((_, i) => i !== indexToRemove));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -357,11 +375,63 @@ export default function OrcamentoPage() {
                 </span>
 
                 {files.length > 0 && (
-                  <div style={{ marginTop: '10px', padding: '10px', background: 'rgba(46, 126, 198, 0.08)', borderRadius: '8px' }}>
-                    <p style={{ margin: 0, fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)' }}>
-                      <i className="far fa-check-circle" style={{ marginRight: '6px' }}></i>
-                      {files.length} arquivo(s) selecionado(s): {files.map((f) => f.name).join(', ')}
-                    </p>
+                  <div className="modern-attached-files-container" style={{ marginTop: '12px' }}>
+                    <div className="modern-attached-summary">
+                      <span>✓ {files.length} documento{files.length > 1 ? 's' : ''} anexado{files.length > 1 ? 's' : ''}</span>
+                      <span>Pronto para análise</span>
+                    </div>
+                    {files.map((file, idx) => {
+                      const ext = file.name.split('.').pop()?.toLowerCase() || '';
+                      let iconClass = 'fas fa-file-alt';
+                      let colorClass = 'is-generic';
+                      if (['pdf'].includes(ext)) {
+                        iconClass = 'fas fa-file-pdf';
+                        colorClass = 'is-pdf';
+                      } else if (['doc', 'docx', 'odt', 'rtf', 'txt'].includes(ext)) {
+                        iconClass = 'fas fa-file-word';
+                        colorClass = 'is-word';
+                      } else if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'bmp'].includes(ext)) {
+                        iconClass = 'fas fa-file-image';
+                        colorClass = 'is-image';
+                      }
+
+                      const sizeFormatted =
+                        file.size < 1024
+                          ? `${file.size} B`
+                          : file.size < 1048576
+                          ? `${(file.size / 1024).toFixed(1)} KB`
+                          : `${(file.size / 1048576).toFixed(1)} MB`;
+
+                      return (
+                        <div key={`${file.name}-${idx}`} className="modern-attached-file-item">
+                          <div className="modern-attached-file-left">
+                            <div className={`modern-attached-file-icon ${colorClass}`}>
+                              <i className={iconClass}></i>
+                            </div>
+                            <div className="modern-attached-file-details">
+                              <span className="modern-attached-file-name" title={file.name}>
+                                {file.name}
+                              </span>
+                              <span className="modern-attached-file-meta">
+                                <span>{sizeFormatted}</span>
+                                <span className="badge-ready">
+                                  <i className="fas fa-check"></i> Anexado
+                                </span>
+                              </span>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            className="modern-attached-file-remove"
+                            onClick={() => handleRemoveFile(idx)}
+                            title="Remover documento"
+                            aria-label={`Remover ${file.name}`}
+                          >
+                            <i className="fas fa-times"></i>
+                          </button>
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>

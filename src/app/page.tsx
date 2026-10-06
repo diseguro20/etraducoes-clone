@@ -126,14 +126,15 @@ const bodyHtml = `<section class="modern-hero-section">
               <label for="docs" class="modern-input-label">
                 <i class="far fa-folder-open"></i> Documentos para tradução (opcional)
               </label>
-              <div class="modern-dropzone-compact">
-                <i class="fas fa-cloud-upload-alt modern-dropzone-icon"></i>
+              <div class="modern-dropzone-compact" id="dropzone-box">
+                <i class="fas fa-cloud-upload-alt modern-dropzone-icon" id="dropzone-icon"></i>
                 <div class="modern-dropzone-info">
-                  <strong>Clique ou arraste documentos para anexar</strong>
-                  <span>PDF, Word, JPG ou PNG (até 1 GB)</span>
+                  <strong id="dropzone-title">Clique ou arraste documentos para anexar</strong>
+                  <span id="dropzone-subtitle">PDF, Word, JPG ou PNG (até 1 GB)</span>
                 </div>
-                <input type="file" id="docs" name="files[]" class="file_uploader modern-hidden-file-input" multiple>
+                <input type="file" id="docs" name="files[]" class="file_uploader modern-hidden-file-input" multiple aria-label="Anexar documentos para tradução">
               </div>
+              <div id="attached-files-container" class="modern-attached-files-container" style="display: none;"></div>
             </div>
 
             <button type="submit" class="modern-submit-btn">
@@ -579,39 +580,286 @@ export default function HomePage() {
   useEffect(() => {
     // Intercept quote form in hero
     const form = document.querySelector('.request form') as HTMLFormElement | null;
+    const fileInput = document.getElementById('docs') as HTMLInputElement | null;
+    const dropzoneBox = document.getElementById('dropzone-box') || document.querySelector('.modern-dropzone-compact');
+    const dropzoneIcon = document.getElementById('dropzone-icon') || dropzoneBox?.querySelector('.modern-dropzone-icon');
+    const dropzoneTitle = document.getElementById('dropzone-title') || dropzoneBox?.querySelector('strong');
+    const dropzoneSubtitle = document.getElementById('dropzone-subtitle') || dropzoneBox?.querySelector('span');
+    const filesContainer = document.getElementById('attached-files-container');
+    const phoneInput = document.getElementById('whatsapp') as HTMLInputElement | null;
+    const submitBtn = form?.querySelector('.modern-submit-btn') as HTMLButtonElement | null;
+
+    let attachedFiles: File[] = [];
+
+    const formatFileSize = (bytes: number): string => {
+      if (bytes < 1024) return `${bytes} B`;
+      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+      return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+    };
+
+    const getFileIconConfig = (fileName: string) => {
+      const ext = fileName.split('.').pop()?.toLowerCase() || '';
+      if (['pdf'].includes(ext)) {
+        return { icon: 'fas fa-file-pdf', colorClass: 'is-pdf' };
+      }
+      if (['doc', 'docx', 'odt', 'rtf', 'txt'].includes(ext)) {
+        return { icon: 'fas fa-file-word', colorClass: 'is-word' };
+      }
+      if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'bmp', 'tiff'].includes(ext)) {
+        return { icon: 'fas fa-file-image', colorClass: 'is-image' };
+      }
+      return { icon: 'fas fa-file-alt', colorClass: 'is-generic' };
+    };
+
+    const syncFileInput = () => {
+      if (!fileInput) return;
+      try {
+        const dt = new DataTransfer();
+        attachedFiles.forEach((file) => dt.items.add(file));
+        fileInput.files = dt.files;
+      } catch (err) {
+        console.warn('DataTransfer sync notice:', err);
+      }
+    };
+
+    const renderFilesList = () => {
+      if (!filesContainer || !dropzoneBox) return;
+
+      if (attachedFiles.length === 0) {
+        filesContainer.style.display = 'none';
+        filesContainer.innerHTML = '';
+        dropzoneBox.classList.remove('has-files');
+        if (dropzoneIcon) {
+          dropzoneIcon.className = 'fas fa-cloud-upload-alt modern-dropzone-icon';
+          (dropzoneIcon as HTMLElement).style.color = '';
+        }
+        if (dropzoneTitle) {
+          dropzoneTitle.textContent = 'Clique ou arraste documentos para anexar';
+        }
+        if (dropzoneSubtitle) {
+          dropzoneSubtitle.textContent = 'PDF, Word, JPG ou PNG (até 1 GB)';
+        }
+        return;
+      }
+
+      // Display attached files
+      filesContainer.style.display = 'flex';
+      dropzoneBox.classList.add('has-files');
+      if (dropzoneIcon) {
+        dropzoneIcon.className = 'fas fa-check-circle modern-dropzone-icon';
+        (dropzoneIcon as HTMLElement).style.color = '#10b981';
+      }
+      if (dropzoneTitle) {
+        dropzoneTitle.textContent = `✓ ${attachedFiles.length} documento${attachedFiles.length > 1 ? 's' : ''} anexado${attachedFiles.length > 1 ? 's' : ''}`;
+      }
+      if (dropzoneSubtitle) {
+        dropzoneSubtitle.textContent = 'Clique ou arraste para adicionar mais documentos';
+      }
+
+      let html = '';
+      attachedFiles.forEach((file, index) => {
+        const { icon, colorClass } = getFileIconConfig(file.name);
+        const sizeFormatted = formatFileSize(file.size);
+        html += `
+          <div class="modern-attached-file-item" data-index="${index}">
+            <div class="modern-attached-file-left">
+              <div class="modern-attached-file-icon ${colorClass}">
+                <i class="${icon}"></i>
+              </div>
+              <div class="modern-attached-file-details">
+                <span class="modern-attached-file-name" title="${file.name}">${file.name}</span>
+                <span class="modern-attached-file-meta">
+                  <span>${sizeFormatted}</span>
+                  <span class="badge-ready"><i class="fas fa-check"></i> Anexado</span>
+                </span>
+              </div>
+            </div>
+            <button type="button" class="modern-attached-file-remove" data-remove-index="${index}" title="Remover este arquivo" aria-label="Remover ${file.name}">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        `;
+      });
+
+      filesContainer.innerHTML = html;
+
+      // Event listeners for remove buttons
+      const removeButtons = filesContainer.querySelectorAll('.modern-attached-file-remove');
+      removeButtons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const targetIndex = Number((btn as HTMLElement).getAttribute('data-remove-index'));
+          if (!isNaN(targetIndex) && targetIndex >= 0 && targetIndex < attachedFiles.length) {
+            const removedName = attachedFiles[targetIndex].name;
+            attachedFiles.splice(targetIndex, 1);
+            syncFileInput();
+            renderFilesList();
+            toast.success(`Arquivo "${removedName}" removido.`);
+          }
+        });
+      });
+    };
+
+    const handleAddFiles = (newFiles: FileList | File[]) => {
+      if (!newFiles || newFiles.length === 0) return;
+      const incomingList = Array.from(newFiles);
+      let countAdded = 0;
+
+      incomingList.forEach((file) => {
+        const exists = attachedFiles.some((f) => f.name === file.name && f.size === file.size);
+        if (!exists) {
+          attachedFiles.push(file);
+          countAdded++;
+        }
+      });
+
+      if (countAdded > 0) {
+        syncFileInput();
+        renderFilesList();
+        toast.success(
+          countAdded === 1
+            ? `✓ Documento anexado com sucesso!`
+            : `✓ ${countAdded} documentos anexados com sucesso!`,
+          { duration: 4000 }
+        );
+      }
+    };
+
+    const handleFileInputChange = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (target.files && target.files.length > 0) {
+        handleAddFiles(target.files);
+      }
+    };
+
+    if (fileInput) {
+      fileInput.addEventListener('change', handleFileInputChange);
+    }
+
+    // Drag & drop handlers
+    const handleDragOver = (e: DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropzoneBox?.classList.add('is-dragover');
+    };
+
+    const handleDragLeave = (e: DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropzoneBox?.classList.remove('is-dragover');
+    };
+
+    const handleDrop = (e: DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropzoneBox?.classList.remove('is-dragover');
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleAddFiles(e.dataTransfer.files);
+      }
+    };
+
+    if (dropzoneBox) {
+      dropzoneBox.addEventListener('dragover', handleDragOver as EventListener);
+      dropzoneBox.addEventListener('dragleave', handleDragLeave as EventListener);
+      dropzoneBox.addEventListener('drop', handleDrop as EventListener);
+    }
+
+    // Phone mask
+    const handlePhoneInput = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      let val = target.value.replace(/\D/g, '');
+      if (val.length > 11) val = val.slice(0, 11);
+      if (val.length > 6) {
+        target.value = `(${val.slice(0, 2)}) ${val.slice(2, 7)}-${val.slice(7)}`;
+      } else if (val.length > 2) {
+        target.value = `(${val.slice(0, 2)}) ${val.slice(2)}`;
+      } else if (val.length > 0) {
+        target.value = `(${val}`;
+      }
+    };
+    if (phoneInput) {
+      phoneInput.addEventListener('input', handlePhoneInput);
+    }
 
     const handleSubmit = async (e: Event) => {
       e.preventDefault();
       if (!form) return;
-      setSubmitting(true);
+
       const formData = new FormData(form);
-      const fullName = (formData.get('full_name') as string) || '';
-      const email = (formData.get('email') as string) || '';
-      const whatsapp = (formData.get('wpp') as string) || '';
+      const fullName = (formData.get('full_name') as string)?.trim() || '';
+      const email = (formData.get('email') as string)?.trim() || '';
+      const whatsapp = (formData.get('wpp') as string)?.trim() || '';
       const serviceType = (formData.get('type_service') as string) || 'trad';
-      const fileInput = form.querySelector('input[type="file"]') as HTMLInputElement | null;
-      const fileNames: string[] = [];
-      if (fileInput?.files) {
-        for (let i = 0; i < fileInput.files.length; i++) {
-          fileNames.push(fileInput.files[i].name);
-        }
+
+      if (!fullName || !email || !whatsapp) {
+        toast.error('Por favor, preencha seu nome, e-mail e WhatsApp para receber o orçamento.');
+        return;
       }
+
+      const cleanPhone = whatsapp.replace(/\D/g, '');
+      if (cleanPhone.length < 10) {
+        toast.error('Por favor, informe um WhatsApp válido com DDD.');
+        phoneInput?.focus();
+        return;
+      }
+
+      setSubmitting(true);
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Enviando solicitação...</span> <i class="fas fa-spinner fa-spin"></i>`;
+      }
+
+      const fileNames: string[] = attachedFiles.map((f) => f.name);
+      const serviceLabels: Record<string, string> = {
+        trad: 'Tradução Juramentada / Oficial',
+        apostille: 'Apostilamento de Haia',
+        certificada: 'Tradução Certificada Internacional',
+        tecnica: 'Tradução Técnica & Empresarial',
+      };
+      const serviceLabel = serviceLabels[serviceType] || 'Tradução de Documentos';
 
       try {
         await createQuote({
           fullName,
           email,
           whatsapp,
-          serviceType,
+          serviceType: serviceLabel,
           fileNames,
+          notes: fileNames.length > 0
+            ? `Solicitação via Hero da Home. Documentos anexados (${fileNames.length}): ${fileNames.join(', ')}`
+            : `Solicitação via Hero da Home sem documentos anexados inicialmente.`,
         });
-        toast.success('Orçamento solicitado com sucesso! Entraremos em contato em instantes.', { duration: 6000 });
+
+        toast.success(
+          fileNames.length > 0
+            ? `Orçamento solicitado com sucesso! Recebemos seus ${fileNames.length} documento(s).`
+            : 'Orçamento solicitado com sucesso! Entraremos em contato em instantes.',
+          { duration: 6000 }
+        );
+
+        // Pre-fill WhatsApp and open in new tab
+        const docsMsg = fileNames.length > 0 ? `\n📄 Documentos anexados: ${fileNames.join(', ')}` : '';
+        const text = encodeURIComponent(
+          `Olá! Meu nome é ${fullName}. Acabei de solicitar um orçamento no site para ${serviceLabel}.${docsMsg}\nGostaria de agilizar o atendimento!`
+        );
+        setTimeout(() => {
+          window.open(`https://wa.me/5511982854183?text=${text}`, '_blank');
+        }, 1200);
+
         form.reset();
+        attachedFiles = [];
+        syncFileInput();
+        renderFilesList();
       } catch (err) {
         console.error('Error submitting quote:', err);
-        toast.error('Erro ao enviar pedido. Tente novamente ou chame no WhatsApp.');
+        toast.error('Erro ao enviar pedido. Tente novamente ou nos chame no WhatsApp: (11) 98285-4183');
       } finally {
         setSubmitting(false);
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>Calcular Preço e Prazo Agora</span> <i class="fas fa-arrow-right"></i>`;
+        }
       }
     };
 
@@ -641,6 +889,13 @@ export default function HomePage() {
 
     return () => {
       form?.removeEventListener('submit', handleSubmit);
+      fileInput?.removeEventListener('change', handleFileInputChange);
+      if (dropzoneBox) {
+        dropzoneBox.removeEventListener('dragover', handleDragOver as EventListener);
+        dropzoneBox.removeEventListener('dragleave', handleDragLeave as EventListener);
+        dropzoneBox.removeEventListener('drop', handleDrop as EventListener);
+      }
+      phoneInput?.removeEventListener('input', handlePhoneInput);
       wppButtons.forEach((btn) => btn.removeEventListener('click', handleWppClick));
       scrollLinks.forEach((link) => link.removeEventListener('click', handleScroll));
     };

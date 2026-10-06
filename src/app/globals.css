@@ -3266,6 +3266,197 @@ body.theme-dark .modern-dropzone-compact .modern-dropzone-info span {
   color: #94a3b8;
 }
 
+/* Attached files & dropzone states */
+.modern-dropzone-compact.has-files {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.05) !important;
+}
+
+[data-theme="dark"] .modern-dropzone-compact.has-files,
+body.theme-dark .modern-dropzone-compact.has-files {
+  border-color: #34d399 !important;
+  background: rgba(16, 185, 129, 0.1) !important;
+}
+
+.modern-dropzone-compact.is-dragover {
+  border-color: #2563eb !important;
+  background: rgba(37, 99, 235, 0.12) !important;
+  transform: scale(1.01);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.modern-attached-files-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.modern-attached-file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  animation: modernFileSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s ease;
+}
+
+@keyframes modernFileSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-theme="dark"] .modern-attached-file-item,
+body.theme-dark .modern-attached-file-item {
+  background: #18233a;
+  border-color: #2b3a56;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.modern-attached-file-item:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="dark"] .modern-attached-file-item:hover,
+body.theme-dark .modern-attached-file-item:hover {
+  border-color: #38bdf8;
+}
+
+.modern-attached-file-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.modern-attached-file-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.modern-attached-file-icon.is-pdf {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+
+.modern-attached-file-icon.is-word {
+  background: rgba(37, 99, 235, 0.12);
+  color: #2563eb;
+}
+
+.modern-attached-file-icon.is-image {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+}
+
+.modern-attached-file-icon.is-generic {
+  background: rgba(100, 116, 139, 0.12);
+  color: #475569;
+}
+
+.modern-attached-file-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.modern-attached-file-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-default);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.modern-attached-file-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+[data-theme="dark"] .modern-attached-file-meta,
+body.theme-dark .modern-attached-file-meta {
+  color: #94a3b8;
+}
+
+.modern-attached-file-meta .badge-ready {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #059669;
+  font-weight: 600;
+  font-size: 10.5px;
+}
+
+[data-theme="dark"] .modern-attached-file-meta .badge-ready,
+body.theme-dark .modern-attached-file-meta .badge-ready {
+  color: #34d399;
+}
+
+.modern-attached-file-remove {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.modern-attached-file-remove:hover {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  transform: scale(1.08);
+}
+
+.modern-attached-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px 0;
+  font-size: 11px;
+  color: #059669;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .modern-attached-summary,
+body.theme-dark .modern-attached-summary {
+  color: #34d399;
+}
+
 /* 2. Hero Trust Metrics Strip */
 .modern-hero-stats {
   display: grid;
