@@ -652,8 +652,8 @@ export default function HomePage() {
         <Image
           src="/img/traduztudo-banner-principal.jpg"
           alt="TraduzTudo: tradução juramentada com alcance internacional"
-          width={1024}
-          height={440}
+          width={2048}
+          height={1152}
           priority
           unoptimized
           sizes="100vw"
