@@ -107,18 +107,18 @@ export default function Header() {
         <div className="modern-header-brand">
           <Link href="/" aria-label="TraduzTudo - Página Inicial">
             <img
-              src="/img/traduztudo-logo.svg"
+              src="/img/traduztudo-official-logo.png"
               alt="TraduzTudo"
               className="traduztudo-logo-light"
-              width="210"
-              height="42"
+              width="180"
+              height="54"
             />
             <img
-              src="/img/traduztudo-logo-white.svg"
+              src="/img/traduztudo-official-logo-white.png"
               alt="TraduzTudo"
               className="traduztudo-logo-dark"
-              width="210"
-              height="42"
+              width="180"
+              height="54"
             />
           </Link>
         </div>

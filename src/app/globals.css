@@ -2475,11 +2475,16 @@ body.theme-dark header.container-s {
 }
 
 .modern-header-brand img {
-  height: 38px !important;
+  height: 48px !important;
   width: auto !important;
   max-width: 210px !important;
   display: block !important;
   object-fit: contain !important;
+  transition: transform 0.2s ease !important;
+}
+
+.modern-header-brand:hover img {
+  transform: scale(1.03) !important;
 }
 
 /* Desktop Navigation */

@@ -118,20 +118,20 @@ export default function OrcamentoPage() {
             <div className="deals_content_header_logo">
               <Link href="/" title="Voltar para página inicial" style={{ display: 'inline-flex', alignItems: 'center' }}>
                 <img
-                  src="/img/traduztudo-logo.svg"
+                  src="/img/traduztudo-official-logo.png"
                   alt="TraduzTudo"
                   className="traduztudo-logo-light"
-                  width="220"
-                  height="46"
-                  style={{ height: '44px', width: 'auto' }}
+                  width="180"
+                  height="50"
+                  style={{ height: '46px', width: 'auto' }}
                 />
                 <img
-                  src="/img/traduztudo-logo-white.svg"
+                  src="/img/traduztudo-official-logo-white.png"
                   alt="TraduzTudo"
                   className="traduztudo-logo-dark"
-                  width="220"
-                  height="46"
-                  style={{ height: '44px', width: 'auto' }}
+                  width="180"
+                  height="50"
+                  style={{ height: '46px', width: 'auto' }}
                 />
               </Link>
             </div>

@@ -10,11 +10,6 @@ const bodyHtml = `<section class="modern-hero-section">
     <div class="modern-hero-grid">
       <!-- Left Column: Copy & Value Proposition -->
       <div class="modern-hero-col-text">
-        <div class="modern-hero-badge">
-          <span class="modern-badge-pulse"></span>
-          <span class="modern-badge-text">TRADUÇÕES OFICIAIS COM FÉ PÚBLICA • VALIDADE INTERNACIONAL</span>
-        </div>
-
         <h1 class="modern-hero-title">
           Tradução Juramentada Oficial <br class="d-none d-lg-block" />
           <span class="modern-gradient-text">com Máxima Validade &amp; Agilidade</span>
