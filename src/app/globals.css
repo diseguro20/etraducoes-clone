@@ -4809,7 +4809,7 @@ html, body {
   width: 100% !important;
   height: auto !important;
   max-width: 100% !important;
-  aspect-ratio: 1655 / 931 !important;
+  aspect-ratio: 16 / 9 !important;
   object-fit: cover !important;
   object-position: center !important;
 }
