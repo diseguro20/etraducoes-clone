@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
-import { getQuotes, updateQuote, getAllOrders, updateOrderStatus } from '@/lib/firestore';
+import { getQuotes, updateQuote, getAllOrders, updateOrderStatus, subscribeToQuotes, subscribeToAllOrders } from '@/lib/firestore';
 import type { QuoteRequest, Order } from '@/types';
 import { ORDER_STATUS_LABELS, ORDER_STATUS_COLORS } from '@/types';
 import { formatDate } from '@/lib/utils';
@@ -29,9 +29,19 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (profile?.isAdmin) {
-      Promise.all([getQuotes(), getAllOrders()])
-        .then(([q, o]) => { setQuotes(q); setOrders(o); })
-        .finally(() => setLoadingData(false));
+      setLoadingData(true);
+      const unsubQuotes = subscribeToQuotes((q) => {
+        setQuotes(q);
+        setLoadingData(false);
+      });
+      const unsubOrders = subscribeToAllOrders((o) => {
+        setOrders(o);
+      });
+
+      return () => {
+        unsubQuotes();
+        unsubOrders();
+      };
     }
   }, [profile]);
 
