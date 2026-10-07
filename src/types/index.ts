@@ -18,6 +18,8 @@ export interface QuoteRequest {
   email: string;
   whatsapp: string;
   serviceType: string;
+  sourceLanguage?: string;
+  targetLanguage?: string;
   files?: Array<string | { name: string; url?: string; dataUrl?: string; size?: number; type?: string }>;
   fileNames?: string[];
   status: 'novo' | 'visto' | 'cotado';

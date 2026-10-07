@@ -13,6 +13,8 @@ export default function OrcamentoPage() {
   const [phoneError, setPhoneError] = useState(false);
   const [addrUf, setAddrUf] = useState('');
   const [typeService, setTypeService] = useState('trad');
+  const [sourceLang, setSourceLang] = useState('Português');
+  const [targetLang, setTargetLang] = useState('Inglês');
   const [files, setFiles] = useState<File[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
@@ -95,9 +97,14 @@ export default function OrcamentoPage() {
         email,
         whatsapp,
         serviceType: serviceLabel,
+        sourceLanguage: sourceLang,
+        targetLanguage: targetLang,
         fileNames,
         files: attachedData,
-        notes: `Estado de residência: ${addrUf}. Total de arquivos: ${files.length}.`,
+        notes: [
+          `Idiomas: ${sourceLang} → ${targetLang}`,
+          `Estado de residência: ${addrUf}. Total de arquivos: ${files.length}.`,
+        ].join('\n'),
       });
 
       toast.success(
@@ -108,7 +115,7 @@ export default function OrcamentoPage() {
       // Open WhatsApp pre-filled link after saving to Firestore
       const cleanPhone = whatsapp.replace(/\D/g, '');
       const text = encodeURIComponent(
-        `Olá! Meu nome é ${fullName} (${addrUf}). Acabei de enviar um pedido de orçamento de ${serviceLabel}. Gostaria de agilizar o atendimento.`
+        `Olá! Meu nome é ${fullName} (${addrUf}). Acabei de enviar um pedido de orçamento de ${serviceLabel} (${sourceLang} para ${targetLang}). Gostaria de agilizar o atendimento.`
       );
       setTimeout(() => {
         window.open(`https://wa.me/5511982854183?text=${text}`, '_blank');
@@ -356,6 +363,59 @@ export default function OrcamentoPage() {
                   <option value="apostille">Só Apostilas</option>
                 </select>
               </label>
+
+              {/* Language Pair Selectors */}
+              <div className="label_g2">
+                <label className="label">
+                  <span className="legend">Idioma de origem (De)</span>
+                  <select
+                    name="source_lang"
+                    value={sourceLang}
+                    onChange={(e) => setSourceLang(e.target.value)}
+                    required
+                  >
+                    <option value="Português">🇧🇷 Português</option>
+                    <option value="Inglês">🇺🇸 Inglês</option>
+                    <option value="Espanhol">🇪🇸 Espanhol</option>
+                    <option value="Italiano">🇮🇹 Italiano</option>
+                    <option value="Francês">🇫🇷 Francês</option>
+                    <option value="Alemão">🇩🇪 Alemão</option>
+                    <option value="Mandarim">🇨🇳 Mandarim (Chinês)</option>
+                    <option value="Japonês">🇯🇵 Japonês</option>
+                    <option value="Árabe">🇸🇦 Árabe</option>
+                    <option value="Russo">🇷🇺 Russo</option>
+                    <option value="Holandês">🇳🇱 Holandês</option>
+                    <option value="Coreano">🇰🇷 Coreano</option>
+                    <option value="Hebraico">🇮🇱 Hebraico</option>
+                    <option value="Outro">🌐 Outro idioma</option>
+                  </select>
+                </label>
+
+                <label className="label">
+                  <span className="legend">Traduzir para (Para)</span>
+                  <select
+                    name="target_lang"
+                    value={targetLang}
+                    onChange={(e) => setTargetLang(e.target.value)}
+                    required
+                  >
+                    <option value="Inglês">🇺🇸 Inglês</option>
+                    <option value="Espanhol">🇪🇸 Espanhol</option>
+                    <option value="Português">🇧🇷 Português</option>
+                    <option value="Italiano">🇮🇹 Italiano</option>
+                    <option value="Francês">🇫🇷 Francês</option>
+                    <option value="Alemão">🇩🇪 Alemão</option>
+                    <option value="Mandarim">🇨🇳 Mandarim (Chinês)</option>
+                    <option value="Japonês">🇯🇵 Japonês</option>
+                    <option value="Árabe">🇸🇦 Árabe</option>
+                    <option value="Russo">🇷🇺 Russo</option>
+                    <option value="Holandês">🇳🇱 Holandês</option>
+                    <option value="Coreano">🇰🇷 Coreano</option>
+                    <option value="Hebraico">🇮🇱 Hebraico</option>
+                    <option value="Outro">🌐 Outro idioma</option>
+                  </select>
+                </label>
+              </div>
 
               {/* Documents Upload Section */}
               <div className="label" style={{ marginBottom: 0 }}>

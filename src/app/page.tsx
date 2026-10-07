@@ -123,6 +123,56 @@ const bodyHtml = `<section class="modern-hero-section">
               </div>
             </div>
 
+            <div class="modern-form-row">
+              <div class="modern-input-group">
+                <label for="source_lang" class="modern-input-label">
+                  <i class="fas fa-language"></i> Idioma de Origem (De)
+                </label>
+                <div class="modern-select-wrapper">
+                  <select name="source_lang" class="form modern-input-field modern-select-field" id="source_lang" required>
+                    <option value="Português" selected>🇧🇷 Português</option>
+                    <option value="Inglês">🇺🇸 Inglês</option>
+                    <option value="Espanhol">🇪🇸 Espanhol</option>
+                    <option value="Italiano">🇮🇹 Italiano</option>
+                    <option value="Francês">🇫🇷 Francês</option>
+                    <option value="Alemão">🇩🇪 Alemão</option>
+                    <option value="Mandarim">🇨🇳 Mandarim (Chinês)</option>
+                    <option value="Japonês">🇯🇵 Japonês</option>
+                    <option value="Árabe">🇸🇦 Árabe</option>
+                    <option value="Russo">🇷🇺 Russo</option>
+                    <option value="Holandês">🇳🇱 Holandês</option>
+                    <option value="Coreano">🇰🇷 Coreano</option>
+                    <option value="Hebraico">🇮🇱 Hebraico</option>
+                    <option value="Outro">🌐 Outro idioma</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="modern-input-group">
+                <label for="target_lang" class="modern-input-label">
+                  <i class="fas fa-exchange-alt"></i> Traduzir Para (Para)
+                </label>
+                <div class="modern-select-wrapper">
+                  <select name="target_lang" class="form modern-input-field modern-select-field" id="target_lang" required>
+                    <option value="Inglês" selected>🇺🇸 Inglês</option>
+                    <option value="Espanhol">🇪🇸 Espanhol</option>
+                    <option value="Português">🇧🇷 Português</option>
+                    <option value="Italiano">🇮🇹 Italiano</option>
+                    <option value="Francês">🇫🇷 Francês</option>
+                    <option value="Alemão">🇩🇪 Alemão</option>
+                    <option value="Mandarim">🇨🇳 Mandarim (Chinês)</option>
+                    <option value="Japonês">🇯🇵 Japonês</option>
+                    <option value="Árabe">🇸🇦 Árabe</option>
+                    <option value="Russo">🇷🇺 Russo</option>
+                    <option value="Holandês">🇳🇱 Holandês</option>
+                    <option value="Coreano">🇰🇷 Coreano</option>
+                    <option value="Hebraico">🇮🇱 Hebraico</option>
+                    <option value="Outro">🌐 Outro idioma</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
             <div class="modern-input-group">
               <label for="docs" class="modern-input-label">
                 <i class="far fa-folder-open"></i> Documentos para tradução (opcional)
@@ -792,6 +842,8 @@ export default function HomePage() {
       const email = (formData.get('email') as string)?.trim() || '';
       const whatsapp = (formData.get('wpp') as string)?.trim() || '';
       const serviceType = (formData.get('type_service') as string) || 'trad';
+      const sourceLang = (formData.get('source_lang') as string) || 'Português';
+      const targetLang = (formData.get('target_lang') as string) || 'Inglês';
 
       if (!fullName || !email || !whatsapp) {
         toast.error('Por favor, preencha seu nome, e-mail e WhatsApp para receber o orçamento.');
@@ -827,11 +879,16 @@ export default function HomePage() {
           email,
           whatsapp,
           serviceType: serviceLabel,
+          sourceLanguage: sourceLang,
+          targetLanguage: targetLang,
           fileNames,
           files: attachedData,
-          notes: fileNames.length > 0
-            ? `Solicitação via Hero da Home. Documentos anexados (${fileNames.length}): ${fileNames.join(', ')}`
-            : `Solicitação via Hero da Home sem documentos anexados inicialmente.`,
+          notes: [
+            `Idiomas: ${sourceLang} → ${targetLang}`,
+            fileNames.length > 0
+              ? `Solicitação via Hero da Home. Documentos anexados (${fileNames.length}): ${fileNames.join(', ')}`
+              : `Solicitação via Hero da Home sem documentos anexados inicialmente.`,
+          ].join('\n'),
         });
 
         toast.success(
@@ -844,7 +901,7 @@ export default function HomePage() {
         // Pre-fill WhatsApp and open in new tab
         const docsMsg = fileNames.length > 0 ? `\n📄 Documentos anexados: ${fileNames.join(', ')}` : '';
         const text = encodeURIComponent(
-          `Olá! Meu nome é ${fullName}. Acabei de solicitar um orçamento no site para ${serviceLabel}.${docsMsg}\nGostaria de agilizar o atendimento!`
+          `Olá! Meu nome é ${fullName}. Acabei de solicitar um orçamento no site para ${serviceLabel} (${sourceLang} para ${targetLang}).${docsMsg}\nGostaria de agilizar o atendimento!`
         );
         setTimeout(() => {
           window.open(`https://wa.me/5511982854183?text=${text}`, '_blank');
