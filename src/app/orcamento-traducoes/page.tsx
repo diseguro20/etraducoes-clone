@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { createQuote } from '@/lib/firestore';
+import { readFilesAsAttachments } from '@/lib/utils';
 
 export default function OrcamentoPage() {
   const [fullName, setFullName] = useState('');
@@ -84,7 +85,8 @@ export default function OrcamentoPage() {
 
     setSubmitting(true);
     try {
-      const fileNames = files.map((f) => f.name);
+      const attachedData = await readFilesAsAttachments(files);
+      const fileNames = attachedData.map((f) => f.name);
       const serviceLabel =
         typeService === 'apostille' ? 'Apenas Apostilamento de Haia' : 'Tradução de Documentos';
 
@@ -94,6 +96,7 @@ export default function OrcamentoPage() {
         whatsapp,
         serviceType: serviceLabel,
         fileNames,
+        files: attachedData,
         notes: `Estado de residência: ${addrUf}. Total de arquivos: ${files.length}.`,
       });
 

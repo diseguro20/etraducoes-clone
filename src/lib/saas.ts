@@ -9,7 +9,7 @@ export interface SaaSLeadPayload {
   estimatedVolume?: string;
   notes?: string;
   origin?: string;
-  files?: string[];
+  files?: Array<string | { name: string; url?: string; dataUrl?: string; size?: number; type?: string }>;
 }
 
 export async function sendQuoteToSaaS(data: {
@@ -23,7 +23,7 @@ export async function sendQuoteToSaaS(data: {
   sourceLanguage?: string;
   targetLanguage?: string;
   fileNames?: string[];
-  files?: string[];
+  files?: Array<string | { name: string; url?: string; dataUrl?: string; size?: number; type?: string }>;
   notes?: string;
   origin?: string;
 }): Promise<{ success: boolean; requestId?: string; error?: string }> {
@@ -45,6 +45,9 @@ export async function sendQuoteToSaaS(data: {
       }
     }
 
+    const filesList = (data.files && data.files.length > 0) ? data.files : (data.fileNames || []);
+    const fileNamesOnly = filesList.map((f: any) => typeof f === 'string' ? f : f.name);
+
     const payload: SaaSLeadPayload = {
       name: sName,
       email: sEmail,
@@ -54,19 +57,19 @@ export async function sendQuoteToSaaS(data: {
       sourceLanguage: srcLang,
       targetLanguage: tgtLang,
       estimatedVolume:
-        data.fileNames && data.fileNames.length > 0
-          ? `${data.fileNames.length} arquivo(s)`
+        fileNamesOnly.length > 0
+          ? `${fileNamesOnly.length} arquivo(s)`
           : 'A combinar',
       notes: [
         data.notes || '',
-        data.fileNames && data.fileNames.length > 0
-          ? `Arquivos anexados: ${data.fileNames.join(', ')}`
+        fileNamesOnly.length > 0
+          ? `Arquivos anexados (${fileNamesOnly.length}): ${fileNamesOnly.join(', ')}`
           : '',
       ]
         .filter(Boolean)
         .join('\n'),
       origin: data.origin || 'Site TraduzTudo (traduztudo.com)',
-      files: data.fileNames || data.files || [],
+      files: filesList,
     };
 
     // 1. Try sending via internal /api/lead route first (browser client)

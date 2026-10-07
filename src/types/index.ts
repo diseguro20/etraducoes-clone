@@ -18,7 +18,7 @@ export interface QuoteRequest {
   email: string;
   whatsapp: string;
   serviceType: string;
-  files?: string[];
+  files?: Array<string | { name: string; url?: string; dataUrl?: string; size?: number; type?: string }>;
   fileNames?: string[];
   status: 'novo' | 'visto' | 'cotado';
   createdAt: Timestamp | Date;

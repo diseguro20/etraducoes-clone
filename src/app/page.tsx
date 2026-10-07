@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import { createQuote } from '@/lib/firestore';
+import { readFilesAsAttachments } from '@/lib/utils';
 
 const bodyHtml = `<section class="modern-hero-section">
   <div class="modern-hero-ambient"></div>
@@ -810,7 +811,8 @@ export default function HomePage() {
         submitBtn.innerHTML = `<span>Enviando solicitação...</span> <i class="fas fa-spinner fa-spin"></i>`;
       }
 
-      const fileNames: string[] = attachedFiles.map((f) => f.name);
+      const attachedData = await readFilesAsAttachments(attachedFiles);
+      const fileNames: string[] = attachedData.map((f) => f.name);
       const serviceLabels: Record<string, string> = {
         trad: 'Tradução Juramentada / Oficial',
         apostille: 'Apostilamento de Haia',
@@ -826,6 +828,7 @@ export default function HomePage() {
           whatsapp,
           serviceType: serviceLabel,
           fileNames,
+          files: attachedData,
           notes: fileNames.length > 0
             ? `Solicitação via Hero da Home. Documentos anexados (${fileNames.length}): ${fileNames.join(', ')}`
             : `Solicitação via Hero da Home sem documentos anexados inicialmente.`,

@@ -42,8 +42,9 @@ function getSaasDb() {
 }
 
 // ============ QUOTES ============
-export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'createdAt' | 'status'>) {
-  const filesList = data.fileNames || data.files || [];
+export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'createdAt' | 'status'> & { files?: any[] }) {
+  const rawFiles = data.files || data.fileNames || [];
+  const fileNamesList = rawFiles.map((f: any) => typeof f === 'string' ? f : f.name);
   const nowIso = new Date().toISOString();
   const quoteCode = `ORC-${String(Math.floor(Date.now() / 1000) % 1000000).padStart(6, '0')}`;
   const token = `tok_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
@@ -60,7 +61,7 @@ export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
 
       const notesContent = [
         data.notes || '',
-        filesList.length > 0 ? `Documentos anexados (${filesList.length}): ${filesList.join(', ')}` : '',
+        fileNamesList.length > 0 ? `Documentos anexados (${fileNamesList.length}): ${fileNamesList.join(', ')}` : '',
         'Origem: Site Oficial TraduzTudo (traduztudo.com)',
       ].filter(Boolean).join('\n');
 
@@ -74,11 +75,11 @@ export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
         serviceName: data.serviceType || 'Tradução Juramentada',
         sourceLanguage: 'Português',
         targetLanguage: 'Inglês',
-        estimatedVolume: filesList.length > 0 ? `${filesList.length} arquivo(s)` : '',
+        estimatedVolume: fileNamesList.length > 0 ? `${fileNamesList.length} arquivo(s)` : '',
         notes: notesContent,
         origin: 'Site TraduzTudo (traduztudo.com)',
         status: 'nova',
-        files: filesList,
+        files: rawFiles,
         convertedQuoteId: quoteId,
         createdAt: nowIso,
       };
@@ -103,7 +104,7 @@ export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
             serviceId: 'serv-juramentada',
             serviceName: data.serviceType || 'Tradução Juramentada',
             description: `${data.serviceType || 'Tradução Juramentada'} (Solicitação via Site)`,
-            quantity: filesList.length > 0 ? filesList.length : 1,
+            quantity: fileNamesList.length > 0 ? fileNamesList.length : 1,
             unit: 'documento',
             unitPrice: 0,
             discount: 0,
@@ -118,6 +119,7 @@ export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
         notes: notesContent,
         status: 'rascunho',
         approvalToken: token,
+        files: rawFiles,
         createdAt: nowIso,
         updatedAt: nowIso,
       };
@@ -168,12 +170,67 @@ export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
         updatedAt: nowIso,
       };
 
+      // Sanitize reqData & quoteData if total payload is close to 1MB Firestore document limit
+      const safeReqData = JSON.parse(JSON.stringify(reqData));
+      if (JSON.stringify(safeReqData).length > 650000 && Array.isArray(safeReqData.files)) {
+        safeReqData.files = safeReqData.files.map((f: any) => {
+          if (typeof f === 'object' && f.dataUrl) {
+            const { dataUrl, ...rest } = f;
+            return rest;
+          }
+          return f;
+        });
+      }
+
+      const safeQuoteData = JSON.parse(JSON.stringify(quoteData));
+      if (JSON.stringify(safeQuoteData).length > 650000 && Array.isArray(safeQuoteData.files)) {
+        safeQuoteData.files = safeQuoteData.files.map((f: any) => {
+          if (typeof f === 'object' && f.dataUrl) {
+            const { dataUrl, ...rest } = f;
+            return rest;
+          }
+          return f;
+        });
+      }
+
+      const docWrites = rawFiles.map((file: any, fIdx: number) => {
+        const fileName = typeof file === 'string' ? file : file.name;
+        const fileUrl = typeof file === 'string' ? '' : file.url || file.dataUrl || '';
+        const docId = `doc-${Date.now()}-${fIdx}`;
+        const docData: any = {
+          id: docId,
+          tenantId: 'tenant-traduztudo',
+          quoteId: quoteId,
+          customerId: custId,
+          name: fileName,
+          category: 'original',
+          fileUrl: fileUrl,
+          url: fileUrl,
+          dataUrl: typeof file === 'object' ? file.dataUrl : undefined,
+          fileSize: (typeof file === 'object' && typeof file.size === 'number') ? file.size : 0,
+          fileType: (typeof file === 'object' && typeof file.type === 'string') ? file.type : 'application/pdf',
+          version: 1,
+          downloadCount: 0,
+          uploaderUserId: 'user-diego',
+          uploaderName: 'Diego',
+          uploadedByUserId: 'user-diego',
+          uploadedByUserName: 'Diego',
+          createdAt: nowIso,
+          updatedAt: nowIso,
+        };
+        if (docData.dataUrl && docData.dataUrl.length > 550000) {
+          delete docData.dataUrl;
+        }
+        return setDoc(doc(saasDb, 'traduztudo_documents', docId), docData);
+      });
+
       Promise.allSettled([
-        setDoc(doc(saasDb, 'traduztudo_requests', reqId), reqData),
-        setDoc(doc(saasDb, 'traduztudo_quotes', quoteId), quoteData),
+        setDoc(doc(saasDb, 'traduztudo_requests', reqId), safeReqData),
+        setDoc(doc(saasDb, 'traduztudo_quotes', quoteId), safeQuoteData),
         setDoc(doc(saasDb, 'traduztudo_leads', leadId), leadData),
         setDoc(doc(saasDb, 'traduztudo_customers', custId), custData),
         setDoc(doc(saasDb, 'traduztudo_notifications', notifId), notifData),
+        ...docWrites,
       ]).catch((err) => console.warn('[Realtime SaaS Push] Warning:', err));
     }
   } catch (directErr) {
@@ -186,18 +243,29 @@ export async function createQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
     email: data.email,
     whatsapp: data.whatsapp,
     serviceType: data.serviceType,
-    fileNames: filesList,
+    fileNames: fileNamesList,
+    files: rawFiles,
     notes: data.notes,
   }).catch((err) => {
     console.warn('[SaaS Sync] Background sync warning:', err);
     return null;
   });
 
-  // 3. Save in local Firestore quotes collection
+  // 3. Save in local Firestore quotes collection (sanitizing heavy dataUrls)
   let docId = `quote-${Date.now()}`;
   try {
+    const sanitizedData = JSON.parse(JSON.stringify(data));
+    if (Array.isArray(sanitizedData.files)) {
+      sanitizedData.files = sanitizedData.files.map((f: any) => {
+        if (typeof f === 'object' && f.dataUrl) {
+          const { dataUrl, ...rest } = f;
+          return rest;
+        }
+        return f;
+      });
+    }
     const docRef = await addDoc(collection(db, 'quotes'), {
-      ...data,
+      ...sanitizedData,
       status: 'novo',
       createdAt: Timestamp.now(),
       updatedAt: Timestamp.now(),
