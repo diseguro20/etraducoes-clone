@@ -14,7 +14,7 @@ interface Message {
   isFinal?: boolean;
 }
 
-const COMPANY_PHONE = '5511983522358'; // (11) 98352-2358
+const COMPANY_PHONE = '5511947485091'; // (11) 94748-5091 (Contato Principal)
 
 export default function WhatsAppButton() {
   const pathname = usePathname();

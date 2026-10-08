@@ -128,7 +128,37 @@ export default function Footer() {
                 <span>contato@traduztudo.com.br</span>
               </a>
 
-              {/* Atendente 1 */}
+              {/* Atendente Principal */}
+              <a
+                href="https://wa.me/5511947485091?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20de%20tradu%C3%A7%C3%A3o."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tt-contact-link"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  color: '#002b49',
+                  textDecoration: 'none',
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  transition: 'color 0.2s',
+                }}
+              >
+                <i
+                  className="fab fa-whatsapp"
+                  style={{
+                    color: '#00aa4e',
+                    fontSize: '18px',
+                    width: '18px',
+                    textAlign: 'center',
+                    flexShrink: 0,
+                  }}
+                />
+                <span>(11) 94748-5091</span>
+              </a>
+
+              {/* Atendente 2 */}
               <a
                 href="https://wa.me/5511983522358?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20de%20tradu%C3%A7%C3%A3o."
                 target="_blank"
@@ -158,7 +188,7 @@ export default function Footer() {
                 <span>(11) 98352-2358</span>
               </a>
 
-              {/* Atendente 2 */}
+              {/* Atendente 3 */}
               <a
                 href="https://wa.me/5511947306122?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20de%20tradu%C3%A7%C3%A3o."
                 target="_blank"
@@ -241,7 +271,7 @@ export default function Footer() {
                 <i className="fab fa-instagram" />
               </a>
               <a
-                href="https://wa.me/5511983522358"
+                href="https://wa.me/5511947485091"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"

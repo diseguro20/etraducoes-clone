@@ -118,7 +118,7 @@ export default function OrcamentoPage() {
         `Olá! Meu nome é ${fullName} (${addrUf}). Acabei de enviar um pedido de orçamento de ${serviceLabel} (${sourceLang} para ${targetLang}). Gostaria de agilizar o atendimento.`
       );
       setTimeout(() => {
-        window.open(`https://wa.me/5511983522358?text=${text}`, '_blank');
+        window.open(`https://wa.me/5511947485091?text=${text}`, '_blank');
       }, 1000);
 
       // Clear inputs
@@ -128,7 +128,7 @@ export default function OrcamentoPage() {
       setFiles([]);
     } catch (err) {
       console.error('Error submitting quote:', err);
-      toast.error('Erro ao enviar orçamento. Entre em contato diretamente pelo WhatsApp: (11) 98352-2358');
+      toast.error('Erro ao enviar orçamento. Entre em contato diretamente pelo WhatsApp: (11) 94748-5091');
     } finally {
       setSubmitting(false);
     }
@@ -554,7 +554,7 @@ export default function OrcamentoPage() {
                 <li>
                   Em ambos os casos,{' '}
                   <a
-                    href="https://wa.me/5511982854183"
+                    href="https://wa.me/5511947485091"
                     target="_blank"
                     rel="nofollow"
                     style={{ textDecoration: 'underline' }}
