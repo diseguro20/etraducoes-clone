@@ -904,7 +904,7 @@ export default function HomePage() {
           `Olá! Meu nome é ${fullName}. Acabei de solicitar um orçamento no site para ${serviceLabel} (${sourceLang} para ${targetLang}).${docsMsg}\nGostaria de agilizar o atendimento!`
         );
         setTimeout(() => {
-          window.open(`https://wa.me/5511982854183?text=${text}`, '_blank');
+          window.open(`https://wa.me/5511983522358?text=${text}`, '_blank');
         }, 1200);
 
         form.reset();
@@ -913,7 +913,7 @@ export default function HomePage() {
         renderFilesList();
       } catch (err) {
         console.error('Error submitting quote:', err);
-        toast.error('Erro ao enviar pedido. Tente novamente ou nos chame no WhatsApp: (11) 98285-4183');
+        toast.error('Erro ao enviar pedido. Tente novamente ou nos chame no WhatsApp: (11) 98352-2358');
       } finally {
         setSubmitting(false);
         if (submitBtn) {

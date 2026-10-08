@@ -14,7 +14,7 @@ interface Message {
   isFinal?: boolean;
 }
 
-const COMPANY_PHONE = '5511982854183'; // (11) 98285-4183
+const COMPANY_PHONE = '5511983522358'; // (11) 98352-2358
 
 export default function WhatsAppButton() {
   const pathname = usePathname();

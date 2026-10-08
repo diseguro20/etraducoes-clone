@@ -30,7 +30,7 @@ export async function sendQuoteToSaaS(data: {
   try {
     const sName = (data.fullName || data.name || 'Cliente Sem Nome').trim();
     const sEmail = (data.email || 'contato@traduztudo.com.br').trim();
-    const sPhone = (data.whatsapp || data.phone || '(11) 98285-4183').trim();
+    const sPhone = (data.whatsapp || data.phone || '(11) 98352-2358').trim();
     const sService = data.serviceType || data.service || 'Tradução Juramentada';
 
     // Parse source & target language if mentioned in serviceType

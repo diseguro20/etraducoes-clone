@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://traduztudo.com'),
   title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
   description:
-    'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98285-4183.',
+    'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98352-2358.',
   keywords:
     'tradução juramentada, tradução certificada, tradução técnica, apostilamento de haia, tradução oficial, tradutudo',
   authors: [{ name: 'TraduzTudo', url: 'https://traduztudo.com' }],
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
     description:
-      'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98285-4183.',
+      'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98352-2358.',
     url: 'https://traduztudo.com',
     siteName: 'TraduzTudo',
     locale: 'pt_BR',
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
     description:
-      'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98285-4183.',
+      'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 98352-2358.',
     images: ['https://traduztudo.com/img/og-preview.png'],
     site: '@traduztudo',
     creator: '@traduztudo',
