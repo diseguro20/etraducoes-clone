@@ -573,18 +573,18 @@ export default function OrcamentoPage() {
               background: '#ffffff',
               border: '1px solid #e2e8f0',
               borderRadius: '24px',
-              padding: '18px',
+              overflow: 'hidden',
               boxShadow: '0 10px 25px -5px rgba(0, 43, 73, 0.08)',
               marginTop: '20px',
               marginBottom: '20px',
               textAlign: 'center',
             }}
           >
-            <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', marginBottom: '14px' }}>
+            <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
               <img
                 src="/img/traduztudo-empresas-confianca.webp"
                 alt="Sua Empresa Pode Confiar na TraduzTudo"
-                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '16px' }}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
                 loading="lazy"
               />
               <div
@@ -593,7 +593,7 @@ export default function OrcamentoPage() {
                   bottom: '10px',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  background: 'rgba(0, 43, 73, 0.9)',
+                  background: 'rgba(0, 43, 73, 0.92)',
                   color: '#ffffff',
                   fontSize: '11px',
                   fontWeight: 700,
@@ -607,35 +607,37 @@ export default function OrcamentoPage() {
                 <i className="fas fa-shield-alt"></i> 100% Confiável &bull; Prazos Garantidos
               </div>
             </div>
-            <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#0f172a', margin: '0 0 6px' }}>
-              Sua Empresa Pode Confiar na TraduzTudo
-            </h4>
-            <p style={{ fontSize: '12px', color: '#64748b', margin: '0 0 14px', lineHeight: 1.5 }}>
-              Grandes volumes, contratos, manuais técnicos e licitações com total confidencialidade (NDA), validade legal e revisão de especialistas.
-            </p>
-            <a
-              href="https://wa.me/5511947485091?text=Ol%C3%A1%2C%20gostaria%20de%20um%20atendimento%20corporativo%20para%20minha%20empresa"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                width: '100%',
-                padding: '11px 16px',
-                background: '#10b981',
-                color: '#ffffff',
-                fontSize: '13px',
-                fontWeight: 700,
-                borderRadius: '12px',
-                textDecoration: 'none',
-                boxShadow: '0 4px 12px rgba(16, 185, 129, 0.25)',
-                transition: 'background-color 0.2s',
-              }}
-            >
-              <i className="fab fa-whatsapp" style={{ fontSize: '15px' }}></i> Falar com Atendimento Corporativo
-            </a>
+            <div style={{ padding: '18px 16px 20px 16px' }}>
+              <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#0f172a', margin: '0 0 6px' }}>
+                Sua Empresa Pode Confiar na TraduzTudo
+              </h4>
+              <p style={{ fontSize: '12px', color: '#64748b', margin: '0 0 14px', lineHeight: 1.5 }}>
+                Grandes volumes, contratos, manuais técnicos e licitações com total confidencialidade (NDA), validade legal e revisão de especialistas.
+              </p>
+              <a
+                href="https://wa.me/5511947485091?text=Ol%C3%A1%2C%20gostaria%20de%20um%20atendimento%20corporativo%20para%20minha%20empresa"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  width: '100%',
+                  padding: '11px 16px',
+                  background: '#10b981',
+                  color: '#ffffff',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  borderRadius: '12px',
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 12px rgba(16, 185, 129, 0.25)',
+                  transition: 'background-color 0.2s',
+                }}
+              >
+                <i className="fab fa-whatsapp" style={{ fontSize: '15px' }}></i> Falar com Atendimento Corporativo
+              </a>
+            </div>
           </div>
 
           <div

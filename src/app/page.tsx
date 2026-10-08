@@ -503,9 +503,9 @@ const bodyHtml = `<section class="modern-hero-section">
 <section class="modern-corporate-trust-section">
   <div class="container">
     <div class="modern-corporate-trust-wrapper">
-      <div class="row align-items-center">
+      <div class="row align-items-center g-0">
         <!-- Image Poster Column -->
-        <div class="col-lg-5 text-center mb-4 mb-lg-0">
+        <div class="col-lg-5 modern-trust-poster-col text-center">
           <div class="modern-trust-poster-container">
             <img 
               src="/img/traduztudo-empresas-confianca.webp" 

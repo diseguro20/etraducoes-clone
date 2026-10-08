@@ -3885,7 +3885,7 @@ body.theme-dark .modern-corporate-trust-section {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 28px;
-  padding: 52px 48px;
+  padding: 44px 40px;
   box-shadow: 0 15px 35px -10px rgba(0, 43, 73, 0.07);
   position: relative;
   overflow: hidden;
@@ -3898,9 +3898,16 @@ body.theme-dark .modern-corporate-trust-wrapper {
   box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
 }
 
+.modern-trust-poster-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+}
+
 .modern-trust-poster-container {
   position: relative;
-  display: inline-block;
+  display: block;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 40px -10px rgba(0, 43, 73, 0.2);
@@ -3927,7 +3934,7 @@ body.theme-dark .modern-corporate-trust-wrapper {
   bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 43, 73, 0.92);
+  background: rgba(0, 43, 73, 0.94);
   backdrop-filter: blur(8px);
   color: #ffffff;
   font-size: 12px;
@@ -3937,19 +3944,79 @@ body.theme-dark .modern-corporate-trust-wrapper {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   white-space: nowrap;
   letter-spacing: 0.02em;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .modern-corporate-trust-content {
-  padding-left: 20px;
+  padding-left: 24px;
 }
 
+/* Mobile & Tablet edge-to-edge full stretch */
 @media (max-width: 991px) {
-  .modern-corporate-trust-wrapper {
-    padding: 32px 20px;
+  .modern-corporate-trust-section {
+    padding: 48px 0;
   }
+
+  .modern-corporate-trust-wrapper {
+    padding: 0 !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+  }
+
+  .modern-trust-poster-col {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  .modern-trust-poster-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .modern-trust-poster-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 24px 24px 0 0 !important;
+    object-fit: cover !important;
+  }
+
+  .modern-trust-poster-badge {
+    bottom: 12px !important;
+    font-size: 11px !important;
+    padding: 6px 16px !important;
+  }
+
   .modern-corporate-trust-content {
-    padding-left: 0;
-    margin-top: 32px;
+    padding: 26px 20px 32px 20px !important;
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .modern-corporate-trust-section .container {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .modern-corporate-trust-wrapper {
+    border-radius: 20px !important;
+  }
+
+  .modern-trust-poster-img {
+    border-radius: 20px 20px 0 0 !important;
+  }
+
+  .modern-corporate-trust-content {
+    padding: 20px 14px 28px 14px !important;
   }
 }
 
