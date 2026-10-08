@@ -5164,3 +5164,85 @@ body.theme-dark .modern-hero-section .modern-stat-item {
     transition: none;
   }
 }
+
+/* ========================================================
+   TRADUZTUDO MAIN FOOTER - EXACT REFERENCE (PURE WHITE)
+   Isolamento completo contra temas escuros e overrides
+   ======================================================== */
+#tt-main-footer,
+.tt-footer-isolated,
+body.theme-dark #tt-main-footer,
+html[data-theme="dark"] #tt-main-footer,
+html[data-theme="dark"] body #tt-main-footer {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #002b49 !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+#tt-main-footer *,
+body.theme-dark #tt-main-footer *,
+html[data-theme="dark"] #tt-main-footer * {
+  /* Evitar override generalizado de color: inherit */
+}
+
+#tt-main-footer .tt-footer-title,
+body.theme-dark #tt-main-footer .tt-footer-title,
+html[data-theme="dark"] #tt-main-footer .tt-footer-title {
+  color: #002b49 !important;
+}
+
+#tt-main-footer .tt-footer-desc,
+body.theme-dark #tt-main-footer .tt-footer-desc,
+html[data-theme="dark"] #tt-main-footer .tt-footer-desc {
+  color: #50667a !important;
+}
+
+#tt-main-footer .tt-section-heading,
+body.theme-dark #tt-main-footer .tt-section-heading,
+html[data-theme="dark"] #tt-main-footer .tt-section-heading {
+  color: #002b49 !important;
+}
+
+#tt-main-footer .tt-contact-link,
+body.theme-dark #tt-main-footer .tt-contact-link,
+html[data-theme="dark"] #tt-main-footer .tt-contact-link {
+  color: #002b49 !important;
+}
+
+#tt-main-footer .tt-contact-link:hover,
+body.theme-dark #tt-main-footer .tt-contact-link:hover,
+html[data-theme="dark"] #tt-main-footer .tt-contact-link:hover {
+  color: #00aa4e !important;
+}
+
+#tt-main-footer .tt-footer-bottom-text,
+body.theme-dark #tt-main-footer .tt-footer-bottom-text,
+html[data-theme="dark"] #tt-main-footer .tt-footer-bottom-text,
+#tt-main-footer .tt-footer-bottom-link,
+body.theme-dark #tt-main-footer .tt-footer-bottom-link,
+html[data-theme="dark"] #tt-main-footer .tt-footer-bottom-link {
+  color: #64748b !important;
+}
+
+#tt-main-footer .tt-footer-bottom-link:hover,
+body.theme-dark #tt-main-footer .tt-footer-bottom-link:hover,
+html[data-theme="dark"] #tt-main-footer .tt-footer-bottom-link:hover {
+  color: #002b49 !important;
+}
+
+@media (max-width: 768px) {
+  #tt-main-footer {
+    padding-top: 40px !important;
+  }
+  #tt-main-footer .tt-footer-title {
+    font-size: 32px !important;
+  }
+  #tt-main-footer .tt-footer-desc {
+    font-size: 15px !important;
+  }
+  #tt-main-footer .tt-footer-grid {
+    gap: 32px !important;
+  }
+}
+
