@@ -474,6 +474,65 @@ export default function Header() {
             <i className="far fa-envelope"></i>
             <span>Fale Conosco</span>
           </Link>
+
+          {/* Social Links */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '10px',
+              padding: '6px 4px',
+              marginTop: '4px',
+            }}
+          >
+            <a
+              href="https://www.instagram.com/traduz_tudo_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram @traduz_tudo_"
+              style={{
+                flex: 1,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#e1306c',
+                textDecoration: 'none',
+                padding: '10px 12px',
+                borderRadius: '10px',
+                background: 'rgba(225, 48, 108, 0.08)',
+              }}
+            >
+              <i className="fab fa-instagram" style={{ fontSize: '16px' }}></i>
+              <span>@traduz_tudo_</span>
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61594891905671"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook Oficial"
+              style={{
+                flex: 1,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#1877f2',
+                textDecoration: 'none',
+                padding: '10px 12px',
+                borderRadius: '10px',
+                background: 'rgba(24, 119, 242, 0.08)',
+              }}
+            >
+              <i className="fab fa-facebook-f" style={{ fontSize: '15px' }}></i>
+              <span>Facebook</span>
+            </a>
+          </div>
         </div>
 
         {/* Mobile CTA */}

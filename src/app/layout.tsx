@@ -144,6 +144,10 @@ export default function RootLayout({
                 'postalCode': '02962-100',
                 'addressCountry': 'BR',
               },
+              'sameAs': [
+                'https://www.instagram.com/traduz_tudo_/',
+                'https://www.facebook.com/profile.php?id=61594891905671',
+              ],
             }),
           }}
         />

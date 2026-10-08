@@ -229,7 +229,7 @@ export default function Footer() {
               }}
             >
               <a
-                href="https://www.facebook.com/traduztudo"
+                href="https://www.facebook.com/profile.php?id=61594891905671"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -250,7 +250,7 @@ export default function Footer() {
                 <i className="fab fa-facebook-f" />
               </a>
               <a
-                href="https://www.instagram.com/traduztudo"
+                href="https://www.instagram.com/traduz_tudo_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
