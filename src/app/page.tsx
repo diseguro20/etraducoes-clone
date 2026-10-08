@@ -499,7 +499,109 @@ const bodyHtml = `<section class="modern-hero-section">
   </div>
 </section>
 
-<!-- SECTION 6: BRIAN BOT & WHATSAPP INTERACTION -->
+<!-- SECTION 6: CORPORATE TRUST & HIGH CAPACITY -->
+<section class="modern-corporate-trust-section">
+  <div class="container">
+    <div class="modern-corporate-trust-wrapper">
+      <div class="row align-items-center">
+        <!-- Image Poster Column -->
+        <div class="col-lg-5 text-center mb-4 mb-lg-0">
+          <div class="modern-trust-poster-container">
+            <img 
+              src="/img/traduztudo-empresas-confianca.webp" 
+              alt="Sua empresa pode confiar na TraduzTudo - Soluções Corporativas e Grandes Volumes" 
+              class="modern-trust-poster-img"
+              width="787" 
+              height="1024"
+              loading="lazy"
+            />
+            <div class="modern-trust-poster-badge">
+              <i class="fas fa-shield-alt"></i> Garantia de Qualidade, Sigilo &amp; SLA
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy & Corporate Highlights Column -->
+        <div class="col-lg-7">
+          <div class="modern-corporate-trust-content">
+            <span class="modern-section-badge">
+              <i class="fas fa-building"></i> SOLUÇÕES CORPORATIVAS &bull; GRANDES DEMANDAS
+            </span>
+            <h2 class="modern-section-title">
+              Sua Empresa Pode Confiar na <span class="modern-gradient-text">TraduzTudo</span>
+            </h2>
+            <p class="modern-section-desc">
+              Somos o parceiro ideal para traduzir grandes volumes de documentos, com <strong>excelência</strong>, <strong>organização</strong> e <strong>total comprometimento</strong> com o seu negócio.
+            </p>
+
+            <div class="modern-trust-pillars-grid">
+              <div class="modern-trust-pillar-item">
+                <div class="pillar-icon"><i class="fas fa-users-cog"></i></div>
+                <div>
+                  <h4>Capacidade para Alto Volume de Demandas</h4>
+                  <p>Estrutura escalável e processos preparados para projetos e demandas corporativas de todos os portes.</p>
+                </div>
+              </div>
+
+              <div class="modern-trust-pillar-item">
+                <div class="pillar-icon"><i class="fas fa-check-double"></i></div>
+                <div>
+                  <h4>Qualidade &amp; Precisão Terminológica</h4>
+                  <p>Traduções juramentadas e técnicas rigorosamente revisadas por profissionais especializados.</p>
+                </div>
+              </div>
+
+              <div class="modern-trust-pillar-item">
+                <div class="pillar-icon"><i class="fas fa-stopwatch"></i></div>
+                <div>
+                  <h4>Agilidade, Organização &amp; SLA</h4>
+                  <p>Processos eficientes, cronograma transparente e cumprimento rigoroso de prazos acordados.</p>
+                </div>
+              </div>
+
+              <div class="modern-trust-pillar-item">
+                <div class="pillar-icon"><i class="fas fa-user-shield"></i></div>
+                <div>
+                  <h4>Confidencialidade &amp; Segurança (NDA / LGPD)</h4>
+                  <p>Proteção integral das informações estratégicas com assinatura de Termo de Confidencialidade.</p>
+                </div>
+              </div>
+
+              <div class="modern-trust-pillar-item">
+                <div class="pillar-icon"><i class="fas fa-globe"></i></div>
+                <div>
+                  <h4>Atendimento Multilíngue Especializado</h4>
+                  <p>Equipe nativa e qualificada em mais de 15 idiomas para viabilizar suas negociações globais.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Documents categories strip -->
+            <div class="modern-trust-docs-strip">
+              <span class="strip-label">Especialistas em:</span>
+              <span class="strip-tag"><i class="fas fa-file-contract"></i> Contratos</span>
+              <span class="strip-tag"><i class="fas fa-cogs"></i> Manuais Técnicos</span>
+              <span class="strip-tag"><i class="fas fa-chart-line"></i> Relatórios</span>
+              <span class="strip-tag"><i class="fas fa-landmark"></i> Licitações</span>
+              <span class="strip-tag"><i class="fas fa-briefcase"></i> Documentos Societários</span>
+            </div>
+
+            <div class="modern-corporate-trust-actions">
+              <a href="javascript:void(0)" class="modern-btn-primary wpp-btn-trigger">
+                <i class="fab fa-whatsapp"></i> Falar com Atendimento Corporativo
+              </a>
+              <a href="/orcamento-traducoes" class="modern-btn-secondary">
+                <i class="fas fa-calculator"></i> Simular Orçamento Empresarial
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: BRIAN BOT & WHATSAPP INTERACTION -->
 <section class="modern-brian-section">
   <div class="container">
     <div class="row align-items-center">
