@@ -46,7 +46,7 @@ export default function SearchPage() {
           ))}
           {filtered.length === 0 && (
             <div className="text-center py-12 text-gray-500">
-              Nenhum resultado encontrado para "{query}". Tente buscar por outros termos ou fale no nosso WhatsApp ((11) 98285-4183).
+              Nenhum resultado encontrado para "{query}". Tente buscar por outros termos ou fale no nosso WhatsApp ((11) 94748-5091).
             </div>
           )}
         </div>

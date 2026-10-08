@@ -119,6 +119,34 @@ export default function RootLayout({
         <meta property="og:image:alt" content="TraduzTudo - Traduções Juramentadas e Certificadas" />
         <meta name="twitter:image" content="https://traduztudo.com/img/og-preview.png" />
         <link rel="image_src" href="https://traduztudo.com/img/og-preview.png" />
+
+        {/* Structured Data (JSON-LD) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              'name': 'TraduzTudo',
+              'legalName': 'TraduzTudo Traduções e Interpretações Ltda',
+              'taxID': '69.530.655/0001-78',
+              'url': 'https://traduztudo.com',
+              'logo': 'https://traduztudo.com/img/traduztudo-emblem.png',
+              'telephone': '+55 11 94748-5091',
+              'email': 'contato@traduztudo.com.br',
+              'description':
+                'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 94748-5091.',
+              'address': {
+                '@type': 'PostalAddress',
+                'streetAddress': 'Rua Monsenhor Januário Sangirardi, 135 - Sala 2',
+                'addressLocality': 'São Paulo',
+                'addressRegion': 'SP',
+                'postalCode': '02962-100',
+                'addressCountry': 'BR',
+              },
+            }),
+          }}
+        />
       </head>
       <body>
         <AuthProvider>

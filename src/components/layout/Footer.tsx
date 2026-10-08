@@ -492,7 +492,11 @@ export default function Footer() {
           }}
         >
           <div className="tt-footer-bottom-text" style={{ color: '#64748b' }}>
-            Copyright © 2026 TraduzTudo, Todos os direitos reservados.
+            <span>Copyright © 2026 TraduzTudo</span>
+            <span style={{ margin: '0 8px', color: '#cbd5e1' }}>•</span>
+            <span style={{ fontWeight: 600, color: '#334155' }}>CNPJ: 69.530.655/0001-78</span>
+            <span style={{ margin: '0 8px', color: '#cbd5e1' }}>•</span>
+            <span>Todos os direitos reservados.</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Link
