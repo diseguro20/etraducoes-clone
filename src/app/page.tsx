@@ -1049,6 +1049,27 @@ export default function HomePage() {
     };
     scrollLinks.forEach((link) => link.addEventListener('click', handleScroll));
 
+    // Responsive world map auto-scaler: keeps all country pins visible simultaneously without zoom on mobile
+    const updateMapScale = () => {
+      const stage = document.querySelector('.traduztudo-map-stage') as HTMLElement | null;
+      const viewport = document.querySelector('.traduztudo-map-viewport') as HTMLElement | null;
+      if (!stage || !viewport) return;
+      const parent = viewport.parentElement || viewport;
+      const containerWidth = parent.clientWidth;
+      if (containerWidth > 0 && containerWidth < 873) {
+        const targetWidth = Math.min(873, Math.max(260, containerWidth - 16));
+        const scale = targetWidth / 873;
+        const mb = -Math.round(440 * (1 - scale));
+        stage.style.setProperty('--map-scale', scale.toFixed(4));
+        stage.style.setProperty('--map-margin-bottom', `${mb}px`);
+      } else if (containerWidth >= 873) {
+        stage.style.setProperty('--map-scale', '1');
+        stage.style.setProperty('--map-margin-bottom', '0px');
+      }
+    };
+    updateMapScale();
+    window.addEventListener('resize', updateMapScale);
+
     return () => {
       form?.removeEventListener('submit', handleSubmit);
       fileInput?.removeEventListener('change', handleFileInputChange);
@@ -1060,6 +1081,7 @@ export default function HomePage() {
       phoneInput?.removeEventListener('input', handlePhoneInput);
       wppButtons.forEach((btn) => btn.removeEventListener('click', handleWppClick));
       scrollLinks.forEach((link) => link.removeEventListener('click', handleScroll));
+      window.removeEventListener('resize', updateMapScale);
     };
   }, []);
 

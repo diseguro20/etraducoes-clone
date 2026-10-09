@@ -4504,12 +4504,12 @@ body.theme-dark .modern-review-date {
 .traduztudo-map-viewport {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 873px;
   margin: 32px auto 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow: hidden;
+  overflow: visible;
   box-sizing: border-box;
 }
 
@@ -4517,9 +4517,12 @@ body.theme-dark .modern-review-date {
   position: relative;
   width: 873px;
   height: 440px;
-  margin: 25px auto 10px;
+  margin: 20px auto 10px;
   flex-shrink: 0;
   transform-origin: top center;
+  transform: scale(var(--map-scale, 1));
+  margin-bottom: var(--map-margin-bottom, 0px);
+  transition: transform 0.2s ease, margin-bottom 0.2s ease;
 }
 
 .traduztudo-map-stage img.traduztudo-map-base {
@@ -4535,8 +4538,8 @@ body.theme-dark .modern-review-date {
 
 [data-theme="dark"] .traduztudo-map-stage img.traduztudo-map-base,
 body.theme-dark .traduztudo-map-stage img.traduztudo-map-base {
-  opacity: 0.45;
-  filter: brightness(1.2) drop-shadow(0 0 10px rgba(56, 189, 248, 0.15));
+  opacity: 0.55;
+  filter: brightness(1.25) drop-shadow(0 0 12px rgba(56, 189, 248, 0.2));
 }
 
 /* Flag pins on top of the map */
@@ -4596,54 +4599,99 @@ body.theme-dark .traduztudo-map-stage a img {
 
 /* Glowing pulse effect on flag pins */
 .shadow-pulse {
-  animation: shadowPulseGlow 2.5s infinite ease-in-out !important;
+  animation: shadowPulseGlow 2s infinite ease-in-out !important;
 }
 
 @keyframes shadowPulseGlow {
   0% {
-    box-shadow: 0 0 0 0 rgba(46, 126, 198, 0.6);
+    box-shadow: 0 0 0 0 rgba(14, 116, 224, 0.7), 0 3px 10px rgba(0, 0, 0, 0.18);
   }
-  70% {
-    box-shadow: 0 0 0 12px rgba(46, 126, 198, 0);
+  60% {
+    box-shadow: 0 0 0 11px rgba(14, 116, 224, 0), 0 3px 14px rgba(14, 116, 224, 0.4);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(46, 126, 198, 0);
+    box-shadow: 0 0 0 0 rgba(14, 116, 224, 0), 0 3px 10px rgba(0, 0, 0, 0.18);
+  }
+}
+
+[data-theme="dark"] .shadow-pulse,
+body.theme-dark .shadow-pulse {
+  animation: shadowPulseGlowDark 2s infinite ease-in-out !important;
+}
+
+@keyframes shadowPulseGlowDark {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8), 0 0 10px rgba(56, 189, 248, 0.45);
+  }
+  60% {
+    box-shadow: 0 0 0 12px rgba(56, 189, 248, 0), 0 0 18px rgba(56, 189, 248, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0), 0 0 10px rgba(56, 189, 248, 0.45);
   }
 }
 
 /* Map responsive scaling for laptops, tablets and mobiles */
-@media (min-width: 1024px) and (max-width: 1200px) {
+@media (max-width: 339px) {
   .traduztudo-map-stage {
-    transform: scale(0.88);
-    margin-bottom: -50px;
+    --map-scale: 0.32;
+    --map-margin-bottom: -299px;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 340px) and (max-width: 374px) {
   .traduztudo-map-stage {
-    transform: scale(0.72);
-    margin-bottom: -115px;
+    --map-scale: 0.36;
+    --map-margin-bottom: -281px;
   }
 }
 
-@media (min-width: 480px) and (max-width: 767px) {
+@media (min-width: 375px) and (max-width: 419px) {
   .traduztudo-map-stage {
-    transform: scale(0.50);
-    margin-bottom: -210px;
+    --map-scale: 0.40;
+    --map-margin-bottom: -264px;
   }
 }
 
-@media (max-width: 479px) {
+@media (min-width: 420px) and (max-width: 479px) {
   .traduztudo-map-stage {
-    transform: scale(0.40);
-    margin-bottom: -255px;
+    --map-scale: 0.45;
+    --map-margin-bottom: -242px;
   }
 }
 
-@media (max-width: 360px) {
+@media (min-width: 480px) and (max-width: 599px) {
   .traduztudo-map-stage {
-    transform: scale(0.35);
-    margin-bottom: -280px;
+    --map-scale: 0.52;
+    --map-margin-bottom: -211px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 767px) {
+  .traduztudo-map-stage {
+    --map-scale: 0.64;
+    --map-margin-bottom: -158px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .traduztudo-map-stage {
+    --map-scale: 0.76;
+    --map-margin-bottom: -105px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1049px) {
+  .traduztudo-map-stage {
+    --map-scale: 0.88;
+    --map-margin-bottom: -52px;
+  }
+}
+
+@media (min-width: 1050px) {
+  .traduztudo-map-stage {
+    --map-scale: 1;
+    --map-margin-bottom: 0px;
   }
 }
 
