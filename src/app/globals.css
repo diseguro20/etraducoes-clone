@@ -4542,11 +4542,13 @@ body.theme-dark .traduztudo-map-stage img.traduztudo-map-base {
   filter: brightness(1.25) drop-shadow(0 0 12px rgba(56, 189, 248, 0.2));
 }
 
-/* Flag pins on top of the map */
+/* Custom 3D country badges on top of the map */
 .traduztudo-map-stage a {
   position: absolute !important;
   z-index: 5 !important;
-  display: block !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   width: 52px !important;
   height: 52px !important;
   text-decoration: none !important;
@@ -4555,24 +4557,26 @@ body.theme-dark .traduztudo-map-stage img.traduztudo-map-base {
 }
 
 .traduztudo-map-stage a:hover {
-  transform: scale(1.25) translateY(-2px) !important;
+  transform: scale(1.25) translateY(-3px) !important;
   z-index: 20 !important;
 }
 
 .traduztudo-map-stage a img {
-  width: 52px !important;
-  height: 52px !important;
-  border: 2px solid #ffffff !important;
-  border-radius: 50% !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 52px !important;
+  max-height: 52px !important;
+  object-fit: contain !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
   display: block !important;
-  background-color: #ffffff !important;
 }
 
 [data-theme="dark"] .traduztudo-map-stage a img,
 body.theme-dark .traduztudo-map-stage a img {
-  border-color: #0f172a !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+  border: none !important;
+  background-color: transparent !important;
 }
 
 /* Original Pin Coordinates calibrated with pixel-precision over 873x440 canvas (20px top offset) */
@@ -4584,8 +4588,8 @@ body.theme-dark .traduztudo-map-stage a img {
 .traduztudo-map-stage a.no  { left: 474px !important; top: -11px !important; }
 .traduztudo-map-stage a.uk  { left: 394px !important; top: 19px !important; }
 .traduztudo-map-stage a.fr  { left: 400px !important; top: 74px !important; }
-.traduztudo-map-stage a.nl  { left: 446px !important; top: 14px !important; width: 34px !important; height: 34px !important; }
-.traduztudo-map-stage a.nl img { width: 34px !important; height: 34px !important; }
+.traduztudo-map-stage a.nl  { left: 446px !important; top: 14px !important; width: 44px !important; height: 44px !important; }
+.traduztudo-map-stage a.nl img { width: 100% !important; height: 100% !important; }
 .traduztudo-map-stage a.de  { left: 457px !important; top: 64px !important; }
 .traduztudo-map-stage a.ita { left: 457px !important; top: 134px !important; }
 .traduztudo-map-stage a.rus { left: 623px !important; top: 84px !important; }
@@ -4594,41 +4598,45 @@ body.theme-dark .traduztudo-map-stage a img {
 .traduztudo-map-stage a.ko  { left: 660px !important; top: 174px !important; }
 .traduztudo-map-stage a.ja  { left: 736px !important; top: 194px !important; }
 .traduztudo-map-stage a.ar  { left: 472px !important; top: 194px !important; }
-.traduztudo-map-stage a.he  { left: 437px !important; top: 174px !important; width: 34px !important; height: 34px !important; }
-.traduztudo-map-stage a.he img { width: 34px !important; height: 34px !important; }
+.traduztudo-map-stage a.he  { left: 437px !important; top: 174px !important; width: 44px !important; height: 44px !important; }
+.traduztudo-map-stage a.he img { width: 100% !important; height: 100% !important; }
 
-/* Glowing pulse effect on flag pins */
+/* Glowing pulse effect on custom 3D badges */
 .shadow-pulse {
-  animation: shadowPulseGlow 2s infinite ease-in-out !important;
+  animation: badgeGlowPulse 2.2s infinite ease-in-out !important;
 }
 
-@keyframes shadowPulseGlow {
+@keyframes badgeGlowPulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(14, 116, 224, 0.7), 0 3px 10px rgba(0, 0, 0, 0.18);
+    filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.45)) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.3));
   }
-  60% {
-    box-shadow: 0 0 0 11px rgba(14, 116, 224, 0), 0 3px 14px rgba(14, 116, 224, 0.4);
+  50% {
+    filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 20px rgba(14, 116, 224, 0.6)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(14, 116, 224, 0), 0 3px 10px rgba(0, 0, 0, 0.18);
+    filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.45)) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.3));
   }
 }
 
 [data-theme="dark"] .shadow-pulse,
 body.theme-dark .shadow-pulse {
-  animation: shadowPulseGlowDark 2s infinite ease-in-out !important;
+  animation: badgeGlowPulseDark 2.2s infinite ease-in-out !important;
 }
 
-@keyframes shadowPulseGlowDark {
+@keyframes badgeGlowPulseDark {
   0% {
-    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8), 0 0 10px rgba(56, 189, 248, 0.45);
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.55)) drop-shadow(0 3px 10px rgba(0, 0, 0, 0.6));
   }
-  60% {
-    box-shadow: 0 0 0 12px rgba(56, 189, 248, 0), 0 0 18px rgba(56, 189, 248, 0.6);
+  50% {
+    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 1)) drop-shadow(0 0 24px rgba(14, 165, 233, 0.75)) drop-shadow(0 5px 14px rgba(0, 0, 0, 0.7));
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0), 0 0 10px rgba(56, 189, 248, 0.45);
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.55)) drop-shadow(0 3px 10px rgba(0, 0, 0, 0.6));
   }
+}
+
+.traduztudo-map-stage a:hover .shadow-pulse {
+  filter: drop-shadow(0 0 18px rgba(56, 189, 248, 1)) drop-shadow(0 0 28px rgba(255, 255, 255, 0.85)) !important;
 }
 
 /* Map responsive scaling for laptops, tablets and mobiles */

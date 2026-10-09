@@ -244,58 +244,58 @@ const bodyHtml = `<section class="modern-hero-section">
       <div class="traduztudo-map-stage">
         <img src="/themes/web/assets/img/map-etra.svg" width="873" height="401" alt="Mapa Mundi de Idiomas TraduzTudo" class="traduztudo-map-base" loading="lazy">
         <a href="/traducao-juramentada-na-argentina" class="arg" title="Tradução Juramentada na Argentina">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-argentina.svg" width="52" height="52" alt="Argentina">
+          <img class="btn-hover shadow-pulse" src="/img/badges/arg.png" width="52" height="52" alt="Argentina">
         </a>
         <a href="/traducao-de-portugues" class="br" title="Tradução Português">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-brazil.svg" width="52" height="52" alt="Brasil">
+          <img class="btn-hover shadow-pulse" src="/img/badges/br.png" width="52" height="52" alt="Brasil">
         </a>
         <a href="/traducao-certificada-canada" class="ca" title="Tradução Canadá">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-canada.svg" width="52" height="52" alt="Canadá">
+          <img class="btn-hover shadow-pulse" src="/img/badges/ca.png" width="52" height="52" alt="Canadá">
         </a>
         <a href="/traducao-de-ingles" class="eua" title="Tradução Inglês (EUA)">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-united-states-of-america.svg" width="52" height="52" alt="EUA">
+          <img class="btn-hover shadow-pulse" src="/img/badges/eua.png" width="52" height="52" alt="EUA">
         </a>
         <a href="/traducao-de-espanhol" class="spa" title="Tradução Espanhol">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-spain.svg" width="52" height="52" alt="Espanha">
+          <img class="btn-hover shadow-pulse" src="/img/badges/es.png" width="52" height="52" alt="Espanha">
         </a>
         <a href="/traducao-de-noruegues" class="no" title="Tradução Norueguês">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-noruega.svg" width="52" height="52" alt="Noruega">
+          <img class="btn-hover shadow-pulse" src="/img/badges/no.png" width="52" height="52" alt="Noruega">
         </a>
         <a href="/traducao-certificada-na-inglaterra" class="uk" title="Tradução Inglês (UK)">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-inglaterra.svg" width="52" height="52" alt="Reino Unido">
+          <img class="btn-hover shadow-pulse" src="/img/badges/uk.png" width="52" height="52" alt="Reino Unido">
         </a>
         <a href="/traducao-frances" class="fr" title="Tradução Francês">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-france.svg" width="52" height="52" alt="França">
+          <img class="btn-hover shadow-pulse" src="/img/badges/fr.png" width="52" height="52" alt="França">
         </a>
         <a href="/traducao-de-holandes" class="nl" title="Tradução Holandês">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-holanda.svg" width="32" height="32" alt="Holanda">
+          <img class="btn-hover shadow-pulse" src="/img/badges/nl.png" width="44" height="44" alt="Holanda">
         </a>
         <a href="/traducao-de-alemao" class="de" title="Tradução Alemão">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-germany.svg" width="52" height="52" alt="Alemanha">
+          <img class="btn-hover shadow-pulse" src="/img/badges/de.png" width="52" height="52" alt="Alemanha">
         </a>
         <a href="/traducao-de-italiano" class="ita" title="Tradução Italiano">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-italy.svg" width="52" height="52" alt="Itália">
+          <img class="btn-hover shadow-pulse" src="/img/badges/it.png" width="52" height="52" alt="Itália">
         </a>
         <a href="/traducao-russo" class="rus" title="Tradução Russo">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-russia.svg" width="52" height="52" alt="Rússia">
+          <img class="btn-hover shadow-pulse" src="/img/badges/ru.png" width="52" height="52" alt="Rússia">
         </a>
         <a href="/traducao-mandarim" class="ch" title="Tradução Mandarim">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-china.svg" width="52" height="52" alt="China">
+          <img class="btn-hover shadow-pulse" src="/img/badges/cn.png" width="52" height="52" alt="China">
         </a>
         <a href="/traducao-certificada-naati" class="au" title="Tradução Austrália">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-australia.svg" width="52" height="52" alt="Austrália">
+          <img class="btn-hover shadow-pulse" src="/img/badges/au.png" width="52" height="52" alt="Austrália">
         </a>
         <a href="/traducao-juramentada-coreano" class="ko" title="Tradução Coreano">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-coreia-do-sul.svg" width="52" height="52" alt="Coreia do Sul">
+          <img class="btn-hover shadow-pulse" src="/img/badges/kr.png" width="52" height="52" alt="Coreia do Sul">
         </a>
         <a href="/traducao-de-japones" class="ja" title="Tradução Japonês">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-japao.svg" width="52" height="52" alt="Japão">
+          <img class="btn-hover shadow-pulse" src="/img/badges/jp.png" width="52" height="52" alt="Japão">
         </a>
         <a href="/traducao-juramentada-arabe" class="ar" title="Tradução Árabe">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-arabia.svg" width="52" height="52" alt="Árabe">
+          <img class="btn-hover shadow-pulse" src="/img/badges/ar.png" width="52" height="52" alt="Árabe">
         </a>
         <a href="/traducao-juramentada-hebraico" class="he" title="Tradução Hebraico">
-          <img class="btn-hover shadow-pulse" src="/themes/web/assets/img/icon-israel.svg" width="32" height="32" alt="Israel">
+          <img class="btn-hover shadow-pulse" src="/img/badges/il.png" width="44" height="44" alt="Israel">
         </a>
       </div>
     </div>
