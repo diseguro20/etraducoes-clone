@@ -132,7 +132,7 @@ export default function RootLayout({
               'url': 'https://traduztudo.com',
               'logo': 'https://traduztudo.com/img/traduztudo-emblem.png',
               'telephone': '+55 11 94748-5091',
-              'email': 'contato@traduztudo.com.br',
+              'email': 'contato@traduztudo.com',
               'description':
                 'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 94748-5091.',
               'address': {

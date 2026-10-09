@@ -29,7 +29,7 @@ export async function sendQuoteToSaaS(data: {
 }): Promise<{ success: boolean; requestId?: string; error?: string }> {
   try {
     const sName = (data.fullName || data.name || 'Cliente Sem Nome').trim();
-    const sEmail = (data.email || 'contato@traduztudo.com.br').trim();
+    const sEmail = (data.email || 'contato@traduztudo.com').trim();
     const sPhone = (data.whatsapp || data.phone || '(11) 94748-5091').trim();
     const sService = data.serviceType || data.service || 'Tradução Juramentada';
 

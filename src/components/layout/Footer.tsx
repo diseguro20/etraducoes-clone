@@ -102,7 +102,7 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {/* E-mail */}
               <a
-                href="mailto:contato@traduztudo.com.br"
+                href="mailto:contato@traduztudo.com"
                 className="tt-contact-link"
                 style={{
                   display: 'flex',
@@ -125,7 +125,7 @@ export default function Footer() {
                     flexShrink: 0,
                   }}
                 />
-                <span>contato@traduztudo.com.br</span>
+                <span>contato@traduztudo.com</span>
               </a>
 
               {/* Atendente Principal */}

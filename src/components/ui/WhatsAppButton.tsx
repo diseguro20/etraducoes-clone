@@ -264,7 +264,7 @@ export default function WhatsAppButton() {
       try {
         createQuote({
           fullName: userName || 'Lead WhatsApp',
-          email: 'lead-whatsapp@traduztudo.com.br',
+          email: 'contato@traduztudo.com',
           whatsapp: userPhone,
           serviceType: `${serviceType || 'Tradução'} (${languagePair || 'Idiomas não especificados'})`,
           fileNames: [],
