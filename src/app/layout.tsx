@@ -34,11 +34,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
+  title: 'TraduzTudo | Tradução Juramentada, Técnica e Certificada',
   description:
     'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 94748-5091.',
   keywords:
-    'tradução juramentada, tradução certificada, tradução técnica, apostilamento de haia, tradução oficial, tradutudo',
+    'Traduz Tudo, TraduzTudo, traduztudo, traduz tudo traducoes, tradução juramentada, tradução certificada, tradução técnica, apostilamento de haia, tradução oficial, tradução juramentada sp, tradução para cidadania italiana',
   authors: [{ name: 'TraduzTudo', url: 'https://traduztudo.com' }],
   creator: 'TraduzTudo',
   publisher: 'TraduzTudo',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     email: true,
   },
   openGraph: {
-    title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
+    title: 'TraduzTudo | Tradução Juramentada, Técnica e Certificada',
     description:
       'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 94748-5091.',
     url: 'https://traduztudo.com',
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TraduzTudo - Traduções Juramentadas e Certificadas',
+    title: 'TraduzTudo | Tradução Juramentada, Técnica e Certificada',
     description:
       'Traduções Juramentadas e Certificadas válidas em todo o Brasil e no exterior. Atendimento rápido e orçamento online via WhatsApp: (11) 94748-5091.',
     images: ['https://traduztudo.com/img/og-preview.png'],
@@ -141,6 +141,20 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
               'name': 'TraduzTudo',
+              'alternateName': [
+                'Traduz Tudo',
+                'TraduzTudo Traduções',
+                'Traduz Tudo Oficial',
+                'TraduzTudo Traduções e Interpretações',
+                'TraduzTudo - Traduções Juramentadas e Certificadas'
+              ],
+              'knowsAbout': [
+                'Tradução Juramentada',
+                'Apostilamento de Haia',
+                'Tradução Certificada',
+                'Tradução Técnica',
+                'Tradução para Cidadania Italiana'
+              ],
               'legalName': 'TraduzTudo Traduções e Interpretações Ltda',
               'taxID': '69.530.655/0001-78',
               'url': 'https://traduztudo.com',
