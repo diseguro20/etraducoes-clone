@@ -83,12 +83,20 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-48x48.png', type: 'image/png', sizes: '48x48' },
+      { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
+      { url: '/favicon-192x192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/favicon-512x512.png', type: 'image/png', sizes: '512x512' },
       { url: '/img/traduztudo-favicon-32.png', type: 'image/png', sizes: '32x32' },
       { url: '/img/traduztudo-favicon.png', type: 'image/png', sizes: '192x192' },
       { url: '/img/traduztudo-emblem.png', type: 'image/png', sizes: '512x512' },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: ['/favicon.ico'],
   },
+  manifest: '/manifest.json',
   other: {
     'thumbnail': 'https://traduztudo.com/img/og-preview.png',
     'whatsapp:image': 'https://traduztudo.com/img/og-preview.png',
@@ -117,11 +125,16 @@ export default function RootLayout({
         <link rel="stylesheet" href="/css/etraducoes.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
 
-        {/* Favicon & App Icons */}
+        {/* Favicon & Search Engine App Icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/img/traduztudo-favicon-32.png" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/img/traduztudo-favicon.png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
 
         {/* WhatsApp & Social Media Preview Meta Tags */}
         <meta property="og:image" content="https://traduztudo.com/img/og-preview.png" />
@@ -158,7 +171,8 @@ export default function RootLayout({
               'legalName': 'TraduzTudo Traduções e Interpretações Ltda',
               'taxID': '69.530.655/0001-78',
               'url': 'https://traduztudo.com',
-              'logo': 'https://traduztudo.com/img/traduztudo-emblem.png',
+              'logo': 'https://traduztudo.com/favicon-512x512.png',
+              'image': 'https://traduztudo.com/favicon-512x512.png',
               'telephone': '+55 11 94748-5091',
               'email': 'contato@traduztudo.com',
               'description':
