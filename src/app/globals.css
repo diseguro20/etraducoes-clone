@@ -68,22 +68,22 @@ html[data-theme="dark"] .traduztudo-logo-dark {
 }
 
 /* Dark mode styling for custom pages & components */
-html[data-theme="dark"] .bg-white,
-body.theme-dark .bg-white,
-html[data-theme="dark"] .bg-gray-50,
-body.theme-dark .bg-gray-50,
-html[data-theme="dark"] .bg-gray-100,
-body.theme-dark .bg-gray-100,
-html[data-theme="dark"] .bg-slate-50,
-body.theme-dark .bg-slate-50 {
+html[data-theme="dark"] .bg-white:not(.lp-parceiros):not(.lp-parceiros *),
+body.theme-dark .bg-white:not(.lp-parceiros):not(.lp-parceiros *),
+html[data-theme="dark"] .bg-gray-50:not(.lp-parceiros):not(.lp-parceiros *),
+body.theme-dark .bg-gray-50:not(.lp-parceiros):not(.lp-parceiros *),
+html[data-theme="dark"] .bg-gray-100:not(.lp-parceiros):not(.lp-parceiros *),
+body.theme-dark .bg-gray-100:not(.lp-parceiros):not(.lp-parceiros *),
+html[data-theme="dark"] .bg-slate-50:not(.lp-parceiros):not(.lp-parceiros *),
+body.theme-dark .bg-slate-50:not(.lp-parceiros):not(.lp-parceiros *) {
   background-color: #1a2233 !important;
   border-color: #2a3449 !important;
   color: #f1f5f9 !important;
 }
-html[data-theme="dark"] .bg-white *,
-body.theme-dark .bg-white *,
-html[data-theme="dark"] .bg-gray-50 *,
-body.theme-dark .bg-gray-50 * {
+html[data-theme="dark"] .bg-white *:not(.lp-parceiros *),
+body.theme-dark .bg-white *:not(.lp-parceiros *),
+html[data-theme="dark"] .bg-gray-50 *:not(.lp-parceiros *),
+body.theme-dark .bg-gray-50 *:not(.lp-parceiros *) {
   color: inherit;
 }
 html[data-theme="dark"] .bg-gradient-to-br,

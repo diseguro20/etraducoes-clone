@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://traduztudo.com/themes/web/assets/img/lp/hero.png',
+        url: 'https://traduztudo.com/themes/web/assets/img/lp/hero-parceiros.jpg',
         width: 1200,
         height: 630,
         alt: 'Programa de Parceiros TraduzTudo',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: 'Programa de Parceiros e Influenciadores | TraduzTudo',
     description:
       'Monetize sua audiência com a TraduzTudo. Comissões atrativas, pagamentos via PIX e suporte dedicado.',
-    images: ['https://traduztudo.com/themes/web/assets/img/lp/hero.png'],
+    images: ['https://traduztudo.com/themes/web/assets/img/lp/hero-parceiros.jpg'],
   },
 };
 
