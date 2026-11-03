@@ -67,6 +67,16 @@ html[data-theme="dark"] .traduztudo-logo-dark {
   display: inline-block !important;
 }
 
+/* Force clean natural light styling on the partners landing page */
+.lp-parceiros {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+}
+
+.lp-parceiros * {
+  box-sizing: border-box;
+}
+
 /* Dark mode styling for custom pages & components */
 html[data-theme="dark"] .bg-white:not(.lp-parceiros):not(.lp-parceiros *),
 body.theme-dark .bg-white:not(.lp-parceiros):not(.lp-parceiros *),
