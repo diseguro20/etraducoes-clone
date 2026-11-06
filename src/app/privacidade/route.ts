@@ -1,0 +1,16 @@
+import { NextResponse } from 'next/server';
+
+export const runtime = 'nodejs';
+export const dynamic = 'force-static';
+
+const htmlContent = "<!doctype html><html lang=\"pt-BR\"><head><script src=\"/assets/navigation.js\"></script><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><meta name=\"theme-color\" content=\"#002b49\"><title>Privacidade \u2014 Traduz Tudo</title><meta name=\"description\" content=\"Tradu\u00e7\u00e3o juramentada, t\u00e9cnica, livre e interpreta\u00e7\u00e3o. Conhe\u00e7a a Traduz Tudo e solicite seu or\u00e7amento personalizado.\"><link rel=\"icon\" href=\"/assets/img/logo-icon.png\"><script>try{document.documentElement.classList.add(\"is-entering\")}catch(e){document.documentElement.classList.add('is-entering')}</script><style>html.is-entering::after,html.is-loading-first::after{content:'';position:fixed;inset:0;z-index:198;background:#0078d4}html.is-loading-first::after{background:#f0f7fb}</style><link rel=\"stylesheet\" href=\"/assets/common-7nUs9TrF.css\"><link rel=\"stylesheet\" href=\"/assets/pages-DmoVKLQY.css\"><link rel=\"stylesheet\" href=\"/assets/brand.css\"><script type=\"module\" src=\"/assets/pages-v2.js\"></script></head><body><a class=\"skip-link\" href=\"#conteudo\">Pular para o conte\u00fado</a><main id=\"conteudo\"><section class=\"page-hero\"><span class=\"chip\">Informa\u00e7\u00f5es sobre este site</span><h1 class=\"display\" data-split>Seus dados.<br>Com clareza.</h1><p data-fade>Como as intera\u00e7\u00f5es desta p\u00e1gina funcionam.</p><svg class=\"wave-bottom\" viewBox=\"0 0 1440 80\" preserveAspectRatio=\"none\" aria-hidden=\"true\" style=\"color:var(--paper)\"><path data-wave fill=\"currentColor\" d=\"M0 40 Q360 0 720 40T1440 40V80H0Z\"/></svg></section><section class=\"section privacy-copy\"><h2>Formul\u00e1rios e contatos</h2><p>Os formul\u00e1rios preparam uma mensagem para abrir no WhatsApp. O envio s\u00f3 ocorre quando voc\u00ea confirma a mensagem no pr\u00f3prio aplicativo. A coleta e o tratamento nesse servi\u00e7o seguem tamb\u00e9m as regras do WhatsApp. Links de e-mail abrem seu aplicativo de e-mail.</p><h2>Armazenamento no navegador</h2><p>O site usa armazenamento local para lembrar os servi\u00e7os selecionados e armazenamento de sess\u00e3o para controlar a anima\u00e7\u00e3o de entrada. Voc\u00ea pode apagar essas informa\u00e7\u00f5es nas configura\u00e7\u00f5es do navegador. Esta vers\u00e3o n\u00e3o inclui ferramentas de publicidade nem an\u00e1lise de audi\u00eancia.</p><h2>Documentos</h2><p>As imagens de documentos exibidas s\u00e3o modelos ilustrativos. Este site n\u00e3o possui envio de arquivos. Combine o compartilhamento de documentos e as condi\u00e7\u00f5es do servi\u00e7o diretamente com a equipe.</p><h2>Contato</h2><p>Para d\u00favidas sobre seus dados e atendimento: <a href=\"mailto:contato@traduztudo.com\">contato@traduztudo.com</a>.</p></section></main><script type=\"module\" src=\"/assets/accessibility-v2.js\"></script></body></html>";
+
+export async function GET() {
+  return new NextResponse(htmlContent, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8',
+      'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+    },
+  });
+}

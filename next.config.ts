@@ -32,6 +32,17 @@ const nextConfig = {
       allowedOrigins: ['localhost:3000'],
     },
   },
+  async rewrites() {
+    return [
+      { source: '/index.html', destination: '/' },
+      { source: '/servicos.html', destination: '/servicos' },
+      { source: '/servico.html', destination: '/servico' },
+      { source: '/orcamento.html', destination: '/orcamento' },
+      { source: '/sobre.html', destination: '/sobre' },
+      { source: '/contato.html', destination: '/contato' },
+      { source: '/privacidade.html', destination: '/privacidade' },
+    ];
+  },
 };
 
 export default nextConfig;
