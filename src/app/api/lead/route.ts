@@ -19,6 +19,14 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
+    // Se o cliente não informou e-mail (campo opcional), gera identificador para compatibilidade com o schema do SaaS
+    const rawEmail = (body.email || '').trim();
+    if (!rawEmail) {
+      const cleanPhone = (body.phone || body.whatsapp || 'lead').replace(/\D/g, '');
+      body.email = `${cleanPhone || 'sem-email'}@whatsapp.traduztudo.com`;
+      body.notes = (body.notes || '') + '\n[E-mail: Não informado pelo cliente no site (atendimento via WhatsApp)]';
+    }
+
     const saasUrl =
       process.env.NEXT_PUBLIC_SAAS_API_URL ||
       'https://traduztudo-os.vercel.app/api/public/requests';

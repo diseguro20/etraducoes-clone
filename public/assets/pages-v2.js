@@ -72,7 +72,7 @@ status.innerHTML='<span style="color:var(--cyan);font-weight:600;">⏳ Registran
 
 const saasPayload={
   name: nome,
-  email: email || 'contato@traduztudo.com',
+  email: email || `${(telefone || 'cliente').replace(/\D/g, '')}@whatsapp.traduztudo.com`,
   phone: telefone,
   whatsapp: telefone,
   service: serviceNames,
