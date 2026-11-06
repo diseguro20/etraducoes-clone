@@ -19,8 +19,19 @@ document.querySelectorAll('.faq-item').forEach((item,index)=>{
  button.addEventListener('click',()=>{const open=!item.classList.contains('is-open');document.querySelectorAll('.faq-item').forEach(other=>{const on=other===item&&open;other.classList.toggle('is-open',on);other.querySelector('button').setAttribute('aria-expanded',String(on));other.querySelector('.faq-a').setAttribute('aria-hidden',String(!on));gsap.to(other.querySelector('.faq-a'),{height:on?'auto':0,duration:.6,ease:'expo.out',onComplete:()=>ScrollTrigger.refresh()});});});
 });
 function openMessage(form,message){
- const url='https://wa.me/5511947485091?text='+encodeURIComponent(message);window.open(url,'_blank','noopener,noreferrer');
- const status=form.querySelector('.form-status');status.replaceChildren(document.createTextNode('Sua mensagem está pronta. Revise e envie no WhatsApp. '));const link=document.createElement('a');link.href=url;link.target='_blank';link.rel='noopener';link.textContent='Abrir novamente ↗';status.append(link);
+ const url='https://api.whatsapp.com/send?phone=5511947485091&text='+encodeURIComponent(message);
+ const status=form.querySelector('.form-status');
+ if(status){
+   status.innerHTML='<span style="color:var(--cyan);font-weight:600;">Abrindo WhatsApp...</span> <a href="'+url+'" target="_blank" rel="noopener noreferrer" style="color:var(--cyan);font-weight:700;margin-left:8px;">Abrir WhatsApp agora ↗</a>';
+ }
+ let opened=false;
+ try{
+   const win=window.open(url,'_blank','noopener,noreferrer');
+   if(win&&!win.closed&&typeof win.closed!=='undefined') opened=true;
+ }catch(e){}
+ if(!opened){
+   window.location.href=url;
+ }
 }
 const quote=document.querySelector('#quote-form');
 if(quote){const selected=new Set(selection.items.map(s=>s.key));const initial=new URLSearchParams(location.search).get('servico');if(initial)selected.add(initial);quote.querySelectorAll('[name=servico]').forEach(input=>input.checked=selected.has(input.value));quote.addEventListener('submit',async event=>{
@@ -57,7 +68,7 @@ if(submitBtn){
   submitBtn.style.opacity='0.7';
   submitBtn.style.pointerEvents='none';
 }
-status.innerHTML='<span style="color:var(--cyan);font-weight:600;">⏳ Registrando solicitação no sistema TraduzTudo OS...</span>';
+status.innerHTML='<span style="color:var(--cyan);font-weight:600;">⏳ Registrando solicitação e conectando ao WhatsApp...</span>';
 
 const saasPayload={
   name: nome,
@@ -78,33 +89,28 @@ const saasPayload={
 
 let requestId = null;
 
+// AbortController with 1.8s timeout so the customer is never blocked
+const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+const timeoutId = setTimeout(() => { if (controller) controller.abort(); }, 1800);
+
 try {
-  // 1. Try internal route /api/lead
-  let res = await fetch('/api/lead', {
+  const res = await fetch('/api/lead', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(saasPayload)
+    body: JSON.stringify(saasPayload),
+    signal: controller ? controller.signal : undefined
   }).catch(() => null);
 
-  // 2. Direct fallback to SaaS API with verified integration secret key
-  if (!res || !res.ok) {
-    res = await fetch('https://traduztudo-os.vercel.app/api/public/requests', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': '\\traduztudo-saas-api-secret-key-2026\\'
-      },
-      body: JSON.stringify(saasPayload)
-    }).catch(err => { console.warn('Direct SaaS call error:', err); return null; });
-  }
+  clearTimeout(timeoutId);
 
   if (res && res.ok) {
-    const resData = await res.json();
+    const resData = await res.json().catch(() => ({}));
     requestId = resData.requestId || resData.id || null;
     console.log('[SaaS Sync] Orçamento registrado com sucesso no TraduzTudo OS:', resData);
   }
 } catch (syncErr) {
-  console.warn('[SaaS Sync] Falha na requisição ao SaaS:', syncErr);
+  clearTimeout(timeoutId);
+  console.warn('[SaaS Sync] Falha ao enviar para o SaaS:', syncErr);
 }
 
 if(submitBtn){
@@ -124,14 +130,27 @@ const waMessage = `Olá, Traduz Tudo! Gostaria de um orçamento.\n\n` +
   (volume ? `Volume: ${volume}\n` : '') +
   `\nProjeto: ${mensagem}`;
 
-const waUrl = 'https://wa.me/5511947485091?text=' + encodeURIComponent(waMessage);
+const waUrl = 'https://api.whatsapp.com/send?phone=5511947485091&text=' + encodeURIComponent(waMessage);
 
 if(requestId){
-  status.innerHTML = `<span style="color:#22c55e;font-weight:700;">✅ Solicitação #${requestId} registrada com sucesso no TraduzTudo OS!</span><br><span style="color:var(--ink-muted);font-size:0.9rem;">Abrindo WhatsApp com seus dados preparados...</span> <a href="${waUrl}" target="_blank" rel="noopener" style="color:var(--cyan);font-weight:600;margin-left:8px;">Abrir WhatsApp agora ↗</a>`;
+  status.innerHTML = `<span style="color:#22c55e;font-weight:700;">✅ Solicitação #${requestId} registrada com sucesso no sistema!</span><br><span style="color:var(--ink-muted);font-size:0.9rem;">Redirecionando para o WhatsApp...</span><br><a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn" style="display:inline-flex;margin-top:10px;padding:8px 20px;font-size:0.95rem;background:#25d366;color:#fff;border-color:#25d366;text-decoration:none;border-radius:999px;">Abrir WhatsApp agora ↗</a>`;
 } else {
-  status.innerHTML = `<span style="color:var(--cyan);font-weight:600;">Sua mensagem está pronta! Abrindo WhatsApp...</span> <a href="${waUrl}" target="_blank" rel="noopener" style="color:var(--cyan);font-weight:600;margin-left:8px;">Abrir WhatsApp ↗</a>`;
+  status.innerHTML = `<span style="color:var(--cyan);font-weight:600;">Redirecionando para o WhatsApp...</span><br><a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn" style="display:inline-flex;margin-top:10px;padding:8px 20px;font-size:0.95rem;background:#25d366;color:#fff;border-color:#25d366;text-decoration:none;border-radius:999px;">Abrir WhatsApp agora ↗</a>`;
 }
 
-window.open(waUrl, '_blank', 'noopener,noreferrer');
+// Try window.open first; if blocked by browser popup blocker or on mobile, redirect via location.href
+let opened = false;
+try {
+  const win = window.open(waUrl, '_blank', 'noopener,noreferrer');
+  if (win && !win.closed && typeof win.closed !== 'undefined') {
+    opened = true;
+  }
+} catch(e) {
+  opened = false;
+}
+
+if (!opened) {
+  window.location.href = waUrl;
+}
 });}
 const contact=document.querySelector('#contact-form');if(contact)contact.addEventListener('submit',event=>{event.preventDefault();const data=new FormData(contact);openMessage(contact,`Olá, Traduz Tudo! Meu nome é ${data.get('nome')}.\n\n${data.get('mensagem')}`);});
